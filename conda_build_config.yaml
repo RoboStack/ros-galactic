@@ -1,0 +1,79 @@
+c_compiler:
+  - vs2019                     # [win]
+cxx_compiler:
+  - vs2019                     # [win]
+
+# TODO: remove these when run_exports are added to the packages.
+pin_run_as_build:
+  gazebo:
+    max_pin: x
+  libpcap:
+    max_pin: x.x
+  log4cxx:
+    max_pin: x.x.x
+  opencv:
+    max_pin: x.x
+  pcl:
+    max_pin: x.x.x
+  tbb-devel:
+    max_pin: x.x
+
+console_bridge:
+  - 1.0
+gazebo:
+  - '11'
+numpy:
+  # part of a zip_keys: python, python_impl, numpy
+  - 1.16   # [not (osx and arm64)]
+  # - 1.16   # [not (osx and arm64)]
+  # - 1.16   # [not (osx and arm64)]
+  - 1.19   # [osx and arm64]
+ogre:
+  - 1.10.12
+opencv:
+  - 4.5
+pcl:
+  - 1.11.1
+# tbb pinned on Windows due to https://stackoverflow.com/questions/64510477/error-c2061-syntax-error-identifier-concurrent-vectortemplate-type-paramet
+# tbb pinned on Unix due to https://github.com/conda-forge/gazebo-feedstock/issues/57
+tbb:
+  - 2019.9  # [win]
+  - 2020.2  # [not win]
+tbb-devel:
+  - 2019.9  # [win]
+  - 2020.2  # [not win]
+tbb_devel:
+  - 2019.9  # [win]
+  - 2020.2  # [not win]
+
+python:
+  # part of a zip_keys: python, python_impl, numpy
+  # - 3.6.* *_cpython    # [not (osx and arm64)]
+  # - 3.7.* *_cpython    # [not (osx and arm64)]
+  - 3.8.* *_cpython
+python_impl:
+  # part of a zip_keys: python, python_impl, numpy
+  # - cpython   # [not (osx and arm64)]
+  # - cpython   # [not (osx and arm64)]
+  - cpython
+
+# Project overrides
+macos_min_version:             # [osx]
+  - 10.14                      # [osx]
+MACOSX_DEPLOYMENT_TARGET:      # [osx]
+  - 10.14                      # [osx]
+
+# fix build metadata, needed for mapviz
+# replacements:
+#   all_replacements:
+#     - tag: 'pkg-config build metadata'
+#       glob_patterns:
+#         - '*.pc'
+#       regex_re: '(?:-L|-I)?\"?([^;\s]+\/sysroot\/)'
+#       replacement_re: '$(CONDA_BUILD_SYSROOT_S)'
+#       regex_rg: '([^;\s"]+/sysroot/)'
+#     - tag: 'CMake build metadata'
+#       glob_patterns:
+#         - '*.cmake'
+#       regex_re: '([^;\s"]+/sysroot)'
+#       replacement_re: '$ENV{CONDA_BUILD_SYSROOT}'
