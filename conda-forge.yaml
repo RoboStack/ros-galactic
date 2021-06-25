@@ -497,17 +497,25 @@ python3-collada:
   conda-forge: [pycollada]
 python3-pep8:
   conda-forge: [pep8]
+
 # rviz_ogre_vendor:
 #   conda-forge: [ogre 1.12]
-# weird stuff
-# {'rmw_cyclonedds_cpp', 'test_msgs', 'rmw_connext_cpp', 'libyaml_vendor', 'python3-pkg-resources', 'connext_cmake_module', 'rti-connext-dds-5.3.1'}
-# connext_cmake_module:
-#   conda-forge: [ros-foxy-connext-cmake-module]
-
-# {'benchmark', 'gtest_vendor', 'gmock_vendor', 'python3-dev'}
-# benchmark:
-#  conda-forge: [benchmark]
 # gtest_vendor:
 #   conda-forge: [gtest]
 # gmock_vendor:
 #   conda-forge: [gmock]
+# benchmark:
+#  conda-forge: [benchmark]
+
+python3-argcomplete:
+  conda-forge: [argcomplete]
+python3-packaging:
+  conda-forge: [packaging]
+python3-importlib-resources:
+  conda-forge: [importlib_resources]
+python3-importlib-metadata:
+  conda-forge: [importlib-metadata]
+bison:
+  conda-forge: [bison]
+acl:
+  conda-forge: [libacl]
