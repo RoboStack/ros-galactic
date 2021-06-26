@@ -1,2 +1,2 @@
 iceoryx_utils:
-  add_build: ["pkg-config"]
+  add_host: ["pkg-config"]
