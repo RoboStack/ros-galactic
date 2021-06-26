@@ -8,7 +8,7 @@ index 403e82b..62de9d6 100644
  if(LINUX)
 +    # Find libacl properly
 +    find_package(PkgConfig REQUIRED)
-+    pkg_check_modules(ACL REQUIRED acl)
++    pkg_check_modules(ACL REQUIRED libacl)
 +
      set(ICEORYX_PLATFORM ${CMAKE_CURRENT_SOURCE_DIR}/platform/linux/)
 -    target_link_libraries(iceoryx_utils PRIVATE acl atomic ${CODE_COVERAGE_LIBS})
