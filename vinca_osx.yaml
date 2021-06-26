@@ -2,7 +2,7 @@ ros_distro: galactic
 
 # mapping for package keys
 conda_index:
-  - conda-forge.yaml
+  - robostack.yaml
   - packages-ignore.yaml
 
 build_number: 0
