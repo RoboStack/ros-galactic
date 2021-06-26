@@ -1,0 +1,2 @@
+iceoryx-utils:
+  add_build: ["pkg-config"]
