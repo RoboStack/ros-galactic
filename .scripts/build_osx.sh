@@ -45,9 +45,8 @@ conda config --set show_channel_urls true
 conda config --set auto_update_conda false
 conda config --set add_pip_as_python_dependency false
 
-conda config --append channels defaults
 conda config --add channels conda-forge
-conda config --add channels robostack
+conda config --add channels robostack-experimental
 conda config --set channel_priority strict
 
 export "CONDA_BLD_PATH=$CONDA_PREFIX/conda-bld/"
