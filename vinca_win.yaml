@@ -22,7 +22,7 @@ packages_remove_from_deps: []
 skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
 
-packages_select_by_deps: []
+packages_select_by_deps:
   # - rcl
   - ros_core
   # - ros_base
