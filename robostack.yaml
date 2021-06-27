@@ -163,10 +163,7 @@ pydocstyle:
 libxml2-utils:
   robostack: [libxml2]
 libcunit-dev:
-  robostack:
-    win64: []
-    linux: [cunit]
-    osx: [cunit]
+  robostack: [cunit]
 uncrustify:
   robostack: [uncrustify]
 python-lxml:
