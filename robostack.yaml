@@ -95,7 +95,8 @@ libssl-dev:
 libgpgme-dev:
   robostack:
     win64: []
-    unix: [gpgme]
+    linux: [gpgme]
+    osx: [gpgme]
 log4cxx:
   robostack: [log4cxx]
 apr:
@@ -111,7 +112,8 @@ python3-paramiko:
 sbcl:
   robostack:
     win64: []
-    unix: [sbcl]
+    linux: [sbcl]
+    osx: [sbcl]
 lz4:
   robostack: [lz4]
 python-defusedxml:
@@ -119,13 +121,9 @@ python-defusedxml:
 python3-defusedxml:
   robostack: [defusedxml]
 python-numpy:
-  robostack:
-    win64: ['numpy']
-    unix: ['numpy']
+  robostack: [numpy]
 python3-numpy:
-  robostack:
-    win64: ['numpy']
-    unix: ['numpy']
+  robostack: [numpy]
 python3-pytest:
   robostack: [pytest]
 python3-rosdistro-modules:
@@ -173,19 +171,11 @@ python3-lxml:
 openssl:
   robostack: [openssl]
 eigen:
-  robostack:
-    win64: [eigen]
-    unix: ['eigen']
+  robostack: [eigen]
 assimp:
-  robostack:
-    win64: [assimp]
-    linux: [assimp]
-    osx: [assimp 5.0.1 h753910b_1]
+  robostack: [assimp]
 assimp-dev:
-  robostack:
-    win64: [assimp]
-    linux: [assimp]
-    osx: [assimp 5.0.1 h753910b_1]
+  robostack: [assimp]
 libqt5-opengl:
   robostack:
     win64: [qt]
@@ -230,11 +220,13 @@ libfreetype6:
 opengl:
   robostack:
     win64: []
-    unix: [REQUIRE_OPENGL]
+    linux: [REQUIRE_OPENGL]
+    osx: [REQUIRE_OPENGL]
 libxaw:
   robostack:
     win64: []
-    unix: ['xorg-libxaw']
+    linux: [xorg-libxaw]
+    osx: [xorg-libxaw]
 libx11-dev:
   robostack: [xorg-libx11, REQUIRE_OPENGL]
 x11-dev:
@@ -242,7 +234,8 @@ x11-dev:
 libxrandr:
   robostack:
     win64: []
-    unix: [xorg-libxrandr]
+    linux: [xorg-libxrandr]
+    osx: [xorg-libxrandr]
 libopencv-dev:
   robostack: [py-opencv 4.2, libopencv 4.2]
 python-opencv:
@@ -296,10 +289,8 @@ sdl:
   robostack: [sdl]
 libzmq3-dev:
   robostack: [zeromq]
-libboost-program-options-dev:
-  robostack:
-    win64: [boost]
-    unix: ['boost-cpp']
+libboost-program-options:
+  robostack: [boost-cpp]
 libboost-python:
   robostack: [boost]
 libboost-python-dev:
@@ -319,13 +310,9 @@ python-cairo:
 python3-cairo:
   robostack: [pycairo]
 python-pygraphviz:
-  robostack:
-    win64: []
-    unix: [pygraphviz]
+  robostack: [pygraphviz]
 python3-pygraphviz:
-  robostack:
-    win64: []
-    unix: [pygraphviz]
+  robostack: [pygraphviz]
 python-opengl:
   robostack: [pyopengl, REQUIRE_OPENGL]
 python3-opengl:
@@ -361,9 +348,7 @@ python-pycryptodome:
 python3-pycryptodome:
   robostack: ['pycryptodome', 'pycryptodomex']
 graphviz:
-  robostack:
-    win64: []
-    unix: ['graphviz']
+  robostack: [graphviz]
 uuid:
   robostack:
     win64: []
@@ -374,7 +359,8 @@ python-sip:
 cppunit:
   robostack:
     win64: []
-    unix: [cppunit]
+    linux: [cppunit]
+    osx: [cppunit]
 libfcl-dev:
   robostack: [fcl]
 libqhull:
