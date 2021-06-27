@@ -1,14 +1,14 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 04294ba..d8cba96 100644
+index ec8f6e0..3c8b38f 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -64,7 +64,8 @@ macro(build_benchmark)
-       ${extra_cmake_args}
+@@ -68,7 +68,8 @@ macro(build_benchmark)
      PATCH_COMMAND
-       ${Patch_EXECUTABLE} -p1 -N < ${CMAKE_CURRENT_SOURCE_DIR}/thread_safety_attributes.patch &&
--      ${Patch_EXECUTABLE} -p1 -N < ${CMAKE_CURRENT_SOURCE_DIR}/soversion.patch
-+      ${Patch_EXECUTABLE} -p1 -N < ${CMAKE_CURRENT_SOURCE_DIR}/soversion.patch &&
-+      ${Patch_EXECUTABLE} -p1 -N < ${CMAKE_CURRENT_SOURCE_DIR}/link_rt.patch
+       ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> git apply -p1 --ignore-space-change --whitespace=nowarn ${CMAKE_CURRENT_SOURCE_DIR}/thread_safety_attributes.patch &&
+       ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> git apply -p1 --ignore-space-change --whitespace=nowarn ${CMAKE_CURRENT_SOURCE_DIR}/soversion.patch &&
+-      ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> git apply -p1 --ignore-space-change --whitespace=nowarn ${CMAKE_CURRENT_SOURCE_DIR}/shrink-tz-offset-size.patch
++      ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> git apply -p1 --ignore-space-change --whitespace=nowarn ${CMAKE_CURRENT_SOURCE_DIR}/shrink-tz-offset-size.patch &&
++      ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> git apply -p1 --ignore-space-change --whitespace=nowarn ${CMAKE_CURRENT_SOURCE_DIR}/link_rt.patch
    )
  
    # The external project will install to the build folder, but we'll install that on make install.
