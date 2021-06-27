@@ -289,8 +289,6 @@ sdl:
   robostack: [sdl]
 libzmq3-dev:
   robostack: [zeromq]
-libboost-program-options:
-  robostack: [boost-cpp]
 libboost-python:
   robostack: [boost]
 libboost-python-dev:
