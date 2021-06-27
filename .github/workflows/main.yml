@@ -37,7 +37,7 @@ jobs:
     # # Generate recipes for osx
     # - name: Reset repo
     #   run: |
-    #     git reset --hard origin/master
+    #     git reset --hard origin/main
     # - name: Generate recipes for macOS
     #   run: |
     #     git clean -fdx
@@ -62,7 +62,7 @@ jobs:
     # # Generate recipes for osx-arm64
     # - name: Reset repo
     #   run: |
-    #     git reset --hard origin/master
+    #     git reset --hard origin/main
     # - name: Generate recipes for macOS (arm64)
     #   run: |
     #     git clean -fdx
@@ -87,7 +87,7 @@ jobs:
     # Generate recipes for Windows
     - name: Reset repo
       run: |
-        git reset --hard origin/master
+        git reset --hard origin/main
     - name: Generate recipes for Windows
       run: |
         git clean -fdx
@@ -112,7 +112,7 @@ jobs:
     # # Generate recipes for Linux ARM64
     # - name: Reset repo
     #   run: |
-    #     git reset --hard origin/master
+    #     git reset --hard origin/main
     # - name: Generate recipes for Linux ARM64
     #   run: |
     #     git clean -fdx
