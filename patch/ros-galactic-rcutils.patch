@@ -1,73 +1,41 @@
-diff --git a/include/rcutils/error_handling.h b/include/rcutils/error_handling.h
-index 0469070..fecea26 100644
---- a/include/rcutils/error_handling.h
-+++ b/include/rcutils/error_handling.h
-@@ -122,14 +122,14 @@ typedef struct rcutils_error_state_t
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index f573c54..4db288b 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -3,13 +3,9 @@ cmake_minimum_required(VERSION 3.5)
+ project(rcutils)
  
- // make sure our math is right...
- #if __STDC_VERSION__ >= 201112L
--static_assert(
--  sizeof(rcutils_error_string_t) == (
--    RCUTILS_ERROR_STATE_MESSAGE_MAX_LENGTH +
--    RCUTILS_ERROR_STATE_FILE_MAX_LENGTH +
--    RCUTILS_ERROR_STATE_LINE_NUMBER_STR_MAX_LENGTH +
--    RCUTILS_ERROR_FORMATTING_CHARACTERS +
--    1 /* null terminating character */),
--  "Maximum length calculations incorrect");
-+// static_assert(
-+//   sizeof(rcutils_error_string_t) == (
-+//     RCUTILS_ERROR_STATE_MESSAGE_MAX_LENGTH +
-+//     RCUTILS_ERROR_STATE_FILE_MAX_LENGTH +
-+//     RCUTILS_ERROR_STATE_LINE_NUMBER_STR_MAX_LENGTH +
-+//     RCUTILS_ERROR_FORMATTING_CHARACTERS +
-+//     1 /* null terminating character */),
-+//   "Maximum length calculations incorrect");
- #endif
+ # Default to C11
+-if(NOT CMAKE_C_STANDARD)
+-  set(CMAKE_C_STANDARD 11)
+-endif()
++set(CMAKE_C_STANDARD 11)
+ # Default to C++14
+-if(NOT CMAKE_CXX_STANDARD)
+-  set(CMAKE_CXX_STANDARD 14)
+-endif()
++set(CMAKE_CXX_STANDARD 14)
  
- /// Forces initialization of thread-local storage if called in a newly created thread.
-diff --git a/src/error_handling.c b/src/error_handling.c
-index a060537..a224044 100644
---- a/src/error_handling.c
-+++ b/src/error_handling.c
-@@ -200,9 +200,9 @@ rcutils_set_error_state(
-   // Only warn of overwritting if the new error is different from the old ones.
-   size_t characters_to_compare = strnlen(error_string, RCUTILS_ERROR_MESSAGE_MAX_LENGTH);
-   // assumption is that message length is <= max error string length
--  static_assert(
--    sizeof(gtls_rcutils_error_state.message) <= sizeof(gtls_rcutils_error_string.str),
--    "expected error state's max message length to be less than or equal to error string max");
-+  // static_assert(
-+  //   sizeof(gtls_rcutils_error_state.message) <= sizeof(gtls_rcutils_error_string.str),
-+  //   "expected error state's max message length to be less than or equal to error string max");
-   if (
-     gtls_rcutils_error_is_set &&
-     !__same_string(error_string, gtls_rcutils_error_string.str, characters_to_compare) &&
-diff --git a/src/error_handling_helpers.h b/src/error_handling_helpers.h
-index 70acb4e..f35b5ee 100644
---- a/src/error_handling_helpers.h
-+++ b/src/error_handling_helpers.h
-@@ -145,15 +145,15 @@ __rcutils_format_error_string(
-   static const char format_1[] = ", at ";
-   static const char format_2[] = ":";
-   char line_number_buffer[21];
--  static_assert(
--    sizeof(error_string->str) == (
--      sizeof(error_state->message) +
--      sizeof(format_1) - 1 /* minus the null-term */ +
--      sizeof(error_state->file) +
--      sizeof(format_2) - 1 /* minus the null-term */ +
--      sizeof(line_number_buffer) - 1 /* minus the null-term */ +
--      1  // null terminator
--    ), "math error in static string formatting");
-+  // static_assert(
-+  //   sizeof(error_string->str) == (
-+  //     sizeof(error_state->message) +
-+  //     sizeof(format_1) - 1 /* minus the null-term */ +
-+  //     sizeof(error_state->file) +
-+  //     sizeof(format_2) - 1 /* minus the null-term */ +
-+  //     sizeof(line_number_buffer) - 1 /* minus the null-term */ +
-+  //     1  // null terminator
-+  //   ), "math error in static string formatting");
-   char * offset = error_string->str;
-   size_t bytes_left = sizeof(error_string->str);
-   size_t written = __rcutils_copy_string(offset, bytes_left, error_state->message);
+ include(CheckLibraryExists)
+ 
+@@ -131,6 +127,10 @@ endif()
+ 
+ target_link_libraries(${PROJECT_NAME} ${CMAKE_DL_LIBS})
+ 
++if (UNIX AND NOT APPLE)
++  target_link_libraries(${PROJECT_NAME} rt)
++endif()
++
+ # Needed if pthread is used for thread local storage.
+ if(IOS AND IOS_SDK_VERSION LESS 10.0)
+   ament_export_libraries(pthread)
+@@ -595,6 +595,9 @@ endif()
+ ament_export_dependencies(ament_cmake)
+ ament_export_include_directories(include)
+ ament_export_libraries(${PROJECT_NAME} ${CMAKE_DL_LIBS})
++if (UNIX AND NOT APPLE)
++  ament_export_libraries(${PROJECT_NAME} rt)
++endif()
+ ament_export_targets(${PROJECT_NAME})
+ ament_package()
+ 
