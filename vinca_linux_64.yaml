@@ -23,7 +23,9 @@ skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
-  - ros_core
+  - rcl
+  - rcutils
+  # - ros_core
 
   # - desktop
   # These work! :)
