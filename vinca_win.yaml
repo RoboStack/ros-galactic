@@ -10,20 +10,15 @@ build_number: 0
 skip_all_deps: false
 
 packages_skip_by_deps:
-  # - rviz
-  # - diagnostic_updater
+  - rmw_cyclonedds_cpp
 
-packages_remove_from_deps: []
-  # - stage-ros
-  # - python_qt_binding
-  # - joint_state_publisher_gui
-  # - stage
+packages_remove_from_deps:
+  - rmw_cyclonedds_cpp
 
 skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
-  # not yet
-  # - ros_core
+  - ros_core
 
 patch_dir: patch
