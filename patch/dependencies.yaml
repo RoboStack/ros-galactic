@@ -1,2 +1,15 @@
 iceoryx_utils:
   add_host: ["pkg-config"]
+yaml_cpp_vendor:
+  add_host: ["yaml-cpp 0.6.*"]
+  add_run: ["yaml-cpp 0.6.*"]
+zstd_vendor:
+  add_host: ["zstd"]
+  add_run: ["zstd"]
+sqlite3_vendor:
+  add_host: ["sqlite"]
+  add_run: ["sqlite"]
+
+# rviz_ogre_vendor:
+#   add_host: ["ogre"]
+#   add_run: ["ogre"]
