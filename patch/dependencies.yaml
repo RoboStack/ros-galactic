@@ -4,8 +4,8 @@ yaml_cpp_vendor:
   add_host: ["yaml-cpp 0.6.*"]
   add_run: ["yaml-cpp 0.6.*"]
 zstd_vendor:
-  add_host: ["zstd"]
-  add_run: ["zstd"]
+  add_host: ["zstd", "zstd-static"]
+  add_run: ["zstd", "zstd-static"]
 sqlite3_vendor:
   add_host: ["sqlite"]
   add_run: ["sqlite"]
