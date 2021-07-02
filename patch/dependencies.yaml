@@ -18,9 +18,9 @@ sdl2_vendor:
 libcurl_vendor:
   add_host: ["libcurl"]
   add_run: ["libcurl"]
-intra-process-demo:
+intra_process_demo:
   add_host: ["REQUIRE_OPENGL"]
-rviz-ogre-vendor:
+rviz_ogre_vendor:
   add_host: ["xorg-libx11"]
 # rviz_ogre_vendor:
 #   add_host: ["ogre"]
