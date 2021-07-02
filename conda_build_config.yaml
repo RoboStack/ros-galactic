@@ -29,7 +29,7 @@ numpy:
   # - 1.16   # [not (osx and arm64)]
   - 1.19   # [osx and arm64]
 ogre:
-  - 1.10.12
+  - 1.12.*
 opencv:
   - 4.5
 pcl:
