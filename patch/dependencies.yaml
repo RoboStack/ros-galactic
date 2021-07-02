@@ -9,6 +9,15 @@ zstd_vendor:
 sqlite3_vendor:
   add_host: ["sqlite"]
   add_run: ["sqlite"]
+rviz_assimp_vendor:
+  add_host: ["assimp"]
+  add_run: ["assimp"]
+sdl2_vendor:
+  add_host: ["sdl2"]
+  add_run: ["sdl2"]
+libcurl_vendor:
+  add_host: ["libcurl"]
+  add_run: ["libcurl"]
 
 # rviz_ogre_vendor:
 #   add_host: ["ogre"]
