@@ -24,6 +24,8 @@ rviz_ogre_vendor:
   add_host: ["ogre"]
 pcl_conversions:
   add_host: ["REQUIRE_OPENGL"]
+rviz_rendering:
+  add_host: ["glew"]
 # rviz_ogre_vendor:
 #   add_host: ["ogre"]
 #   add_run: ["ogre"]
