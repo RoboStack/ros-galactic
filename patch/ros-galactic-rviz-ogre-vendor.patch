@@ -1,8 +1,8 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index faac7e1b..5bed0c28 100644
+index faac7e1b..b3db82bd 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -204,28 +204,34 @@ macro(build_ogre)
+@@ -204,28 +204,36 @@ macro(build_ogre)
    )
  endmacro()
  
@@ -15,14 +15,7 @@ index faac7e1b..5bed0c28 100644
 +set(RVIZ_OGRE_IS_VENDORBUILD OFF)
  
 -build_ogre()
-+if(FORCE_BUILD_VENDOR_PKG OR NOT OGRE_FOUND OR "${ogre_VERSION}" VERSION_LESS 1.12.1)
-+  set(RVIZ_OGRE_IS_VENDORBUILD ON)
-+  if(BUILDING_FREETYPE_LOCALLY)
-+    build_freetype()
-+  endif()
-+  if(BUILDING_ZLIB_LOCALLY)
-+    build_zlib()
-+  endif()
++find_package(OGRE QUIET)
  
 -if(WIN32)
 -  ament_environment_hooks(env_hook/rviz_ogre_vendor_library_path.bat)
@@ -32,6 +25,15 @@ index faac7e1b..5bed0c28 100644
 -  ament_environment_hooks(env_hook/rviz_ogre_vendor_library_path.sh)
 -  if(APPLE)
 -    set(ENV_VAR_NAME "DYLD_LIBRARY_PATH")
++if(FORCE_BUILD_VENDOR_PKG OR NOT OGRE_FOUND OR "${ogre_VERSION}" VERSION_LESS 1.12.1)
++  set(RVIZ_OGRE_IS_VENDORBUILD ON)
++  if(BUILDING_FREETYPE_LOCALLY)
++    build_freetype()
++  endif()
++  if(BUILDING_ZLIB_LOCALLY)
++    build_zlib()
++  endif()
++
 +  build_ogre()
 +
 +  if(WIN32)
