@@ -341,8 +341,6 @@ python-pycryptodome:
   robostack: ['pycryptodome', 'pycryptodomex']
 python3-pycryptodome:
   robostack: ['pycryptodome', 'pycryptodomex']
-graphviz:
-  robostack: [graphviz]
 uuid:
   robostack:
     win64: []
