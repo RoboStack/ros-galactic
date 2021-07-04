@@ -1,0 +1,23 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index a0e8c892..6ee33477 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -102,6 +102,7 @@ target_link_libraries(rviz_rendering
+   Qt5::Widgets
+   ament_index_cpp::ament_index_cpp
+   resource_retriever::resource_retriever
++  rviz_assimp_vendor::rviz_assimp_vendor
+ )
+ 
+ target_include_directories(rviz_rendering
+@@ -115,10 +116,6 @@ target_include_directories(rviz_rendering
+ target_compile_definitions(rviz_rendering PRIVATE "RVIZ_RENDERING_BUILDING_LIBRARY")
+ 
+ ament_export_targets(rviz_rendering)
+-ament_target_dependencies(rviz_rendering
+-  PUBLIC
+-  rviz_assimp_vendor
+-)
+ ament_export_dependencies(
+   rviz_ogre_vendor
+   eigen3_cmake_module

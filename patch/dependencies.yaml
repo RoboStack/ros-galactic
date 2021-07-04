@@ -9,6 +9,9 @@ zstd_vendor:
 sqlite3_vendor:
   add_host: ["sqlite"]
   add_run: ["sqlite"]
+foonathan_memory_vendor:
+  add_host: ["foonathan-memory"]
+  add_run: ["foonathan-memory"]
 rviz_assimp_vendor:
   add_host: ["assimp"]
   add_run: ["assimp"]
