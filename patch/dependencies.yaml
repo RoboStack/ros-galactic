@@ -22,6 +22,7 @@ intra_process_demo:
   add_host: ["REQUIRE_OPENGL"]
 rviz_ogre_vendor:
   add_host: ["ogre"]
+  add_run: ["assimp"]
 pcl_conversions:
   add_host: ["REQUIRE_OPENGL"]
 rviz_rendering:
