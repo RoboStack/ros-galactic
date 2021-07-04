@@ -299,8 +299,6 @@ libzmq3-dev:
   robostack: [zeromq]
 libboost-python:
   robostack: [boost]
-libboost-python-dev:
-  robostack: [boost]
 sdl2:
   robostack: [sdl2]
 libboost-filesystem-dev:
