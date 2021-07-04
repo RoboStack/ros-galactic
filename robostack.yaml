@@ -8,7 +8,11 @@ python-rospkg-modules:
   robostack: [rospkg]
 python3-rospkg-modules:
   robostack: [rospkg]
+python3-venv:
+  robostack: [virtualenv, pip, pip-tools, setuptools]
 boost:
+  robostack: [boost]
+libboost-python-dev:
   robostack: [boost]
 python-argparse:
   robostack: []
@@ -17,6 +21,8 @@ python-catkin-pkg:
 python3-catkin-pkg:
   robostack: [catkin_pkg]
 python:
+  robostack: [python]
+python-dev:
   robostack: [python]
 python3:
   robostack: [python]
@@ -70,6 +76,8 @@ python-rosdep-modules:
   robostack: ['rosdep']
 python3-rosdep-modules:
   robostack: [rosdep]
+libboost-system:
+  robostack: [boost-cpp]
 libboost-system-dev:
   robostack: [boost-cpp]
 libboost-date-time-dev:
@@ -147,7 +155,7 @@ python3-flake8:
 python3-pytest-mock:
   robostack: [pytest-mock]
 yaml:
-  robostack: [yaml]
+  robostack: [yaml, yaml-cpp]
 asio:
   robostack: [asio]
 git:
@@ -236,8 +244,8 @@ libxrandr:
     win64: []
     linux: [xorg-libxrandr]
     osx: [xorg-libxrandr]
-libopencv-dev:
-  robostack: [py-opencv 4.5, libopencv 4.5]
+libopencv-dev:  # opencv needs to be pinned, otherwise different packages might pull in different versions
+  robostack: [py-opencv 4.5, libopencv 4.5, REQUIRE_OPENGL]
 python-opencv:
   robostack: [py-opencv 4.5, libopencv 4.5]
 python3-opencv:
@@ -307,6 +315,8 @@ python-cairo:
   robostack: [pycairo]
 python3-cairo:
   robostack: [pycairo]
+graphviz:
+  robostack: [graphviz]
 python-pygraphviz:
   robostack: [pygraphviz]
 python3-pygraphviz:
@@ -437,8 +447,7 @@ tango-icon-theme:
 ffmpeg:
   robostack: [ffmpeg]
 python3-bson:
-  # not sure about this one actually...
-  robostack: [mongodb]
+  robostack: [pymongo]
 python3-tornado:
   robostack: [tornado]
 python3-autobahn:
