@@ -1,0 +1,12 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index d6b1e67f..5c299ca8 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -55,6 +55,7 @@ find_package(ament_cmake REQUIRED)
+ find_package(rviz_common REQUIRED)
+ find_package(rviz_rendering REQUIRED)
+ find_package(rviz_ogre_vendor REQUIRED)
++find_package(rviz_assimp_vendor REQUIRED)
+ 
+ find_package(Qt5 REQUIRED COMPONENTS Widgets Test)
+ 
