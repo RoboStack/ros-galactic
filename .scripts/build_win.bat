@@ -2,7 +2,6 @@ setlocal EnableExtensions EnableDelayedExpansion
 call %CONDA%\condabin\conda_hook.bat
 call %CONDA%\condabin\conda.bat activate base
 
-
 set "PATH=%PATH:C:\ProgramData\Chocolatey\bin;=%"
 set "PATH=%PATH:C:\Program Files (x86)\sbt\bin;=%"
 set "PATH=%PATH:C:\Rust\.cargo\bin;=%"
@@ -30,6 +29,9 @@ rem call conda config --append channels defaults
 call conda config --add channels conda-forge
 call conda config --add channels robostack-experimental
 call conda config --set channel_priority strict
+
+:: Enable long path names on Windows
+reg add HKLM\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPathsEnabled /t REG_DWORD /d 1 /f
 
 :: conda remove --force m2-git
 
