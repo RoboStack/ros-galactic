@@ -23,11 +23,10 @@ skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
-  - rviz2
+  # - rviz2
   # - ros_base
-  # - desktop
+  - desktop
 
-  # - desktop
   # These work! :)
   # - webots_ros2
   # - robot_controllers
