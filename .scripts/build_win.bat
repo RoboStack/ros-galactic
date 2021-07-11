@@ -25,7 +25,7 @@ rmdir /Q/S C:\Strawberry\
 
 set "FEEDSTOCK_ROOT=%cd%"
 
-rem call conda config --append channels defaults
+call conda config --remove channels defaults
 call conda config --add channels conda-forge
 call conda config --add channels robostack-experimental
 call conda config --set channel_priority strict
