@@ -22,6 +22,7 @@ echo "PATH is %PATH%"
 echo "CONDA_BLD_PATH is %CONDA_BLD_PATH%"
 
 rmdir /Q/S C:\Strawberry\
+rmdir /Q/S "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\"
 
 set "FEEDSTOCK_ROOT=%cd%"
 
