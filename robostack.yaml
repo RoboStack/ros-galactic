@@ -186,39 +186,39 @@ assimp-dev:
   robostack: [assimp]
 libqt5-opengl:
   robostack:
-    win64: [qt]
+    win64: [qt 5.12.6]
     linux: [qt 5.12, REQUIRE_OPENGL]
     osx: [qt 5.12, REQUIRE_OPENGL]
 libqt5-opengl-dev:
   robostack:
-    win64: [qt]
+    win64: [qt 5.12.6]
     linux: [qt 5.12, REQUIRE_OPENGL]
     osx: [qt 5.12, REQUIRE_OPENGL]
 libqt5-widgets:
   robostack:
-    win64: [qt]
+    win64: [qt 5.12.6]
     linux: [qt 5.12, REQUIRE_OPENGL]
     osx: [qt 5.12, REQUIRE_OPENGL]
 curl:
   robostack: [libcurl]
 qtbase5-dev:
   robostack:
-    win64: [qt]
+    win64: [qt 5.12.6]
     linux: [qt 5.12, REQUIRE_OPENGL]
     osx: [qt 5.12, REQUIRE_OPENGL]
 libqt5-gui:
   robostack:
-    win64: [qt]
+    win64: [qt 5.12.6]
     linux: [qt 5.12, REQUIRE_OPENGL]
     osx: [qt 5.12, REQUIRE_OPENGL]
 libqt5x11extras5-dev:
   robostack:
-    win64: [qt]
+    win64: [qt 5.12.6]
     linux: [qt 5.12, REQUIRE_OPENGL]
     osx: [qt 5.12, REQUIRE_OPENGL]
 libqt5-core:
   robostack:
-    win64: [qt]
+    win64: [qt 5.12.6]
     linux: [qt 5.12]
     osx: [qt 5.12]
 libfreetype6-dev:
