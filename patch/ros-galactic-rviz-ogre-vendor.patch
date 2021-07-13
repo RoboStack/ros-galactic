@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index faac7e1b..b3db82bd 100644
+index faac7e1b..8b93592e 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -204,28 +204,36 @@ macro(build_ogre)
@@ -57,7 +57,7 @@ index faac7e1b..b3db82bd 100644
  
  if(BUILD_TESTING)
 diff --git a/rviz_ogre_vendor-extras.cmake.in b/rviz_ogre_vendor-extras.cmake.in
-index 0ab09b60..06d604e4 100644
+index 0ab09b60..df30c4f5 100644
 --- a/rviz_ogre_vendor-extras.cmake.in
 +++ b/rviz_ogre_vendor-extras.cmake.in
 @@ -1,20 +1,26 @@
@@ -100,3 +100,17 @@ index 0ab09b60..06d604e4 100644
  message(STATUS "OGRE_LIBRARIES: ${OGRE_LIBRARIES}")
  message(STATUS "OGRE_LIBRARY_DIRS: ${OGRE_LIBRARY_DIRS}")
  message(STATUS "OGRE_PLUGINS: ${OGRE_PLUGINS}")
+@@ -98,11 +104,8 @@ foreach(_lib IN LISTS OGRE_LIBRARIES)
+     endif()
+ 
+     if(WIN32)
+-      if(_ogre_main_static_library_debug_abs)
+-        set(ZLIB_LIBRARIES "${ZLIB_HOME}/lib/zlibstaticd.lib")
+-      else()
+-        set(ZLIB_LIBRARIES "${ZLIB_HOME}/lib/zlibstatic.lib")
+-      endif()
++      find_package(PkgConfig REQUIRED)
++      pkg_check_modules(ZLIB zlib)
+     else()
+       find_package(ZLIB REQUIRED)
+     endif()
