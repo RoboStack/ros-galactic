@@ -14,6 +14,7 @@ packages_skip_by_deps:
   - iceoryx_binding_c
   - iceoryx_posh
   - cyclonedds
+  - rttest
 
 packages_remove_from_deps:
   - rmw_cyclonedds_cpp
