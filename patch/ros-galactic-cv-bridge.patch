@@ -1,8 +1,8 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 642d32f..db22a48 100644
+index 642d32f..f0d26ac 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -12,29 +12,7 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+@@ -12,30 +12,12 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
    add_compile_options(-Wall -Wextra)
  endif()
  
@@ -28,11 +28,15 @@ index 642d32f..db22a48 100644
 -  endif()
 -else()
 -  find_package(Boost REQUIRED)
--endif()
-+find_package(Boost REQUIRED python)
++if(WIN32)
++add_definitions(/DBOOST_PYTHON_STATIC_LIB)
+ endif()
  
++find_package(Boost REQUIRED python)
++
  find_package(sensor_msgs REQUIRED)
  
+ find_package(OpenCV 4 QUIET
 diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
 index 9e2cf45..9581fd4 100644
 --- a/src/CMakeLists.txt
