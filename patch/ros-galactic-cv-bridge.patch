@@ -38,10 +38,26 @@ index 642d32f..0fd9169 100644
  find_package(sensor_msgs REQUIRED)
  
 diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
-index 9e2cf45..d614b25 100644
+index 9e2cf45..a9a4194 100644
 --- a/src/CMakeLists.txt
 +++ b/src/CMakeLists.txt
-@@ -56,6 +56,7 @@ endif()
+@@ -10,9 +10,14 @@ ament_target_dependencies(${PROJECT_NAME}
+   "OpenCV"
+   "sensor_msgs"
+ )
++link_directories(${Boost_LIBRARY_DIRS})
+ target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES} ${OpenCV_LIBRARIES})
+ 
+-install(TARGETS ${PROJECT_NAME} DESTINATION lib)
++install(TARGETS ${PROJECT_NAME}
++  ARCHIVE DESTINATION lib
++  LIBRARY DESTINATION lib
++  RUNTIME DESTINATION bin
++)
+ 
+ install(FILES
+   ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}/${PROJECT_NAME}_export.h
+@@ -56,6 +61,7 @@ endif()
  target_link_libraries(${PROJECT_NAME}_boost
    ${PYTHON_LIBRARIES}
    ${PROJECT_NAME}
