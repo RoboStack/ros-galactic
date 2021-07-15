@@ -25,8 +25,8 @@ skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
-  - cv-bridge
-  # - desktop
+  # - cv-bridge
+  - desktop
   # - rviz2
   # - ros_workspace
   # - ros_core
