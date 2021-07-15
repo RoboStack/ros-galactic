@@ -26,6 +26,7 @@ packages_select_by_deps:
   # - rviz2
   # - ros_base
   - desktop
+  - ros_workspace
 
   # These work! :)
   # - webots_ros2
