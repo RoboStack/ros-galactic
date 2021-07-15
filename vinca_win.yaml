@@ -17,6 +17,7 @@ packages_skip_by_deps:
   - rttest
   - tlsf
   - tlsf_cpp
+  - pendulum_control
 
 packages_remove_from_deps:
   - rmw_cyclonedds_cpp
