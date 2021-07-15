@@ -9,6 +9,9 @@ build_number: 0
 
 skip_all_deps: false
 
+build_in_own_azure_stage:
+  - ros-galactic-rviz-rendering
+
 packages_skip_by_deps:
   # - rviz
   # - diagnostic_updater
