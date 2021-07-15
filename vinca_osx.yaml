@@ -23,25 +23,6 @@ skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
-  # Working
-  # - rcl
-  # - ros_core
-  # - ros_base
-  # - ros_workspace
-
-  # Not yet
-  # - moveit_core
-  # - webots_ros2
-  # - nav2-core
-
-  # Ogre has problems, so RViz doesn't work.
-  # - rviz2
-  # - navigation2
-  # - run_moveit_cpp
-  # - run_move_group
-
-  # this needs libdwarf and libiberty
-  # I think we need to build libdwarf first ...
-  # - osrf_testing_tools_cpp
+  - ros_core
 
 patch_dir: patch
