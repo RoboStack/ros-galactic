@@ -15,12 +15,12 @@ packages_skip_by_deps:
   - iceoryx_posh
   - cyclonedds
   - rttest
-  - tlsf
-  - tlsf_cpp
-  - pendulum_control
 
 packages_remove_from_deps:
   - rmw_cyclonedds_cpp
+  - tlsf
+  - tlsf_cpp
+  - pendulum_control
 
 skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
