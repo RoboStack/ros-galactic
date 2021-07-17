@@ -26,7 +26,7 @@ Sometimes, it may be required to patch the packages. An example of how to do so 
 
 1. Install conda build tools in base environemnt:
 ```
-conda install conda-build mamba boa`
+conda install -n base conda-build mamba boa
 ```
 
 2. Create a new conda environment and add the conda-forge and robostack channels:
@@ -38,7 +38,10 @@ conda config --add channels conda-forge
 conda config --add channels robostack
 conda config --set channel_priority strict
 ```
-3. Install some dependencies: `conda install anaconda-client catkin_pkg ruamel_yaml rosdistro empy networkx requests`
+3. Install some dependencies: 
+``` 
+mamba install anaconda-client catkin_pkg ruamel_yaml rosdistro empy networkx requests ruamel ruamel.yaml`
+```
 4. Install vinca: `pip install git+https://github.com/RoboStack/vinca.git@master --no-deps`
 5. Clone this repo: `git clone https://github.com/RoboStack/ros-galactic.git`
 6. `cd ros-galactic`
