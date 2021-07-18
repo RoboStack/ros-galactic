@@ -1,0 +1,30 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 70041b0..e20027f 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -5,6 +5,8 @@ project(behaviortree_cpp_v3)
+ set(CMAKE_CONFIG_PATH ${CMAKE_MODULE_PATH}  "${CMAKE_CURRENT_LIST_DIR}/cmake")
+ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CONFIG_PATH}")
+ 
++add_definitions(-D__STDC_FORMAT_MACROS=1)
++
+ #---- Enable C++14 ----
+ set(CMAKE_CXX_STANDARD 14)
+ set(CMAKE_CXX_STANDARD_REQUIRED ON)
+@@ -175,13 +177,14 @@ list(APPEND BT_SOURCE
+     3rdparty/minitrace/minitrace.cpp
+     )
+ 
++# for some reason this finds the system curses
+ find_package(Curses QUIET)
+-
++find_library(ACTUAL_CURSES_LIBRARIES ncurses)
+ if(CURSES_FOUND)
+     list(APPEND BT_SOURCE
+         src/controls/manual_node.cpp
+         )
+-    list(APPEND BEHAVIOR_TREE_EXTERNAL_LIBRARIES ${CURSES_LIBRARIES})
++    list(APPEND BEHAVIOR_TREE_EXTERNAL_LIBRARIES ${ACTUAL_CURSES_LIBRARIES})
+     add_definitions(-DNCURSES_FOUND)
+ endif()
+ 
