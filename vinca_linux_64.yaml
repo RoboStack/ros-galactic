@@ -26,7 +26,8 @@ packages_select_by_deps:
   # - rviz2
   # - ros_base
   # - desktop
-  - navigation2
+  - behaviortree_cpp_v3
+  # - navigation2
   # - ros_workspace
   # - zstd_vendor
 
