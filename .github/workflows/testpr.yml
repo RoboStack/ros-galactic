@@ -33,7 +33,7 @@ jobs:
           - os: windows-latest
             platform: osx-arm64
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@main
     - uses: conda-incubator/setup-miniconda@v2
       with:
         mamba-version: "*"
@@ -75,18 +75,18 @@ jobs:
       id: filecheck
       shell: bash -l {0}
       run: |
-        git fetch origin master
+        git fetch origin main
         # continue on error
         set +e
-        git diff --exit-code --name-only origin/master -- vinca_linux_64.yaml > /dev/null
+        git diff --exit-code --name-only origin/main -- vinca_linux_64.yaml > /dev/null
         echo "::set-output name=LINUX_YAML_CHANGED::${?}"
-        git diff --exit-code --name-only origin/master -- vinca_linux_aarch64.yaml > /dev/null
+        git diff --exit-code --name-only origin/main -- vinca_linux_aarch64.yaml > /dev/null
         echo "::set-output name=LINUX_AARCH_YAML_CHANGED::${?}"
-        git diff --exit-code --name-only origin/master -- vinca_osx.yaml > /dev/null
+        git diff --exit-code --name-only origin/main -- vinca_osx.yaml > /dev/null
         echo "::set-output name=OSX_YAML_CHANGED::${?}"
-        git diff --exit-code --name-only origin/master -- vinca_osx_arm64.yaml > /dev/null
+        git diff --exit-code --name-only origin/main -- vinca_osx_arm64.yaml > /dev/null
         echo "::set-output name=OSX_ARM_YAML_CHANGED::${?}"
-        git diff --exit-code --name-only origin/master -- vinca_win.yaml > /dev/null
+        git diff --exit-code --name-only origin/main -- vinca_win.yaml > /dev/null
         echo "::set-output name=WIN_YAML_CHANGED::${?}"
     - name: Generate recipes for Linux
       shell: bash -l {0}
