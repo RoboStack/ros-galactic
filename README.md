@@ -38,7 +38,7 @@ If you use RoboStack in your academic work, please refer to the following paper:
 
 To get started with conda (or mamba) as package managers, you need to have a base conda installation. Please do _not_ use the Anaconda installer, but rather start with [`miniforge` / `mambaforge`](https://github.com/conda-forge/miniforge) or [`miniconda`](https://docs.conda.io/en/latest/miniconda.html), which are much more "minimal" installers. These installers will create a "base" environment that contains the package managers conda (and mamba if you go with `mambaforge`). After this installation is done, you can move on to the next steps.
 
-> Note: Make sure to _not_ install the ROS packages (in particular the `ros-galactic-catkin` package) in your base environment as this leads to issues down the track. On the other hand, conda and mamba must not be installed in the ros_galactic, they should only be installed in base. Also do not source the system ROS environment, as the `PYTHONPATH` set in the setup script conflicts with the conda environment.
+> Note: Make sure to _not_ install the ROS packages in your base environment as this leads to issues down the track. On the other hand, conda and mamba must not be installed in the ros_galactic, they should only be installed in base. Also do not source the system ROS environment, as the `PYTHONPATH` set in the setup script conflicts with the conda environment.
 
 ```bash
 conda create -n ros_galactic python=3.8
@@ -55,13 +55,12 @@ conda install ros-galactic-desktop
 # or if you have mamba and want to use it
 mamba install ros-galactic-desktop
 
-# optionally, install some compiler packages if you want to e.g. build packages in a catkin_ws - with conda:
-conda install compilers cmake pkg-config make ninja
+# optionally, install some compiler packages if you want to e.g. build packages in a colcon_ws - with conda:
+conda install compilers cmake pkg-config make ninja colcon-common-extensions
 # or with mamba:
-mamba install compilers cmake pkg-config make ninja
+mamba install compilers cmake pkg-config make ninja colcon-common-extensions
 
-# on linux and osx (but not Windows) you might want to:
-mamba install catkin_tools
+
 # on Windows, install Visual Studio 2017 or 2019 with C++ support 
 # see https://docs.microsoft.com/en-us/cpp/build/vscpp-step-0-installation?view=msvc-160
 
@@ -90,13 +89,6 @@ Feel free to open issues in this repository's [issue tracker](https://github.com
 To install Jupyter-ROS and JupyterLab-ROS which provide interactive experiences for robotics developers in Jupyter Notebooks, please see the relevant repositories for [Jupyter-ROS](https://github.com/RoboStack/jupyter-ros) and [JupyterLab-ROS](https://github.com/RoboStack/jupyterlab-ros).
 
 ## FAQ
-#### When running `catkin` or `catkin_make` I get errors that "Multiple packages found with the same name", e.g.
-```
-/Users/me/miniconda3/envs/ros_galactic/share/catkin/cmake/em/order_packages.cmake.em:23: error: <class 'RuntimeError'>: Multiple packages found with the same name "catkin":
-- pkgs/ros-galactic-catkin-0.8.10-py38hb43b470_10/share/catkin
-- share/catkin
-```
-You probably installed conda or mamba into your `ros_galactic`. However, conda and mamba should only be installed in your `base` environment. Try setting up a new environment without `conda` and `mamba` installed into that environment.
 
 #### When trying to build packages, you get CMake errors that packages could not be found, such as
 ```
