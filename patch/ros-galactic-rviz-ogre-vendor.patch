@@ -15,7 +15,7 @@ index faac7e1b..8b93592e 100644
 +set(RVIZ_OGRE_IS_VENDORBUILD OFF)
  
 -build_ogre()
-+find_package(OGRE)
++find_package(OGRE REQUIRED)
  
 -if(WIN32)
 -  ament_environment_hooks(env_hook/rviz_ogre_vendor_library_path.bat)
