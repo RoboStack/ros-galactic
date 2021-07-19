@@ -26,9 +26,13 @@ packages_select_by_deps:
   # - rviz2
   # - ros_base
   # - desktop
-  - navigation2
+
   # - ros_workspace
   # - zstd_vendor
+
+  # Does _not_ work yet!
+  # - navigation2
+
 
   # These work! :)
   # - webots_ros2
