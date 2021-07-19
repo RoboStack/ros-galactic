@@ -114,7 +114,7 @@ The robostack project uses "vinca" to generate recipes from a yaml file. The yam
 
 To walk through the steps of setting up vinca and running builds:
 
-```
+```bash
 # make sure to add conda-forge to your channels in `~.condarc`
 mamba install pip boa -c conda-forge
 
