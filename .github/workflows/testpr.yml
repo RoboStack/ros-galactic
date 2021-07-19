@@ -33,11 +33,11 @@ jobs:
           - os: windows-latest
             platform: osx-arm64
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@main
     - uses: conda-incubator/setup-miniconda@v2
       with:
         mamba-version: "*"
-        channels: robostack,conda-forge
+        channels: robostack-experimental,conda-forge
         channel-priority: true
         auto-activate-base: true
         activate-environment: ""
@@ -63,7 +63,7 @@ jobs:
         # for now we need boa master
         pip install git+https://github.com/mamba-org/boa@master
         # use no-deps for now, otherwise problems with ruamel.
-        pip install git+https://github.com/RoboStack/vinca.git@master --no-deps
+        pip install git+https://github.com/RoboStack/vinca.git@ros2 --no-deps
     # For some reason, the Strawberry perl's pkg-config is found
     # instead of the conda's one, so let's delete the /c/Strawberry directory
     - name: Debug pkg-config problem
@@ -75,18 +75,18 @@ jobs:
       id: filecheck
       shell: bash -l {0}
       run: |
-        git fetch origin master
+        git fetch origin main
         # continue on error
         set +e
-        git diff --exit-code --name-only origin/master -- vinca_linux_64.yaml > /dev/null
+        git diff --exit-code --name-only origin/main -- vinca_linux_64.yaml > /dev/null
         echo "::set-output name=LINUX_YAML_CHANGED::${?}"
-        git diff --exit-code --name-only origin/master -- vinca_linux_aarch64.yaml > /dev/null
+        git diff --exit-code --name-only origin/main -- vinca_linux_aarch64.yaml > /dev/null
         echo "::set-output name=LINUX_AARCH_YAML_CHANGED::${?}"
-        git diff --exit-code --name-only origin/master -- vinca_osx.yaml > /dev/null
+        git diff --exit-code --name-only origin/main -- vinca_osx.yaml > /dev/null
         echo "::set-output name=OSX_YAML_CHANGED::${?}"
-        git diff --exit-code --name-only origin/master -- vinca_osx_arm64.yaml > /dev/null
+        git diff --exit-code --name-only origin/main -- vinca_osx_arm64.yaml > /dev/null
         echo "::set-output name=OSX_ARM_YAML_CHANGED::${?}"
-        git diff --exit-code --name-only origin/master -- vinca_win.yaml > /dev/null
+        git diff --exit-code --name-only origin/main -- vinca_win.yaml > /dev/null
         echo "::set-output name=WIN_YAML_CHANGED::${?}"
     - name: Generate recipes for Linux
       shell: bash -l {0}
