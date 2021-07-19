@@ -107,3 +107,44 @@ RoboStack is based on conda-forge and will not work without conda. However, chec
 
 ## Contributing
 This project is in early stages and we are looking for contributors to help it grow. Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for ways to contribute.
+
+### Debugging / Running the "RoboStack" pipeline locally
+
+The robostack project uses "vinca" to generate recipes from a yaml file. The yaml file is the `vinca_PLATFORM.yaml` files in this repository.
+
+To walk through the steps of setting up vinca and running builds:
+
+```
+# make sure to add conda-forge to your channels in `~.condarc`
+mamba install pip boa -c conda-forge
+
+# we currently use a special version of vinca for ROS2
+pip install git+https://github.com/RoboStack/vinca.git@ros2 --no-deps
+
+# move the vinca file you're interested in to `vinca.yaml`
+cp vinca_linux_64.yaml vinca.yaml
+
+# now you can run vinca. The platform argument is optional
+vinca --platform=linux-64
+
+# You can check the recipe and additional created files now
+cat recipe.yaml
+cat build_ament_cmake.sh ...
+
+# To build the package(s) run boa.
+# the -m applies the pinnings (versions) mentioned in the given yaml files
+boa build . -m .ci_support/conda_forge_pinnings.yaml -m conda_build_config.yaml
+
+# ALTERNATIVELY:
+# Note you can also build "multiple" recipes which can be more efficient as not 
+# all source tarballs are downloaded at once. 
+vinca -m 
+boa build recipes/ -m ... (as above)
+
+# from this you can generate an azure pipeline locally, e.g.
+vinca-azure -d recipes -t mytriggerbranch -p linux-64
+# which will create a `linux.yml` file that contains the azure pipeline definition
+```
+
+
+

@@ -31,7 +31,9 @@ pcl_conversions:
 rviz_rendering:
   add_host: ["glew"]
 behaviortree_cpp_v3:
-  add_host: ["boost", "cppzmq"]
+  add_host: ["boost-cpp", "cppzmq"]
+nav2_util:
+  add_host: ["boost-cpp"]
 # rviz_ogre_vendor:
 #   add_host: ["ogre"]
 #   add_run: ["ogre"]
