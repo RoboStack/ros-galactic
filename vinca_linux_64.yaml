@@ -25,14 +25,9 @@ skip_existing:
 packages_select_by_deps:
   # - rviz2
   # - ros_base
-  # - desktop
-
+  - desktop
   # - ros_workspace
   # - zstd_vendor
-
-  # Does _not_ work yet!
-  # - navigation2
-
 
   # These work! :)
   # - webots_ros2
