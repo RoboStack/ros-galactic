@@ -28,7 +28,7 @@ packages_select_by_deps:
   # - rqt_bag_plugins
   # - desktop
   # - ros_workspace
-  - rviz2
+  # - rviz2
   # - ros_core
   # - ros_workspace
 
