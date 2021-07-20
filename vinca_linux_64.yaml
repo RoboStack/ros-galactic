@@ -7,7 +7,7 @@ conda_index:
 
 build_number: 0
 
-skip_all_deps: true
+skip_all_deps: false
 
 packages_skip_by_deps:
   # - rviz
@@ -20,16 +20,16 @@ packages_remove_from_deps: []
   # - stage
 
 skip_existing:
-  # - https://conda.anaconda.org/robostack-experimental/
+  - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
-  # - rviz2
+  - rviz2
   # - ros_base
   # - desktop
   # - behaviortree_cpp_v3
   # - navigation2
   # - moveit
-  - ros_workspace
+  # - ros_workspace
   # - zstd_vendor
 
   # These work! :)
