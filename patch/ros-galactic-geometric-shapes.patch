@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 5a69bc6..54e027e 100644
+index 5a69bc6..fce9401 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -27,19 +27,7 @@ endif()
@@ -19,7 +19,7 @@ index 5a69bc6..54e027e 100644
 -# For, pkg-config the path is in ASSIMP_PC_LIBRARY_DIRS, for cmake in ASSIMP_LIBRARY_DIRS.
 -find_library(ASSIMP_ABS_LIBRARIES NAMES ${ASSIMP_LIBRARIES} assimp HINTS ${ASSIMP_LIBRARY_DIRS} ${ASSIMP_PC_LIBRARY_DIRS})
 -set(ASSIMP_LIBRARIES "${ASSIMP_ABS_LIBRARIES}")
-+find_package(assimp REQUIRED QUIET)
++find_package(assimp REQUIRED)
  
  # These need to be in this order to find header files
  find_package(eigen3_cmake_module REQUIRED)
@@ -27,15 +27,19 @@ index 5a69bc6..54e027e 100644
    resource_retriever
    shape_msgs
    visualization_msgs
-+  assimp::assimp
++  assimp
  )
  
  # Set VERSION from package.xml
-@@ -97,8 +86,8 @@ ament_target_dependencies(${PROJECT_NAME}
+@@ -93,12 +82,12 @@ add_library(${PROJECT_NAME} SHARED
+ target_compile_options(${PROJECT_NAME} PRIVATE ${PROJECT_COMPILE_OPTIONS})
+ set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${${PROJECT_NAME}_VERSION})
+ target_compile_options(${PROJECT_NAME} PRIVATE ${PROJECT_COMPILE_OPTIONS})
++target_link_libraries(${PROJECT_NAME} assimp::assimp)
+ ament_target_dependencies(${PROJECT_NAME}
    ${THIS_PACKAGE_EXPORT_DEPENDS}
  )
  ament_target_dependencies(${PROJECT_NAME} SYSTEM
-+  assimp::assimp
    # We don't export these dependencies because their cmake is broken
 -  ASSIMP
    QHULL
