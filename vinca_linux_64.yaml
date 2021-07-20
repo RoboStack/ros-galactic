@@ -30,7 +30,7 @@ packages_select_by_deps:
   # - behaviortree_cpp_v3
   # - navigation2
   # - moveit
-  # - ros_workspace
+  - ros_workspace
   # - zstd_vendor
 
   # These work! :)
