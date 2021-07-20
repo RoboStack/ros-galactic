@@ -2,16 +2,16 @@
 
 Note:  ROS galactic is experimental. [ROS noetic](https://github.com/RoboStack/ros-noetic) is recommended for most users at this time.
 
-[![Conda](https://img.shields.io/conda/dn/robostack/ros-galactic-desktop?style=flat-square)](https://anaconda.org/robostack/)
+[![Conda](https://img.shields.io/conda/dn/robostack-experimental/ros-galactic-desktop?style=flat-square)](https://anaconda.org/robostack/)
 [![Gitter](https://img.shields.io/gitter/room/RoboStack/Lobby?style=flat-square)](https://gitter.im/RoboStack/Lobby)
 [![GitHub Repo stars](https://img.shields.io/github/stars/robostack/ros-galactic?style=flat-square)](https://github.com/RoboStack/ros-galactic/)
 [![QUT Centre for Robotics](https://img.shields.io/badge/collection-QUT%20Robotics-%23043d71?style=flat-square)](https://qcr.ai)
 
-[![Platforms](https://img.shields.io/badge/platforms-linux%20%7C%20win%20%7C%20macos%20%7C%20linux%E2%80%93aarch64-green.svg?style=flat-square)](https://github.com/RoboStack/ros-galactic)
-[![Azure DevOps builds (branch)](https://img.shields.io/azure-devops/build/robostack/f91d909b-3931-44f7-9823-19fcd42e7d04/8/buildbranch_linux?label=build%20linux&style=flat-square)](https://dev.azure.com/robostack/ros_pipelines/_build?definitionId=8&_a=summary)
-[![Azure DevOps builds (branch)](https://img.shields.io/azure-devops/build/robostack/f91d909b-3931-44f7-9823-19fcd42e7d04/10/buildbranch_win?label=build%20win&style=flat-square)](https://dev.azure.com/robostack/ros_pipelines/_build?definitionId=10&_a=summary)
-[![Azure DevOps builds (branch)](https://img.shields.io/azure-devops/build/robostack/f91d909b-3931-44f7-9823-19fcd42e7d04/9/buildbranch_osx?label=build%20macos&style=flat-square)](https://dev.azure.com/robostack/ros_pipelines/_build?definitionId=9&_a=summary)
-[![Azure DevOps builds (branch)](https://img.shields.io/azure-devops/build/robostack/f91d909b-3931-44f7-9823-19fcd42e7d04/11/buildbranch_linux_aarch64?label=build%20aarch64&style=flat-square)](https://dev.azure.com/robostack/ros_pipelines/_build?definitionId=11&_a=summary)
+[![Platforms](https://img.shields.io/badge/platforms-linux%20%7C%20win%20%7C%20macos-green.svg?style=flat-square)](https://github.com/RoboStack/ros-galactic)
+[![Azure DevOps builds (branch)](https://img.shields.io/azure-devops/build/robostack/f91d909b-3931-44f7-9823-19fcd42e7d04/30/buildbranch_linux?label=build%20linux&style=flat-square)](https://dev.azure.com/robostack/ros_pipelines/_build?definitionId=30&_a=summary)
+[![Azure DevOps builds (branch)](https://img.shields.io/azure-devops/build/robostack/f91d909b-3931-44f7-9823-19fcd42e7d04/31/buildbranch_win?label=build%20win&style=flat-square)](https://dev.azure.com/robostack/ros_pipelines/_build?definitionId=31&_a=summary)
+[![Azure DevOps builds (branch)](https://img.shields.io/azure-devops/build/robostack/f91d909b-3931-44f7-9823-19fcd42e7d04/32/buildbranch_osx?label=build%20macos&style=flat-square)](https://dev.azure.com/robostack/ros_pipelines/_build?definitionId=32&_a=summary)
+<!--[![Azure DevOps builds (branch)](https://img.shields.io/azure-devops/build/robostack/f91d909b-3931-44f7-9823-19fcd42e7d04/11/buildbranch_linux_aarch64?label=build%20aarch64&style=flat-square)](https://dev.azure.com/robostack/ros_pipelines/_build?definitionId=11&_a=summary)-->
 
 [![GitHub issues](https://img.shields.io/github/issues-raw/robostack/ros-galactic?style=flat-square)](https://github.com/RoboStack/ros-galactic/issues)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/robostack/ros-galactic?style=flat-square)](https://github.com/RoboStack/ros-galactic/issues?q=is%3Aissue+is%3Aclosed)
@@ -41,7 +41,11 @@ To get started with conda (or mamba) as package managers, you need to have a bas
 > Note: Make sure to _not_ install the ROS packages in your base environment as this leads to issues down the track. On the other hand, conda and mamba must not be installed in the ros_galactic, they should only be installed in base. Also do not source the system ROS environment, as the `PYTHONPATH` set in the setup script conflicts with the conda environment.
 
 ```bash
-conda create -n ros_galactic python=3.8
+# if you don't have mamba yet, install it first:
+conda install mamba
+
+# now create a new environment
+mamba create -n ros_galactic python=3.8
 conda activate ros_galactic
 # this adds the conda-forge channel to the new created environment configuration 
 conda config --env --add channels conda-forge
@@ -50,22 +54,16 @@ conda config --env --add channels robostack-experimental
 # it's very much advised to use strict channel priority
 conda config --env --set channel_priority strict
 
-# either
-conda install ros-galactic-desktop
-# or if you have mamba and want to use it
 mamba install ros-galactic-desktop
 
-# optionally, install some compiler packages if you want to e.g. build packages in a colcon_ws - with conda:
-conda install compilers cmake pkg-config make ninja colcon-common-extensions
-# or with mamba:
+# optionally, install some compiler packages if you want to e.g. build packages in a colcon_ws:
 mamba install compilers cmake pkg-config make ninja colcon-common-extensions
-
 
 # on Windows, install Visual Studio 2017 or 2019 with C++ support 
 # see https://docs.microsoft.com/en-us/cpp/build/vscpp-step-0-installation?view=msvc-160
 
 # on Windows, install the Visual Studio command prompt via Conda:
-conda install vs2019_win-64
+mamba install vs2019_win-64
 
 # note that in this case, you should also install the necessary dependencies with conda/mamba, if possible
 
@@ -85,7 +83,7 @@ rosdep update
 ## Reporting issues
 Feel free to open issues in this repository's [issue tracker](https://github.com/RoboStack/ros-galactic/issues) (please check whether your problem is already listed there before opening a new issue) or come around on [Gitter](https://gitter.im/RoboStack/Lobby) to have a chat / ask questions. Please note that this repository is _not an official distribution of ROS_ and relies on volunteers. It is further highly experimental - unfortunately things might not work immediately out-of-the-box, although we try our best.
 
-## Jupyter-ROS and JupyterLab-ROS
+## Jupyter-ROS and JupyterLab-ROS (note: there is no support for ROS2 yet in these projects)
 To install Jupyter-ROS and JupyterLab-ROS which provide interactive experiences for robotics developers in Jupyter Notebooks, please see the relevant repositories for [Jupyter-ROS](https://github.com/RoboStack/jupyter-ros) and [JupyterLab-ROS](https://github.com/RoboStack/jupyterlab-ros).
 
 ## FAQ
@@ -102,7 +100,7 @@ CMake Error at /Users/me/miniconda3/envs/ros_galactic/share/catkin/cmake/catkinC
 First, make sure that the package is installed; in the example case it would be `mamba install ros-galactic-std-msgs`. You can use `rosdep` to install dependencies. Second, make sure that your `CMAKE_PREFIX_PATH` points to your `ros_galactic`, in the example case you could achieve this by `export CMAKE_PREFIX_PATH=/Users/me/miniconda3/envs/ros_galactic/`. This might happen if `CMAKE_PREFIX_PATH` is not empty when you activate your `ros_galactic`.
 
 #### Can I use RoboStack in a non-conda virtual environment?
-RoboStack is based on conda-forge and will not work without conda. However, check out [rospypi](https://github.com/rospypi/simple) which can run in a pure Python virtualenv. rospypi supports tf2 and other binary packages.
+RoboStack is based on conda-forge and will not work without conda. However, check out [rospypi](https://github.com/rospypi/simple2) which can run in a pure Python virtualenv. rospypi supports tf2 and other binary packages.
 
 
 ## Contributing
@@ -110,7 +108,7 @@ This project is in early stages and we are looking for contributors to help it g
 
 ### Debugging / Running the "RoboStack" pipeline locally
 
-The robostack project uses "vinca" to generate recipes from a yaml file. The yaml file is the `vinca_PLATFORM.yaml` files in this repository.
+The robostack project uses [vinca](https://github.com/RoboStack/vinca) to generate recipes from a yaml file. The yaml file is the `vinca_PLATFORM.yaml` files in this repository.
 
 To walk through the steps of setting up vinca and running builds:
 
@@ -145,6 +143,3 @@ boa build recipes/ -m ... (as above)
 vinca-azure -d recipes -t mytriggerbranch -p linux-64
 # which will create a `linux.yml` file that contains the azure pipeline definition
 ```
-
-
-
