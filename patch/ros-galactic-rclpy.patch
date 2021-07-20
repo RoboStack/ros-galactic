@@ -1,15 +1,5 @@
-From ab157fefbcbe8cb5e6e95440a1d1f3ce02fb0118 Mon Sep 17 00:00:00 2001
-From: Tobias Fischer <info@tobiasfischer.info>
-Date: Wed, 21 Jul 2021 08:25:53 +1000
-Subject: [PATCH] Fix Python linking on osx
-
-Signed-off-by: Tobias Fischer <info@tobiasfischer.info>
----
- rclpy/CMakeLists.txt | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
-
 diff --git a/rclpy/CMakeLists.txt b/rclpy/CMakeLists.txt
-index 351009c7..47d862e4 100644
+index 351009c7..6f6ead39 100644
 --- a/rclpy/CMakeLists.txt
 +++ b/rclpy/CMakeLists.txt
 @@ -126,10 +126,17 @@ add_library(rclpy_common SHARED
@@ -22,7 +12,7 @@ index 351009c7..47d862e4 100644
  )
 +
 +if(NOT APPLE)
-+  target_link_libraries(rclpy_common ${PYTHON_LIBRARIES})
++  target_link_libraries(rclpy_common PUBLIC ${PYTHON_LIBRARIES})
 +else()
 +  set_target_properties(rclpy_common PROPERTIES
 +                        LINK_FLAGS "-undefined dynamic_lookup")
