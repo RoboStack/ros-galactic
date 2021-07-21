@@ -29,7 +29,7 @@ packages_select_by_deps:
   # - behaviortree_cpp_v3
   # - octomap
   # - ament_cmake_python
-  - moveit
+  # - moveit
 
   # not yet
   # - moveit
