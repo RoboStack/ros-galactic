@@ -30,7 +30,8 @@ packages_select_by_deps:
 
   # not yet
   # - moveit
-  - navigation2
+  # - navigation2
+  - bondcpp
 
   # done
   # - cv-bridge
