@@ -311,6 +311,8 @@ libboost-regex-dev:
   robostack: ['boost-cpp']
 libboost-chrono-dev:
   robostack: ['boost-cpp']
+libboost-iostreams-dev:
+  robostack: ['boost-cpp']
 libboost-dev:
   robostack: ['boost-cpp']
 python-cairo:
@@ -373,6 +375,8 @@ python-pyassimp:
   robostack: [assimp]
 python3-pyassimp:
   robostack: [assimp]
+libpcl-all:
+  robostack: [pcl]
 libpcl-all-dev:
   robostack: [pcl]
 libogg:
@@ -510,3 +514,104 @@ libomp-dev:
     win64: []
     linux: [libgomp]
     osx: [llvm-openmp]
+libspnav-dev:
+  robostack: [libspnav]
+libpng-dev:
+  robostack: [libpng]
+udev:
+  robostack: [libusb]
+libudev-dev:
+  robostack: [libusb]
+libreadline:
+  robostack: [readline]
+libreadline-dev:
+  robostack: [readline]
+python3-websocket:
+  robostack: [websocket-client]
+protobuf:
+  robostack: [libprotobuf, protobuf]
+protobuf-dev:
+  robostack: [libprotobuf, protobuf]
+python3-serial:
+  robostack: [pyserial]
+python3-zmq:
+  robostack: [pyzmq]
+ignition-msgs7:
+  robostack: [libignition-msgs7]
+ignition-gui5:
+  robostack: [libignition-gui5]
+ignition-gazebo5:
+  robostack: [libignition-gazebo5]
+ignition-rendering5:
+  robostack: [libignition-rendering5]
+ignition-common4:
+  robostack: [libignition-common4]
+ignition-math6:
+  robostack: [libignition-math6]
+ignition-transport10:
+  robostack: [libignition-transport10]
+jupyter-notebook:
+  robostack: [notebook]
+libgoogle-glog-dev:
+  robostack: [glog]
+python3-click:
+  robostack: [click]
+flex:
+  robostack: [flex]
+binutils:
+  robostack: [binutils]
+sdformat:
+  robostack: [sdformat11]
+geographiclib:
+  robostack: [geographiclib-cpp]
+geographiclib-tools:
+  robostack: [geographiclib-cpp]
+libgflags-dev:
+  robostack: [gflags]
+libccd-dev:
+  robostack: [libccd]
+subversion:
+  robostack: [subversion]
+libcairo2-dev:
+  robostack: [cairo]
+libopenblas-dev:
+  robostack: [libblas]
+libxxf86vm:
+  robostack: [REQUIRE_OPENGL]
+python3-future:
+  robostack: [future]
+coinor-libipopt-dev:
+  robostack: [ipopt]
+python3-pyproj:
+  robostack: [pyproj]
+wxwidgets:
+  robostack: [wxpython]  # wxpython contains wxwidgets, and wxpython is incompatible with wxwidgets; so pull in just wxpython
+wx-common:
+  robostack: [wxpython]
+pyflakes3:
+  robostack: [pyflakes]
+python3-shapely:
+  robostack: [shapely]
+mongodb:
+  robostack: [mongodb]
+libusb-1.0:
+  robostack: [libusb]
+libusb-1.0-dev:
+  robostack: [libusb]
+python3-requests:
+  robostack: [requests]
+libxmlrpc-c++:
+  robostack: [xmlrpc-c]
+libglfw3-dev:
+  robostack: [glfw 3.*]
+lua5.2-dev:
+  robostack: [lua]
+python3-pandas:
+  robostack: [pandas]
+g++-static:
+  robostack: []
+pycodestyle:
+  robostack: [pycodestyle]
+python3-pycodestyle:
+  robostack: [pycodestyle]
+
