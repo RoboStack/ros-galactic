@@ -23,7 +23,9 @@ skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
+
   - plotjuggler
+  # - ublox
   # - rcl-logging-spdlog
   # - rviz_default_plugins
   # - rosidl_generator_py

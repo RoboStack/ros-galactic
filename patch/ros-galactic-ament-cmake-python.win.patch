@@ -1,29 +1,50 @@
 diff --git a/cmake/ament_python_install_package.cmake b/cmake/ament_python_install_package.cmake
-index 6dbefcf3..d813b96f 100644
+index 6dbefcf3..08b99616 100644
 --- a/cmake/ament_python_install_package.cmake
 +++ b/cmake/ament_python_install_package.cmake
-@@ -95,16 +95,22 @@ setup(
+@@ -95,19 +95,36 @@ setup(
  
    set(egg_dependencies ament_cmake_python_symlink_${package_name})
  
-+  if (WIN32)
-+    set(SYMLINK_COMMAND "create_hardlink")
-+  else ()
-+    set(SYMLINK_COMMAND "create_symlink")
-+  endif()
-+
-   add_custom_target(
-     ament_cmake_python_symlink_${package_name}
+-  add_custom_target(
+-    ament_cmake_python_symlink_${package_name}
 -    COMMAND ${CMAKE_COMMAND} -E create_symlink
-+    COMMAND ${CMAKE_COMMAND} -E ${SYMLINK_COMMAND}
-     "${ARG_PACKAGE_DIR}" "${build_dir}/${package_name}"
-   )
+-    "${ARG_PACKAGE_DIR}" "${build_dir}/${package_name}"
+-  )
++  if (WIN32)
++    add_custom_target(
++      ament_cmake_python_symlink_${package_name}
++      COMMAND ${CMAKE_COMMAND} -E copy_directory
++      "${ARG_PACKAGE_DIR}" "${build_dir}/${package_name}"
++    )
  
-   if(ARG_SETUP_CFG)
+-  if(ARG_SETUP_CFG)
++    if(ARG_SETUP_CFG)
++      add_custom_target(
++        ament_cmake_python_symlink_${package_name}_setup
++        COMMAND ${CMAKE_COMMAND} -E copy
++          "${ARG_SETUP_CFG}" "${build_dir}/setup.cfg"
++      )
++      list(APPEND egg_dependencies ament_cmake_python_symlink_${package_name}_setup)
++    endif()
++  else ()
      add_custom_target(
-       ament_cmake_python_symlink_${package_name}_setup
--      COMMAND ${CMAKE_COMMAND} -E create_symlink
-+      COMMAND ${CMAKE_COMMAND} -E ${SYMLINK_COMMAND}
-         "${ARG_SETUP_CFG}" "${build_dir}/setup.cfg"
+-      ament_cmake_python_symlink_${package_name}_setup
++      ament_cmake_python_symlink_${package_name}
+       COMMAND ${CMAKE_COMMAND} -E create_symlink
+-        "${ARG_SETUP_CFG}" "${build_dir}/setup.cfg"
++      "${ARG_PACKAGE_DIR}" "${build_dir}/${package_name}"
      )
-     list(APPEND egg_dependencies ament_cmake_python_symlink_${package_name}_setup)
+-    list(APPEND egg_dependencies ament_cmake_python_symlink_${package_name}_setup)
++
++    if(ARG_SETUP_CFG)
++      add_custom_target(
++        ament_cmake_python_symlink_${package_name}_setup
++        COMMAND ${CMAKE_COMMAND} -E create_symlink
++          "${ARG_SETUP_CFG}" "${build_dir}/setup.cfg"
++      )
++      list(APPEND egg_dependencies ament_cmake_python_symlink_${package_name}_setup)
++    endif()
+   endif()
+ 
+   add_custom_target(
