@@ -457,7 +457,10 @@ python3-twisted:
 cppzmq:
   robostack: [cppzmq]
 libncurses-dev:
-  robostack: [ncurses]
+  robostack:
+    linux: [ncurses]
+    win64: []
+    osx: [ncurses]
 libglu-dev:
   robostack:
     linux: [libglu]

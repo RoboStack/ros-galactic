@@ -31,7 +31,7 @@ packages_select_by_deps:
   # - desktop
   # - behaviortree_cpp_v3
   # - navigation2
-  - webots_ros2
+  # - webots_ros2
   # - moveit
   # - ros_workspace
   # - zstd_vendor
