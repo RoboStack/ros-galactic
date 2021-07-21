@@ -28,8 +28,8 @@ packages_select_by_deps:
   # - behaviortree_cpp_v3
   # - control_msgs
   # - eigen_stl_containers
-  - bondcpp
-  - bond
+  # - bondcpp
+  # - bond
   # - ros_workspace
   # - zstd_vendor
   # - rqt_bag_plugins
