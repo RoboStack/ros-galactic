@@ -7,7 +7,7 @@ conda_index:
 
 build_number: 0
 
-skip_all_deps: true
+skip_all_deps: false
 
 packages_skip_by_deps:
   # - iceoryx_utils
@@ -23,12 +23,13 @@ packages_remove_from_deps:
   # - pendulum_control
 
 skip_existing:
-  # - https://conda.anaconda.org/robostack-experimental/
+  - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
   # - behaviortree_cpp_v3
   # - octomap
-  - ament_cmake_python
+  # - ament_cmake_python
+  - moveit
 
   # not yet
   # - moveit
