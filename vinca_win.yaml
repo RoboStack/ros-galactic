@@ -29,8 +29,8 @@ packages_select_by_deps:
   # - behaviortree_cpp_v3
 
   # not yet
-  # - moveit
-  - navigation2
+  - moveit
+  # - navigation2
 
   # done
   # - cv-bridge
