@@ -1,0 +1,29 @@
+diff --git a/cmake/ament_python_install_package.cmake b/cmake/ament_python_install_package.cmake
+index 6dbefcf3..d813b96f 100644
+--- a/cmake/ament_python_install_package.cmake
++++ b/cmake/ament_python_install_package.cmake
+@@ -95,16 +95,22 @@ setup(
+ 
+   set(egg_dependencies ament_cmake_python_symlink_${package_name})
+ 
++  if (WIN32)
++    set(SYMLINK_COMMAND "create_hardlink")
++  else ()
++    set(SYMLINK_COMMAND "create_symlink")
++  endif()
++
+   add_custom_target(
+     ament_cmake_python_symlink_${package_name}
+-    COMMAND ${CMAKE_COMMAND} -E create_symlink
++    COMMAND ${CMAKE_COMMAND} -E ${SYMLINK_COMMAND}
+     "${ARG_PACKAGE_DIR}" "${build_dir}/${package_name}"
+   )
+ 
+   if(ARG_SETUP_CFG)
+     add_custom_target(
+       ament_cmake_python_symlink_${package_name}_setup
+-      COMMAND ${CMAKE_COMMAND} -E create_symlink
++      COMMAND ${CMAKE_COMMAND} -E ${SYMLINK_COMMAND}
+         "${ARG_SETUP_CFG}" "${build_dir}/setup.cfg"
+     )
+     list(APPEND egg_dependencies ament_cmake_python_symlink_${package_name}_setup)

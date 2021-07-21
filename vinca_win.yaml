@@ -7,27 +7,28 @@ conda_index:
 
 build_number: 0
 
-skip_all_deps: false
+skip_all_deps: true
 
 packages_skip_by_deps:
-  - iceoryx_utils
-  - iceoryx_binding_c
-  - iceoryx_posh
-  - cyclonedds
-  - rttest
+  # - iceoryx_utils
+  # - iceoryx_binding_c
+  # - iceoryx_posh
+  # - cyclonedds
+  # - rttest
 
 packages_remove_from_deps:
-  - rmw_cyclonedds_cpp
-  - tlsf
-  - tlsf_cpp
-  - pendulum_control
+  # - rmw_cyclonedds_cpp
+  # - tlsf
+  # - tlsf_cpp
+  # - pendulum_control
 
 skip_existing:
-  - https://conda.anaconda.org/robostack-experimental/
+  # - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
   # - behaviortree_cpp_v3
-  - octomap
+  # - octomap
+  - ament_cmake_python
 
   # not yet
   # - moveit
