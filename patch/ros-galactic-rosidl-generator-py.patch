@@ -23,6 +23,28 @@ index 4af35d6..8db124a 100644
  
  # move custom command into a subdirectory to avoid multiple invocations on Windows
  set(_subdir "${CMAKE_CURRENT_BINARY_DIR}/${rosidl_generate_interfaces_TARGET}${_target_suffix}")
+@@ -169,10 +169,17 @@ add_dependencies(
+   ${rosidl_generate_interfaces_TARGET}__rosidl_typesupport_c
+ )
+ 
+-target_link_libraries(
+-  ${_target_name_lib}
+-  ${PythonExtra_LIBRARIES}
+-)
++
++if(NOT APPLE)
++  target_link_libraries(
++    ${_target_name_lib}
++    ${PythonExtra_LIBRARIES}
++  )
++else()
++  set_target_properties(${_target_name_lib} PROPERTIES
++                        LINK_FLAGS "-undefined dynamic_lookup")
++endif()
++
+ target_include_directories(${_target_name_lib}
+   PUBLIC
+   ${CMAKE_CURRENT_BINARY_DIR}/rosidl_generator_c
 @@ -180,31 +178,9 @@ target_include_directories(${_target_name_lib}
    ${PythonExtra_INCLUDE_DIRS}
  )
