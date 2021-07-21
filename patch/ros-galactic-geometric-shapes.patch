@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 5a69bc6..fce9401 100644
+index 5a69bc6..4290115 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -7,15 +7,17 @@ if(NOT CMAKE_CXX_STANDARD)
@@ -29,7 +29,7 @@ index 5a69bc6..fce9401 100644
  
  list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
  
-@@ -27,19 +27,7 @@ endif()
+@@ -27,19 +29,7 @@ endif()
  # TODO(henningkayser): Remove policy fix when assimp 5.1 is available
  # Suppress policy warning in assimp (https://github.com/assimp/assimp/pull/2722)
  set(CMAKE_POLICY_DEFAULT_CMP0012 NEW)
@@ -50,7 +50,7 @@ index 5a69bc6..fce9401 100644
  
  # These need to be in this order to find header files
  find_package(eigen3_cmake_module REQUIRED)
-@@ -73,6 +61,7 @@ set(THIS_PACKAGE_EXPORT_DEPENDS
+@@ -73,6 +63,7 @@ set(THIS_PACKAGE_EXPORT_DEPENDS
    resource_retriever
    shape_msgs
    visualization_msgs
@@ -58,10 +58,14 @@ index 5a69bc6..fce9401 100644
  )
  
  # Set VERSION from package.xml
-@@ -93,12 +82,12 @@ add_library(${PROJECT_NAME} SHARED
+@@ -90,15 +81,14 @@ add_library(${PROJECT_NAME} SHARED
+   src/shape_to_marker.cpp
+   src/shapes.cpp
+ )
++set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${${PROJECT_NAME}_VERSION} WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
  target_compile_options(${PROJECT_NAME} PRIVATE ${PROJECT_COMPILE_OPTIONS})
- set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${${PROJECT_NAME}_VERSION})
- target_compile_options(${PROJECT_NAME} PRIVATE ${PROJECT_COMPILE_OPTIONS})
+-set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${${PROJECT_NAME}_VERSION})
+-target_compile_options(${PROJECT_NAME} PRIVATE ${PROJECT_COMPILE_OPTIONS})
 +target_link_libraries(${PROJECT_NAME} assimp::assimp)
  ament_target_dependencies(${PROJECT_NAME}
    ${THIS_PACKAGE_EXPORT_DEPENDS}
@@ -72,16 +76,6 @@ index 5a69bc6..fce9401 100644
    QHULL
  )
  
-@@ -90,8 +92,7 @@ add_library(${PROJECT_NAME} SHARED
-   src/shape_to_marker.cpp
-   src/shapes.cpp
- )
--target_compile_options(${PROJECT_NAME} PRIVATE ${PROJECT_COMPILE_OPTIONS})
--set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${${PROJECT_NAME}_VERSION})
-+set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${${PROJECT_NAME}_VERSION} WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
- target_compile_options(${PROJECT_NAME} PRIVATE ${PROJECT_COMPILE_OPTIONS})
- ament_target_dependencies(${PROJECT_NAME}
-   ${THIS_PACKAGE_EXPORT_DEPENDS}
 diff --git a/include/geometric_shapes/bodies.h b/include/geometric_shapes/bodies.h
 index 41e221a..c93e539 100644
 --- a/include/geometric_shapes/bodies.h
