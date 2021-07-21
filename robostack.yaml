@@ -82,6 +82,8 @@ libboost-system-dev:
   robostack: [boost-cpp]
 libboost-date-time-dev:
   robostack: [boost-cpp]
+libboost-date-time:
+  robostack: [boost-cpp]
 libboost-thread-dev:
   robostack: [boost-cpp]
 libpoco-dev:
@@ -301,6 +303,8 @@ libboost-python:
   robostack: [boost]
 sdl2:
   robostack: [sdl2]
+libboost-filesystem:
+  robostack: ['boost-cpp']
 libboost-filesystem-dev:
   robostack: ['boost-cpp']
 libboost-regex-dev:
@@ -498,3 +502,8 @@ acl:
     win64: []
 rti-connext-dds-5.3.1:
   robostack: []
+libomp-dev:
+  robostack:
+    win64: []
+    linux: [libgomp]
+    osx: [llvm-openmp]
