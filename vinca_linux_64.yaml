@@ -184,8 +184,8 @@ packages_select_by_deps:
   - ros2trace-analysis
   - rosbag2-performance-benchmarking
   - rosidl-generator-dds-idl
-  - ros-ign-bridge
-  - ros-ign-image
+  # - ros-ign-bridge
+  # - ros-ign-image
   - rplidar-ros
   - rqt
   - rqt-moveit
