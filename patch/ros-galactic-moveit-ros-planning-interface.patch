@@ -20,10 +20,10 @@ index 523d74f259..776286d927 100644
  
  #add_executable(demo src/demo.cpp)
  #target_link_libraries(demo ${MOVEIT_LIB_NAME} ${LIBS} ${Boost_LIBRARIES})
-diff --git a/planning_interface/move_group_interface/include/moveit/move_group_interface/move_group_interface.h b/planning_interface/move_group_interface/include/moveit/move_group_interface/move_group_interface.h
+diff --git a/move_group_interface/include/moveit/move_group_interface/move_group_interface.h b/move_group_interface/include/moveit/move_group_interface/move_group_interface.h
 index e0cd026d63..6e725bac02 100644
---- a/planning_interface/move_group_interface/include/moveit/move_group_interface/move_group_interface.h
-+++ b/planning_interface/move_group_interface/include/moveit/move_group_interface/move_group_interface.h
+--- a/move_group_interface/include/moveit/move_group_interface/move_group_interface.h
++++ b/move_group_interface/include/moveit/move_group_interface/move_group_interface.h
 @@ -60,6 +60,8 @@
  #include <utility>
  #include <tf2_ros/buffer.h>
