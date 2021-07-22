@@ -13,7 +13,7 @@ skip_all_deps: true
   # - ros-galactic-rviz-rendering
 
 packages_skip_by_deps:
-  -  rttest
+  - rttest
 
 packages_remove_from_deps:
   - tlsf
@@ -59,6 +59,8 @@ packages_select_by_deps:
   - geometry-msgs
   - map-msgs
   - ros-core
+  - ament_package
+  - ros_workspace
   # - rosidl-generator-py
   # - ompl
   # - behaviortree_cpp_v3
