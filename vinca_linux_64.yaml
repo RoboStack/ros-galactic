@@ -23,6 +23,7 @@ skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
+  # - plotjuggler
   - acado-vendor
   - ament-clang-format
   - ament-clang-tidy
@@ -183,8 +184,8 @@ packages_select_by_deps:
   - ros2trace-analysis
   - rosbag2-performance-benchmarking
   - rosidl-generator-dds-idl
-  - ros-ign-bridge
-  - ros-ign-image
+  # - ros-ign-bridge
+  # - ros-ign-image
   - rplidar-ros
   - rqt
   - rqt-moveit
