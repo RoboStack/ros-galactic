@@ -13,7 +13,7 @@ skip_all_deps: true
   # - ros-galactic-rviz-rendering
 
 packages_skip_by_deps:
-  - rttest
+  # - rttest
 
 packages_remove_from_deps:
   - tlsf
