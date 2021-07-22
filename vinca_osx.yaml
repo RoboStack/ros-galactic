@@ -7,7 +7,7 @@ conda_index:
 
 build_number: 0
 
-skip_all_deps: false
+skip_all_deps: true
 
 # build_in_own_azure_stage:
   # - ros-galactic-rviz-rendering
@@ -21,9 +21,44 @@ packages_remove_from_deps:
   - pendulum_control
 
 skip_existing:
-  - https://conda.anaconda.org/robostack-experimental/
+  # - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
+  - builtin-interfaces
+  - shape-msgs
+  - std-msgs
+  - rosgraph-msgs
+  - visualization-msgs
+  - lifecycle-msgs
+  - turtlesim
+  - actionlib-msgs
+  - statistics-msgs
+  - unique-identifier-msgs
+  - rosbag2-interfaces
+  - pcl-msgs
+  - diagnostic-msgs
+  - nav-msgs
+  - tf2-msgs
+  - std-srvs
+  - stereo-msgs
+  - action-tutorials-interfaces
+  - pendulum-msgs
+  - logging-demo
+  - sensor-msgs
+  - action-msgs
+  - control-msgs
+  - composition-interfaces
+  - ros2cli-test-interfaces
+  - rcl-interfaces
+  - example-interfaces
+  - test-msgs
+  - rmw-dds-common
+  - trajectory-msgs
+  - ros-core
+  - libstatistics-collector
+  - geometry-msgs
+  - map-msgs
+  - ros-core
   # - rosidl-generator-py
   # - ompl
   # - behaviortree_cpp_v3
