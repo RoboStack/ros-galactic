@@ -1,8 +1,35 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 5a69bc6..fce9401 100644
+index 5a69bc6..4290115 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -27,19 +27,7 @@ endif()
+@@ -7,15 +7,17 @@ if(NOT CMAKE_CXX_STANDARD)
+ endif()
+ 
+ # Set compile options
+-set(PROJECT_COMPILE_OPTIONS
+-  -Wall
+-  -Wextra
+-  -Wwrite-strings
+-  -Wunreachable-code
+-  -Wpointer-arith
+-  -Wredundant-decls
+-  -Wno-unused-parameter
+-)
++if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
++  set(PROJECT_COMPILE_OPTIONS
++    -Wall
++    -Wextra
++    -Wwrite-strings
++    -Wunreachable-code
++    -Wpointer-arith
++    -Wredundant-decls
++    -Wno-unused-parameter
++  )
++endif()
+ 
+ list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
+ 
+@@ -27,19 +29,7 @@ endif()
  # TODO(henningkayser): Remove policy fix when assimp 5.1 is available
  # Suppress policy warning in assimp (https://github.com/assimp/assimp/pull/2722)
  set(CMAKE_POLICY_DEFAULT_CMP0012 NEW)
@@ -23,7 +50,7 @@ index 5a69bc6..fce9401 100644
  
  # These need to be in this order to find header files
  find_package(eigen3_cmake_module REQUIRED)
-@@ -73,6 +61,7 @@ set(THIS_PACKAGE_EXPORT_DEPENDS
+@@ -73,6 +63,7 @@ set(THIS_PACKAGE_EXPORT_DEPENDS
    resource_retriever
    shape_msgs
    visualization_msgs
@@ -31,10 +58,14 @@ index 5a69bc6..fce9401 100644
  )
  
  # Set VERSION from package.xml
-@@ -93,12 +82,12 @@ add_library(${PROJECT_NAME} SHARED
+@@ -90,15 +81,14 @@ add_library(${PROJECT_NAME} SHARED
+   src/shape_to_marker.cpp
+   src/shapes.cpp
+ )
++set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${${PROJECT_NAME}_VERSION} WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
  target_compile_options(${PROJECT_NAME} PRIVATE ${PROJECT_COMPILE_OPTIONS})
- set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${${PROJECT_NAME}_VERSION})
- target_compile_options(${PROJECT_NAME} PRIVATE ${PROJECT_COMPILE_OPTIONS})
+-set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${${PROJECT_NAME}_VERSION})
+-target_compile_options(${PROJECT_NAME} PRIVATE ${PROJECT_COMPILE_OPTIONS})
 +target_link_libraries(${PROJECT_NAME} assimp::assimp)
  ament_target_dependencies(${PROJECT_NAME}
    ${THIS_PACKAGE_EXPORT_DEPENDS}
@@ -45,3 +76,49 @@ index 5a69bc6..fce9401 100644
    QHULL
  )
  
+diff --git a/include/geometric_shapes/bodies.h b/include/geometric_shapes/bodies.h
+index 41e221a..c93e539 100644
+--- a/include/geometric_shapes/bodies.h
++++ b/include/geometric_shapes/bodies.h
+@@ -37,10 +37,7 @@
+ #ifndef GEOMETRIC_SHAPES_BODIES_
+ #define GEOMETRIC_SHAPES_BODIES_
+ 
+-#if __cplusplus <= 199711L
+-#error This header requires at least C++11
+-#endif
+-
++#define _USE_MATH_DEFINES
+ #include "geometric_shapes/aabb.h"
+ #include "geometric_shapes/shapes.h"
+ #include <eigen_stl_containers/eigen_stl_containers.h>
+diff --git a/include/geometric_shapes/shape_messages.h b/include/geometric_shapes/shape_messages.h
+index 2db45f4..15d2b15 100644
+--- a/include/geometric_shapes/shape_messages.h
++++ b/include/geometric_shapes/shape_messages.h
+@@ -42,10 +42,6 @@
+ #include <shape_msgs/msg/plane.hpp>
+ #include <boost/variant.hpp>
+ 
+-#if __cplusplus <= 199711L
+-#error This header requires at least C++11 (boost::variant is incompatible between c++98 and c++11 and we enforce 11)
+-#endif
+-
+ namespace shapes
+ {
+ /** \brief Type that can hold any of the desired shape message types */
+diff --git a/include/geometric_shapes/shapes.h b/include/geometric_shapes/shapes.h
+index e527a38..0aa4f0b 100644
+--- a/include/geometric_shapes/shapes.h
++++ b/include/geometric_shapes/shapes.h
+@@ -37,10 +37,6 @@
+ #ifndef GEOMETRIC_SHAPES_SHAPES_
+ #define GEOMETRIC_SHAPES_SHAPES_
+ 
+-#if __cplusplus <= 199711L
+-#error This header requires at least C++11
+-#endif
+-
+ #include <cstdlib>
+ #include <vector>
+ #include <iostream>
