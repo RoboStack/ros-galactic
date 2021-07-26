@@ -26,11 +26,11 @@ skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
+  - moveit
+  # - srdfdom
   # - behaviortree_cpp_v3
   # - octomap
-  - moveit
   # - ament_cmake_python
-  # - moveit
 
   # not yet
   # - navigation2
