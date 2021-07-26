@@ -116,8 +116,8 @@ To walk through the steps of setting up vinca and running builds:
 # make sure to add conda-forge to your channels in `~.condarc`
 mamba install pip boa -c conda-forge
 
-# we currently use a special version of vinca for ROS2
-pip install git+https://github.com/RoboStack/vinca.git@ros2 --no-deps
+# install vinca
+pip install git+https://github.com/RoboStack/vinca.git --no-deps
 
 # move the vinca file you're interested in to `vinca.yaml`
 cp vinca_linux_64.yaml vinca.yaml
