@@ -13,7 +13,7 @@ skip_all_deps: false
   # - ros-galactic-rviz-rendering
 
 packages_skip_by_deps:
-  -  rttest
+  # - rttest
 
 packages_remove_from_deps:
   - tlsf
@@ -24,11 +24,52 @@ skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
-  # - ompl
   - navigation2
+  # - ament_package
+  # - builtin-interfaces
+  # - shape-msgs
+  # - std-msgs
+  # - rosgraph-msgs
+  # - visualization-msgs
+  # - lifecycle-msgs
+  # - turtlesim
+  # - actionlib-msgs
+  # - statistics-msgs
+  # - unique-identifier-msgs
+  # - rosbag2-interfaces
+  # - pcl-msgs
+  # - diagnostic-msgs
+  # - nav-msgs
+  # - tf2-msgs
+  # - std-srvs
+  # - stereo-msgs
+  # - action-tutorials-interfaces
+  # - pendulum-msgs
+  # - logging-demo
+  # - sensor-msgs
+  # - action-msgs
+  # - control-msgs
+  # - composition-interfaces
+  # - ros2cli-test-interfaces
+  # - rcl-interfaces
+  # - example-interfaces
+  # - test-msgs
+  # - rmw-dds-common
+  # - trajectory-msgs
+  # - ros-core
+  # - libstatistics-collector
+  # - geometry-msgs
+  # - map-msgs
+  # - ros-core
+  # - ros-core
+  # - ros_workspace
+  # - rosidl-generator-py
+  # - ompl
   # - behaviortree_cpp_v3
   # - control_msgs
   # - eigen_stl_containers
+  # - bondcpp
+  # - bond
   # - ros_workspace
   # - zstd_vendor
   # - rqt_bag_plugins
