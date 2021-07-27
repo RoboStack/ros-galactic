@@ -131,9 +131,9 @@ python-defusedxml:
 python3-defusedxml:
   robostack: [defusedxml]
 python-numpy:
-  robostack: [numpy 1.17]
+  robostack: [numpy]
 python3-numpy:
-  robostack: [numpy 1.17]
+  robostack: [numpy]
 python3-pytest:
   robostack: [pytest]
 python3-rosdistro-modules:
