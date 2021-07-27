@@ -78,7 +78,7 @@ index 00000000..a2e2757a
 +
 +list(REMOVE_DUPLICATES XCB_INCLUDE_DIRS)
 diff --git a/plotjuggler_plugins/DataStreamZMQ/CMakeLists.txt b/plotjuggler_plugins/DataStreamZMQ/CMakeLists.txt
-index 1ed8ac83..6970c739 100644
+index 1ed8ac83..576dbe31 100644
 --- a/plotjuggler_plugins/DataStreamZMQ/CMakeLists.txt
 +++ b/plotjuggler_plugins/DataStreamZMQ/CMakeLists.txt
 @@ -1,6 +1,8 @@
@@ -97,7 +97,7 @@ index 1ed8ac83..6970c739 100644
 -    zmq
 +    ${cppzmq_LIBRARY}
      )
-+target_include_directories(DataStreamZMQ ${cppzmq_INCLUDE_DIR})
++target_include_directories(DataStreamZMQ PUBLIC ${cppzmq_INCLUDE_DIR})
  
  install(TARGETS DataStreamZMQ DESTINATION ${PJ_PLUGIN_INSTALL_DIRECTORY}  )
  
