@@ -1,23 +1,24 @@
 diff --git a/3rdparty/Qt-Advanced-Docking/CMakeLists.txt b/3rdparty/Qt-Advanced-Docking/CMakeLists.txt
-index 6b650f1b..742b0664 100644
+index 6b650f1b..470824cd 100644
 --- a/3rdparty/Qt-Advanced-Docking/CMakeLists.txt
 +++ b/3rdparty/Qt-Advanced-Docking/CMakeLists.txt
-@@ -9,6 +9,8 @@ if (UNIX AND NOT APPLE)
-         find_package(Qt5 5.5 COMPONENTS X11Extras REQUIRED)
- endif()
+@@ -2,7 +2,9 @@ cmake_minimum_required(VERSION 3.5)
  
+ project(QtADS LANGUAGES CXX)
+ 
+-include_directories(include/Qads)
 +find_package(X11 REQUIRED)
 +
- set(CMAKE_INCLUDE_CURRENT_DIR ON)
++include_directories(include/Qads ${X11_INCLUDE_DIR})
  
- set(ads_SRCS
-@@ -67,7 +69,8 @@ target_link_libraries(qt_advanced_docking PUBLIC Qt5::Core Qt5::Gui Qt5::Widgets
+ find_package(Qt5 5.5 COMPONENTS Core Gui Widgets REQUIRED)
+ if (UNIX AND NOT APPLE)
+@@ -67,7 +69,7 @@ target_link_libraries(qt_advanced_docking PUBLIC Qt5::Core Qt5::Gui Qt5::Widgets
  
  if(UNIX AND NOT APPLE)
      target_link_libraries(qt_advanced_docking PUBLIC Qt5::X11Extras)
 -        target_link_libraries(qt_advanced_docking PRIVATE xcb)
 +    target_link_libraries(qt_advanced_docking PRIVATE ${X11_LIBRARIES})
-+    target_include_directories(qt_advanced_docking PRIVATE ${X11_INCLUDE_DIR})
  endif()
  
  set_target_properties(qt_advanced_docking PROPERTIES
