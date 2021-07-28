@@ -20,3 +20,42 @@ index e2f3366..24455f8 100644
    }
    _bag_reader = temp_bag_reader;
    //---------------------------------------
+diff --git a/plugins/DataStreamROS2/datastream_ros2.cpp b/plugins/DataStreamROS2/datastream_ros2.cpp
+index 3a6b09f..8c545f7 100644
+--- a/plugins/DataStreamROS2/datastream_ros2.cpp
++++ b/plugins/DataStreamROS2/datastream_ros2.cpp
+@@ -20,7 +20,7 @@ DataStreamROS2::DataStreamROS2() :
+   _context = std::make_shared<rclcpp::Context>();
+   _context->init(0, nullptr);
+ 
+-  auto exec_args = rclcpp::executor::ExecutorArgs();
++  auto exec_args = rclcpp::ExecutorOptions();
+   exec_args.context = _context;
+   _executor = std::make_unique<rclcpp::executors::MultiThreadedExecutor>(exec_args, 2);
+ 
+diff --git a/plugins/TopicPublisherROS2/publisher_ros2.cpp b/plugins/TopicPublisherROS2/publisher_ros2.cpp
+index d96f672..f523611 100644
+--- a/plugins/TopicPublisherROS2/publisher_ros2.cpp
++++ b/plugins/TopicPublisherROS2/publisher_ros2.cpp
+@@ -25,7 +25,7 @@ TopicPublisherROS2::TopicPublisherROS2() :  _node(nullptr), _enabled(false)
+   _context = std::make_shared<rclcpp::Context>();
+   _context->init(0, nullptr);
+ 
+-  auto exec_args = rclcpp::executor::ExecutorArgs();
++  auto exec_args = rclcpp::ExecutorOptions();
+   exec_args.context = _context;
+   _executor = std::make_unique<rclcpp::executors::MultiThreadedExecutor>(exec_args, 2);
+ 
+diff --git a/plugins/ros2_parsers/generic_subscription.hpp b/plugins/ros2_parsers/generic_subscription.hpp
+index ca83a6c..66b8e16 100644
+--- a/plugins/ros2_parsers/generic_subscription.hpp
++++ b/plugins/ros2_parsers/generic_subscription.hpp
+@@ -23,7 +23,7 @@
+ #include "rclcpp/subscription.hpp"
+ #include "rclcpp/any_subscription_callback.hpp"
+ #include "rclcpp/subscription.hpp"
+-#include "rosbag2_transport/logging.hpp"
++//#include "rosbag2_transport/logging.hpp"
+ 
+ namespace rosbag2_transport
+ {
