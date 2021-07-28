@@ -1,0 +1,38 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 8930573..5c6047a 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -10,16 +10,18 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+   add_compile_options(-Wall -Wextra -Wpedantic)
+ endif()
+ 
+-include_directories(
+-  include
+-  external/msgpack-c/include
+-)
+-
+ # find dependencies
+ find_package(ament_cmake REQUIRED)
+ find_package(rclcpp REQUIRED)
+ find_package(nao_sensor_msgs REQUIRED)
+ find_package(nao_command_msgs REQUIRED)
++find_package(Boost REQUIRED)
++
++include_directories(
++  include
++  external/msgpack-c/include
++  ${Boost_INCLUDE_DIRS}
++)
+ 
+ # build msgpack_parser_lib
+ add_library(msgpack_parser_lib SHARED
+@@ -45,7 +47,8 @@ add_executable(nao_lola
+ 
+ target_link_libraries(nao_lola
+   msgpack_parser_lib
+-  msgpack_packer_lib)
++  msgpack_packer_lib
++  ${Boost_LIBRARIES})
+ 
+ # Install
+ install(TARGETS

@@ -1,0 +1,22 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 7e849fe..5f866c9 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -26,6 +26,7 @@ find_package(ublox_ubx_msgs REQUIRED)
+ find_package(ublox_ubx_interfaces REQUIRED)
+ 
+ find_package(PkgConfig REQUIRED)
++pkg_check_modules(libudev REQUIRED libudev)
+ pkg_check_modules(libusb REQUIRED libusb-1.0)
+ 
+ include_directories(include SYSTEM)
+@@ -48,7 +49,8 @@ ament_target_dependencies(ublox_dgnss_components
+ )
+ 
+ target_link_libraries(ublox_dgnss_components
+-  usb-1.0
++  ${libusb_LIBRARIES}
++  ${libudev_LIBRARIES}
+ )
+ 
+ rclcpp_components_register_node(ublox_dgnss_components PLUGIN "ublox_dgnss::UbloxDGNSSNode" EXECUTABLE ublox_dgnss_node)

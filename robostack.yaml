@@ -33,6 +33,8 @@ ca-certificates:
   robostack: [ca-certificates]
 cmake:
   robostack: [cmake]
+coinor-libcbc-dev:
+  robostack: [coin-or-cbc]
 coinor-libipopt-dev:
   robostack: [ipopt]
 collada-dom:

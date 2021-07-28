@@ -23,6 +23,36 @@ skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
+  - ackermann-msgs
+  - four-wheel-steering-msgs
+  - ign-rviz
+  - ign-rviz-common
+  - ign-rviz-plugins
+  - image-pipeline
+  - image-view
+  - libphidget22
+  - nao-lola
+  - phidgets-accelerometer
+  - phidgets-analog-inputs
+  - phidgets-api
+  - phidgets-digital-inputs
+  - phidgets-digital-outputs
+  - phidgets-drivers
+  - phidgets-gyroscope
+  - phidgets-high-speed-encoder
+  - phidgets-ik
+  - phidgets-magnetometer
+  - phidgets-motors
+  - phidgets-spatial
+  - phidgets-temperature
+  - robot-localization
+  - ros-ign-bridge
+  - ros-ign-gazebo
+  - ros-ign-image
+  - ros-ign-interfaces
+  - soccer-marker-generation
+  - vision-msgs
+
   - plotjuggler-ros
   - plotjuggler
   - acado-vendor
