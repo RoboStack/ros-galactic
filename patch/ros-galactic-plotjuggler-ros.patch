@@ -1,0 +1,45 @@
+diff --git a/plugins/DataLoadROS2/dataload_ros2.cpp b/plugins/DataLoadROS2/dataload_ros2.cpp
+index e2f3366..24455f8 100644
+--- a/plugins/DataLoadROS2/dataload_ros2.cpp
++++ b/plugins/DataLoadROS2/dataload_ros2.cpp
+@@ -49,7 +49,7 @@ bool DataLoadROS2::readDataFromFile(PJ::FileLoadInfo* info,
+     bagDir = finfo.dir().path();
+   }
+ 
+-  rosbag2_cpp::StorageOptions storageOptions;
++  rosbag2_storage::StorageOptions storageOptions;
+   storageOptions.uri = bagDir.toStdString();
+   storageOptions.storage_id = "sqlite3";
+   rosbag2_cpp::ConverterOptions converterOptions;
+@@ -128,7 +128,7 @@ bool DataLoadROS2::readDataFromFile(PJ::FileLoadInfo* info,
+ 
+   if (_bag_reader)
+   {
+-    _bag_reader->reset();
++    _bag_reader->close();
+   }
+   _bag_reader = temp_bag_reader;
+   //---------------------------------------
+:...skipping...
+diff --git a/plugins/DataLoadROS2/dataload_ros2.cpp b/plugins/DataLoadROS2/dataload_ros2.cpp
+index e2f3366..24455f8 100644
+--- a/plugins/DataLoadROS2/dataload_ros2.cpp
++++ b/plugins/DataLoadROS2/dataload_ros2.cpp
+@@ -49,7 +49,7 @@ bool DataLoadROS2::readDataFromFile(PJ::FileLoadInfo* info,
+     bagDir = finfo.dir().path();
+   }
+ 
+-  rosbag2_cpp::StorageOptions storageOptions;
++  rosbag2_storage::StorageOptions storageOptions;
+   storageOptions.uri = bagDir.toStdString();
+   storageOptions.storage_id = "sqlite3";
+   rosbag2_cpp::ConverterOptions converterOptions;
+@@ -128,7 +128,7 @@ bool DataLoadROS2::readDataFromFile(PJ::FileLoadInfo* info,
+ 
+   if (_bag_reader)
+   {
+-    _bag_reader->reset();
++    _bag_reader->close();
+   }
+   _bag_reader = temp_bag_reader;
+   //---------------------------------------
