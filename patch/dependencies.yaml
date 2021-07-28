@@ -3,6 +3,8 @@ ackermann_msgs:
   add_run: ["numpy"]
 iceoryx_utils:
   add_host: ["pkg-config"]
+cartographer:
+  add_host: ["pkg-config"]
 yaml_cpp_vendor:
   add_host: ["yaml-cpp 0.6.*"]
   add_run: ["yaml-cpp 0.6.*"]
@@ -66,3 +68,5 @@ tvm_vendor:
   add_host: ["libblas"]
 libphidget22:
   add_host: ["libusb"]
+libg2o:
+  add_host: ["qt", "libglu", "freeglut"]
