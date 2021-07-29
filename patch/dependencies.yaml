@@ -47,7 +47,7 @@ plotjuggler:
 #   add_host: ["ogre"]
 #   add_run: ["ogre"]
 embree_vendor:
-  add_host: ["REQUIRE_OPENGL", "libpng", "libjpeg-turbo", "openimageio", "tbb"]
+  add_host: ["REQUIRE_OPENGL", "libpng", "libjpeg-turbo", "openimageio", "tbb", "tbb-devel", "embree"]
 ign_rviz_common:
   add_host: ["REQUIRE_OPENGL"]
 ign_rviz:
