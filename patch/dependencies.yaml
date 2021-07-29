@@ -70,3 +70,5 @@ libphidget22:
   add_host: ["libusb"]
 libg2o:
   add_host: ["qt", "libglu", "freeglut"]
+fmilibrary_vendor:
+  add_host: ["fmilib"]

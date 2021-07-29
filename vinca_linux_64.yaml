@@ -23,6 +23,7 @@ skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
+  - fmi-adapter-examples
   - spacenav
   - embree-vendor
   - ros-ign
