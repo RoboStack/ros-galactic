@@ -65,7 +65,7 @@ ros_ign_gazebo_demos:
 rosbag2_bag_v2_plugins:
   add_host: ["ros-noetic-roscpp"]
 tvm_vendor:
-  add_host: ["libblas"]
+  add_host: ["libblas", "openblas", "libcblas"]
 libphidget22:
   add_host: ["libusb"]
 libg2o:
