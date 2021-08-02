@@ -31,9 +31,6 @@ pcl:
 tbb:
   - 2019.9  # [win]
   - 2020.2  # [not win]
-tbb-devel:
-  - 2019.9  # [win]
-  - 2020.2  # [not win]
 tbb_devel:
   - 2019.9  # [win]
   - 2020.2  # [not win]
