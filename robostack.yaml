@@ -246,6 +246,8 @@ libgpgme-dev:
     linux: [gpgme]
     osx: [gpgme]
     win64: []
+libgps:
+  robostack: [gpsd]
 libgsl:
   robostack: [gsl]
 libgstreamer-plugins-base1.0-dev:
