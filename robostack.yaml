@@ -811,6 +811,8 @@ sdl-image:
   robostack: [sdl_image]
 sdl2:
   robostack: [sdl2]
+socat:
+  robostack: [socat]
 spacenavd:
   robostack: [libspnav]
 spdlog:
