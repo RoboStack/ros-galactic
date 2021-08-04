@@ -318,6 +318,10 @@ libpqxx:
   robostack: [libpqxx 6.*]
 libpqxx-dev:
   robostack: [libpqxx 6.*]
+libqglviewer2-qt5:
+  robostack: [libqglviewer]
+libqglviewer-dev-qt5:
+  robostack: [libqglviewer]
 libqhull:
   robostack: [qhull]
 libqt5-core:
