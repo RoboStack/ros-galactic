@@ -78,3 +78,6 @@ mrpt2:
   add_host:  ["assimp", "octomap", "tinyxml2", "boost-cpp", "jsoncpp", "gtest", "boost", "libdc1394", "xorg-libxcomposite", "libftdi", "ros-galactic-octomap", "pkg-config"]
   add_run:   ["assimp", "octomap", "tinyxml2", "boost-cpp", "jsoncpp", "gtest", "boost", "libdc1394", "xorg-libxcomposite", "libftdi", "ros-galactic-octomap"]
   add_build: [{"sel(linux)": "{{ cdt('libxcomposite-devel') }}"}]
+ros1_rosbag_storage_vendor:
+  add_host: ["ros-noetic-roscpp"]
+  add_run: ["ros-noetic-roscpp"]
