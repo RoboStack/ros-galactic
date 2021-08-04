@@ -83,4 +83,5 @@ ros1_rosbag_storage_vendor:
   add_run: ["ros-noetic-roscpp"]
 popf:
   add_host: ["perl"]
-
+rtabmap:
+  add_host: ["REQUIRE_OPENGL", "ceres-solver", "libdc1394", "numpy", "pkg-config", "libusb"]
