@@ -112,7 +112,7 @@ index 11aef39..f7d6f26 100755
 +++ b/src/VALfiles/parsing/fixyywrap
 @@ -1,13 +1,14 @@
 -#!/usr/bin/perl -w
-+#!/usr/bin/env perl -w
++#!/usr/bin/env perl
  
  $bindir = shift @ARGV;
  $srcdir = shift @ARGV;
