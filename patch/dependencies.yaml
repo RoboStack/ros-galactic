@@ -81,3 +81,6 @@ mrpt2:
 ros1_rosbag_storage_vendor:
   add_host: ["ros-noetic-roscpp"]
   add_run: ["ros-noetic-roscpp"]
+popf:
+  add_host: ["perl"]
+
