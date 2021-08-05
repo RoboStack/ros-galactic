@@ -69,6 +69,18 @@ index a2ed58a..d4236d3 100644
 -ament_package()
 \ No newline at end of file
 +ament_package()
+diff --git a/src/VALfiles/parse.cpp b/src/VALfiles/parse.cpp
+index b51c585..0cda7f5 100644
+--- a/src/VALfiles/parse.cpp
++++ b/src/VALfiles/parse.cpp
+@@ -44,6 +44,7 @@
+ #include "ptree.h"
+ #include "FlexLexer.h"
+ 
++extern "C" int yywrap();
+ extern int yyparse();
+ extern int yydebug;
+ 
 diff --git a/src/VALfiles/parsing/CMakeLists.txt b/src/VALfiles/parsing/CMakeLists.txt
 index dd7dc8e..0627f81 100644
 --- a/src/VALfiles/parsing/CMakeLists.txt
@@ -109,10 +121,10 @@ index dd7dc8e..0627f81 100644
        pddl+.cpp ptree.cpp DebugWriteController.cpp
  )
 diff --git a/src/VALfiles/parsing/fixyywrap b/src/VALfiles/parsing/fixyywrap
-index 11aef39..ce94bf0 100755
+index 11aef39..be36596 100755
 --- a/src/VALfiles/parsing/fixyywrap
 +++ b/src/VALfiles/parsing/fixyywrap
-@@ -1,19 +1,20 @@
+@@ -1,13 +1,14 @@
 -#!/usr/bin/perl -w
 +#!/usr/bin/env perl
  
@@ -130,10 +142,3 @@ index 11aef39..ce94bf0 100755
  open OUT, "> $bindir/fixyywrap.h";
  
  while (<IN>) {
- 
- 	if (m/int yywrap/) {
--		print OUT "int yyFlexLexer::yywrap() { return 1; };\n";
-+		print OUT "int yywrap() { return 1; };\n";
- 	}
- 
- }
