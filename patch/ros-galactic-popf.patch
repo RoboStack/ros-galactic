@@ -70,14 +70,15 @@ index a2ed58a..d4236d3 100644
 \ No newline at end of file
 +ament_package()
 diff --git a/src/VALfiles/parse.cpp b/src/VALfiles/parse.cpp
-index b51c585..0cda7f5 100644
+index b51c585..5880ffe 100644
 --- a/src/VALfiles/parse.cpp
 +++ b/src/VALfiles/parse.cpp
-@@ -44,6 +44,7 @@
+@@ -44,6 +44,8 @@
  #include "ptree.h"
  #include "FlexLexer.h"
  
-+extern "C" int yywrap();
++//extern int yyFlexLexer::yywrap();
++//extern "C" int yywrap();
  extern int yyparse();
  extern int yydebug;
  
@@ -142,3 +143,31 @@ index 11aef39..be36596 100755
  open OUT, "> $bindir/fixyywrap.h";
  
  while (<IN>) {
+diff --git a/src/VALfiles/parsing/pddl+.lex b/src/VALfiles/parsing/pddl+.lex
+index 598c8e5..dba389c 100644
+--- a/src/VALfiles/parsing/pddl+.lex
++++ b/src/VALfiles/parsing/pddl+.lex
+@@ -8,7 +8,8 @@
+   using std::cerr;
+   using std::istream;
+   using namespace VAL;
+-extern "C" int yywrap();
++//extern int yyFlexLexer::yywrap();
++//extern "C" int yywrap();
+ 
+ %}
+ %option case-insensitive
+diff --git a/src/VALfiles/test/lex.yy.cc b/src/VALfiles/test/lex.yy.cc
+index 974fc92..cc5dfcc 100644
+--- a/src/VALfiles/test/lex.yy.cc
++++ b/src/VALfiles/test/lex.yy.cc
+@@ -1041,7 +1041,8 @@ static yyconst flex_int16_t yy_chk[1781] =
+   using std::cerr;
+   using std::istream;
+   using namespace VAL;
+-extern "C" int yywrap();
++//extern "C" int yywrap();
++//extern int yyFlexLexer::yywrap();
+ 
+ #line 1047 "lex.yy.cc"
+ 
