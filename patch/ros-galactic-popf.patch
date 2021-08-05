@@ -1,8 +1,8 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index a2ed58a..50650f7 100644
+index a2ed58a..d4236d3 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -16,10 +16,15 @@ find_package(CoinUtils)
+@@ -16,6 +16,9 @@ find_package(CoinUtils)
  find_package(Cbc)
  find_package(Cgl)
  
@@ -12,13 +12,7 @@ index a2ed58a..50650f7 100644
  set(val_SOURCE_DIR src/VALfiles)
  set(popf_SOURCE_DIR src/popf)
  set(parsePDDL_SOURCE_DIR ${val_SOURCE_DIR}/parsing)
- 
-+message(WARNING "TEST: ${FLEX_INCLUDE_DIRS}")
-+
- include_directories(
-   ${popf_SOURCE_DIR}
-   ${val_SOURCE_DIR} 
-@@ -29,22 +34,11 @@ include_directories(
+@@ -29,22 +32,11 @@ include_directories(
    ${CBC_INCLUDES}/coin  
    ${CPLEX_INCLUDES} 
    ${CONCERT_INCLUDES}
@@ -42,7 +36,7 @@ index a2ed58a..50650f7 100644
  add_custom_command(
         OUTPUT
          ${CMAKE_CURRENT_BINARY_DIR}/lex.yy.cc
-@@ -66,7 +60,7 @@ add_custom_command(
+@@ -66,7 +58,7 @@ add_custom_command(
         DEPENDS
          ${CMAKE_CURRENT_SOURCE_DIR}/${parsePDDL_SOURCE_DIR}/pddl+.yacc ${CMAKE_CURRENT_BINARY_DIR}/lex.yy.cc
         COMMAND
@@ -51,7 +45,7 @@ index a2ed58a..50650f7 100644
  )
  
  set(libParsePDDL_SRCS
-@@ -91,6 +85,8 @@ set(libInst_SRCS
+@@ -91,6 +83,8 @@ set(libInst_SRCS
        ${val_SOURCE_DIR}/TypeStripWC.cpp
  )
  
@@ -60,7 +54,15 @@ index a2ed58a..50650f7 100644
  add_library(Inst SHARED ${libInst_SRCS})
  target_link_libraries(Inst ParsePDDL)
  
-@@ -184,4 +180,4 @@ install(FILES src/popf/Popf.hpp
+@@ -129,6 +123,7 @@ add_executable(parser ${parser_SRCS})
+ 
+ target_link_libraries(parser
+         ParsePDDL
++        ${FLEX_LIBRARIES}
+ )
+ 
+ install(TARGETS validate parser ParsePDDL
+@@ -184,4 +179,4 @@ install(FILES src/popf/Popf.hpp
  ament_export_include_directories(include)
  ament_export_libraries(popfCommon ParsePDDL Inst ${CBC_LIBRARY} ${CGL_LIBRARIES} ${OSICLP_LIBRARIES} ${OSI_LIBRARIES} ${CLP_LIBRARIES}  ${COINUTILS_LIBRARIES})
  ament_export_dependencies(${dependencies})
@@ -107,7 +109,7 @@ index dd7dc8e..0627f81 100644
        pddl+.cpp ptree.cpp DebugWriteController.cpp
  )
 diff --git a/src/VALfiles/parsing/fixyywrap b/src/VALfiles/parsing/fixyywrap
-index 11aef39..f7d6f26 100755
+index 11aef39..be36596 100755
 --- a/src/VALfiles/parsing/fixyywrap
 +++ b/src/VALfiles/parsing/fixyywrap
 @@ -1,13 +1,14 @@
