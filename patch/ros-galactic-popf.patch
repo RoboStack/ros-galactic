@@ -130,3 +130,29 @@ index 11aef39..be36596 100755
  open OUT, "> $bindir/fixyywrap.h";
  
  while (<IN>) {
+diff --git a/src/VALfiles/parsing/pddl+.lex b/src/VALfiles/parsing/pddl+.lex
+index 598c8e5..0a1f7fc 100644
+--- a/src/VALfiles/parsing/pddl+.lex
++++ b/src/VALfiles/parsing/pddl+.lex
+@@ -8,7 +8,7 @@
+   using std::cerr;
+   using std::istream;
+   using namespace VAL;
+-extern "C" int yywrap();
++int yyFlexLexer::yywrap()
+ 
+ %}
+ %option case-insensitive
+ diff --git a/src/VALfiles/test/lex.yy.cc b/src/VALfiles/test/lex.yy.cc
+index 974fc92..86c4941 100644
+--- a/src/VALfiles/test/lex.yy.cc
++++ b/src/VALfiles/test/lex.yy.cc
+@@ -1041,7 +1041,7 @@ static yyconst flex_int16_t yy_chk[1781] =
+   using std::cerr;
+   using std::istream;
+   using namespace VAL;
+-extern "C" int yywrap();
++int yyFlexLexer::yywrap()
+ 
+ #line 1047 "lex.yy.cc"
+ 
