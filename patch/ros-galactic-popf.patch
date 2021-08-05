@@ -109,10 +109,10 @@ index dd7dc8e..0627f81 100644
        pddl+.cpp ptree.cpp DebugWriteController.cpp
  )
 diff --git a/src/VALfiles/parsing/fixyywrap b/src/VALfiles/parsing/fixyywrap
-index 11aef39..be36596 100755
+index 11aef39..ce94bf0 100755
 --- a/src/VALfiles/parsing/fixyywrap
 +++ b/src/VALfiles/parsing/fixyywrap
-@@ -1,13 +1,14 @@
+@@ -1,19 +1,20 @@
 -#!/usr/bin/perl -w
 +#!/usr/bin/env perl
  
@@ -130,3 +130,10 @@ index 11aef39..be36596 100755
  open OUT, "> $bindir/fixyywrap.h";
  
  while (<IN>) {
+ 
+ 	if (m/int yywrap/) {
+-		print OUT "int yyFlexLexer::yywrap() { return 1; };\n";
++		print OUT "int yywrap() { return 1; };\n";
+ 	}
+ 
+ }
