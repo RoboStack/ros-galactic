@@ -131,7 +131,7 @@ index 11aef39..be36596 100755
  
  while (<IN>) {
 diff --git a/src/VALfiles/parsing/pddl+.lex b/src/VALfiles/parsing/pddl+.lex
-index 598c8e5..0a1f7fc 100644
+index 598c8e5..573b367 100644
 --- a/src/VALfiles/parsing/pddl+.lex
 +++ b/src/VALfiles/parsing/pddl+.lex
 @@ -8,7 +8,7 @@
@@ -150,12 +150,11 @@ index 598c8e5..0a1f7fc 100644
 -extern "C" {
  int yywrap()
  {
-        return 1;
+ 	return 1;
  };
 -};
- 
 diff --git a/src/VALfiles/test/lex.yy.cc b/src/VALfiles/test/lex.yy.cc
-index 974fc92..86c4941 100644
+index 974fc92..018aaf7 100644
 --- a/src/VALfiles/test/lex.yy.cc
 +++ b/src/VALfiles/test/lex.yy.cc
 @@ -1041,7 +1041,7 @@ static yyconst flex_int16_t yy_chk[1781] =
@@ -175,7 +174,7 @@ index 974fc92..86c4941 100644
 +//extern "C" {
  int yywrap()
  {
-        return 1;
+ 	return 1;
  };
 -};
 +//};
