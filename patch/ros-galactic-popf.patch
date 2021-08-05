@@ -143,7 +143,18 @@ index 598c8e5..0a1f7fc 100644
  
  %}
  %option case-insensitive
- diff --git a/src/VALfiles/test/lex.yy.cc b/src/VALfiles/test/lex.yy.cc
+@@ -158,9 +158,7 @@ at_time "at"{whitespace}{float}
+ %%
+ 
+ 
+-extern "C" {
+ int yywrap()
+ {
+        return 1;
+ };
+-};
+ 
+diff --git a/src/VALfiles/test/lex.yy.cc b/src/VALfiles/test/lex.yy.cc
 index 974fc92..86c4941 100644
 --- a/src/VALfiles/test/lex.yy.cc
 +++ b/src/VALfiles/test/lex.yy.cc
@@ -156,13 +167,17 @@ index 974fc92..86c4941 100644
  
  #line 1047 "lex.yy.cc"
  
-@@ -158,9 +158,7 @@ at_time "at"{whitespace}{float}
- %%
+@@ -2697,11 +2697,11 @@ void yyfree (void * ptr )
+ 
  
  
 -extern "C" {
++//extern "C" {
  int yywrap()
  {
         return 1;
  };
 -};
++//};
+ 
+ 
