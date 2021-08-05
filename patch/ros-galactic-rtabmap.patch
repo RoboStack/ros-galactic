@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 5cdae61..3276b44 100644
+index 5cdae61..0e691ba 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -1,5 +1,5 @@
@@ -28,8 +28,7 @@ index 5cdae61..3276b44 100644
  
  #The CDT Error Parser cannot handle error messages that span 
  #more than one line, which is the default gcc behavior. 
-
-@@ -353,12 +353,49 @@ IF(WITH_TORCH)
+@@ -353,12 +353,26 @@ IF(WITH_TORCH)
  ENDIF(WITH_TORCH)
  
  IF(WITH_PYTHON)
@@ -40,47 +39,24 @@ index 5cdae61..3276b44 100644
      ENDIF(Python3_FOUND)
  ENDIF(WITH_PYTHON)
  
-+execute_process(COMMAND "${Python3_EXECUTABLE}" "-c"
-+    "import numpy as np; print(np.__version__); print(np.get_include());"
-+    RESULT_VARIABLE _NUMPY_SEARCH_SUCCESS
-+    OUTPUT_VARIABLE _NUMPY_VALUES_OUTPUT
-+    ERROR_VARIABLE _NUMPY_ERROR_VALUE
-+    OUTPUT_STRIP_TRAILING_WHITESPACE)
-+
-+if(_NUMPY_SEARCH_SUCCESS MATCHES 0)
-+  # Convert the process output into a list
-+  string(REGEX REPLACE ";" "\\\\;" _NUMPY_VALUES ${_NUMPY_VALUES_OUTPUT})
-+  string(REGEX REPLACE "\n" ";" _NUMPY_VALUES ${_NUMPY_VALUES})
-+  list(GET _NUMPY_VALUES 0 NUMPY_VERSION)
-+  list(GET _NUMPY_VALUES 1 NUMPY_INCLUDE_DIRS)
-+
-+  string(REGEX MATCH "^[0-9]+\\.[0-9]+\\.[0-9]+" _VER_CHECK "${NUMPY_VERSION}")
-+  if("${_VER_CHECK}" STREQUAL "")
-+      # The output from Python was unexpected. Raise an error always
-+      # here, because we found NumPy, but it appears to be corrupted somehow.
-+      message(FATAL_ERROR
-+          "Requested version and include path from NumPy, got instead:\n${_NUMPY_VALUES_OUTPUT}\n")
-+      return()
-+  endif()
-+
-+  # Make sure all directory separators are '/'
-+  string(REGEX REPLACE "\\\\" "/" NUMPY_INCLUDE_DIRS ${NUMPY_INCLUDE_DIRS})
-+
-+  # Get the major and minor version numbers
-+  string(REGEX REPLACE "\\." ";" _NUMPY_VERSION_LIST ${NUMPY_VERSION})
-+  list(GET _NUMPY_VERSION_LIST 0 NUMPY_VERSION_MAJOR)
-+  list(GET _NUMPY_VERSION_LIST 1 NUMPY_VERSION_MINOR)
-+  list(GET _NUMPY_VERSION_LIST 2 NUMPY_VERSION_PATCH)
-+  string(REGEX MATCH "[0-9]*" NUMPY_VERSION_PATCH ${NUMPY_VERSION_PATCH})
-+  math(EXPR NUMPY_VERSION_DECIMAL
-+      "(${NUMPY_VERSION_MAJOR} * 10000) + (${NUMPY_VERSION_MINOR} * 100) + ${NUMPY_VERSION_PATCH}")
-+endif()
-+
++execute_process(
++    COMMAND
++    "${Python3_EXECUTABLE}" -c
++# multiline string; indentation would break this
++"try:
++    import sys
++    import numpy
++    sys.stdout.write(numpy.get_include())
++except:
++    pass
++"
++    OUTPUT_VARIABLE NUMPY_INCLUDE_DIRS
++)
 +
  IF(WITH_PDAL)
      FIND_PACKAGE(PDAL QUIET)
      IF(PDAL_FOUND)
-@@ -1213,7 +1250,7 @@ MESSAGE(STATUS "  With SupertPoint          = NO (libtorch not found)")
+@@ -1213,7 +1227,7 @@ MESSAGE(STATUS "  With SupertPoint          = NO (libtorch not found)")
  ENDIF()
  
  IF(Python3_FOUND)
