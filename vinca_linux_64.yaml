@@ -28,10 +28,10 @@ packages_select_by_deps:
   - rtabmap
   - lanelet2
   # - plansys2-bringup
-  - popf
+  # - popf
   # - wiimote
   # - rc-dynamics-api
-  # - octovis
+  - octovis
   # - cartographer-ros
   - gps-umd
   - usb-cam
