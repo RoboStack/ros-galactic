@@ -24,15 +24,20 @@ skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
+  # not yet working
+  # - wiimote
+  # - rc-dynamics-api
+  # - cartographer-ros
+
+  # build locally but not on CI; for now uploaded from local
+  # - popf
+
+  # working
   - nav2-system-tests
   - rtabmap
   - lanelet2
-  # - plansys2-bringup
-  # - popf
-  # - wiimote
-  # - rc-dynamics-api
+  - plansys2-bringup
   - octovis
-  # - cartographer-ros
   - gps-umd
   - usb-cam
   - tvm-vendor
@@ -74,7 +79,6 @@ packages_select_by_deps:
   - ros-ign-interfaces
   - soccer-marker-generation
   - vision-msgs
-
   - plotjuggler-ros
   - plotjuggler
   - acado-vendor
@@ -319,7 +323,6 @@ packages_select_by_deps:
   # - zstd_vendor
   # - std_msgs
 
-  # These work! :)
   # - webots_ros2
   # - robot_controllers
   # - control_toolbox
