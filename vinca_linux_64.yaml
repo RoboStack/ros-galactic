@@ -33,6 +33,8 @@ packages_select_by_deps:
   # - popf
 
   # working
+  - plansys2-bt-actions
+  - plansys2-terminal
   - nav2-system-tests
   - rtabmap
   - lanelet2
