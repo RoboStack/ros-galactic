@@ -1,0 +1,18 @@
+package:
+  name: ros-galactic-cartographer
+  version: 1.0
+
+build:
+  number: 0
+  run_exports:
+    - cartographer 1.*
+
+
+about:
+  home: https://github.com/conda-forge/cartographer-feedstock
+  license: BSD-3-Clause
+  summary: |
+    Cartographer is a system that provides real-time simultaneous localization and mapping (SLAM) in 2D and 3D across multiple platforms and sensor configurations.
+extra:
+  recipe-maintainers:
+    - ros-forge
