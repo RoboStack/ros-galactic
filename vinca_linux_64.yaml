@@ -29,6 +29,7 @@ packages_select_by_deps:
   # - rc-dynamics-api
   # - ros1_rosbag_storage_vendor
   # - rosbag2-bag-v2-plugins
+  # - embree-vendor
 
   # build locally but not on CI; for now uploaded from local
   # - popf
@@ -50,7 +51,6 @@ packages_select_by_deps:
   - ublox-dgnss
   - fmi-adapter-examples
   - spacenav
-  - embree-vendor
   - ros-ign
   - menge-vendor
   - openvslam
