@@ -4,7 +4,10 @@ package:
 
 build:
   number: 0
-  run_exports:
+
+
+requirements:
+  run:
     - cartographer 1.*
 
 
