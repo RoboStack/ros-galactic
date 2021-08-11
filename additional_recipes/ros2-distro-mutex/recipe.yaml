@@ -7,7 +7,7 @@ build:
   string: galactic
   run_exports:
     # NOTE MANUALLY EDIT THIS!!!!
-    - ros-distro-mutex 0.1 galactic
+    - ros2-distro-mutex 0.1 galactic
 
 requirements:
   # NOTE:
