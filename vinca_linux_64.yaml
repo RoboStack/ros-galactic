@@ -27,12 +27,14 @@ packages_select_by_deps:
   # not yet working
   # - wiimote
   # - rc-dynamics-api
-  # - cartographer-ros
+  # - ros1_rosbag_storage_vendor
+  # - rosbag2-bag-v2-plugins
 
   # build locally but not on CI; for now uploaded from local
   # - popf
 
   # working
+  - cartographer-ros
   - plansys2-bt-actions
   - plansys2-terminal
   - nav2-system-tests
