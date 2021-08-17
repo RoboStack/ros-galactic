@@ -35,6 +35,14 @@ packages_select_by_deps:
   # - popf
 
   # working
+  - ruckig
+  - rosbridge-msgs
+  - rosbridge-library
+  - ros2launch-security
+  - picknik-ament-copyright
+  - nodl-to-policy
+  - geometry-tutorials
+  - sdformat-urdf
   - cartographer-ros
   - plansys2-bt-actions
   - plansys2-terminal
