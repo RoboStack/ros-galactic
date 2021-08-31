@@ -1,7 +1,7 @@
-diff --git a/rclpy/actions/minimal_action_client/setup.py b/rclpy/actions/minimal_action_client/setup.py
+diff --git a/setup.py b/setup.py
 index 48b893bd..84b7ee25 100644
---- a/rclpy/actions/minimal_action_client/setup.py
-+++ b/rclpy/actions/minimal_action_client/setup.py
+--- a/setup.py
++++ b/setup.py
 @@ -29,7 +29,7 @@
      tests_require=['pytest'],
      entry_points={
