@@ -5,9 +5,13 @@ conda_index:
   - robostack.yaml
   - packages-ignore.yaml
 
-build_number: 0
+build_number: 1
 
 skip_all_deps: false
+
+# If full rebuild, the build number of the existing package has
+# to match the selected build number for skipping
+full_rebuild: true
 
 packages_skip_by_deps:
   # - rviz
@@ -24,15 +28,10 @@ skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
-  # not yet working
-  # - wiimote
-  # - rc-dynamics-api
-  # - ros1_rosbag_storage_vendor
-  # - rosbag2-bag-v2-plugins
-  # - embree-vendor
-
   # build locally but not on CI; for now uploaded from local
   # - popf
+  # - ros-ign-bridge
+  # - ros-ign-image
 
   # working
   - ruckig
@@ -253,8 +252,6 @@ packages_select_by_deps:
   - ros2trace-analysis
   - rosbag2-performance-benchmarking
   - rosidl-generator-dds-idl
-  # - ros-ign-bridge
-  # - ros-ign-image
   - rplidar-ros
   - rqt
   - rqt-moveit
@@ -320,37 +317,36 @@ packages_select_by_deps:
   - webots-ros2-ur-e-description
   - wiimote-msgs
 
-  # - ublox
-  # - rcl-logging-spdlog
-  # - rviz_default_plugins
-  # - rosidl_generator_py
-  # - rviz2
-  # - ros_base
-  # - desktop
-  # - behaviortree_cpp_v3
-  # - navigation2
-  # - webots_ros2
-  # - moveit
-  # - ros_workspace
-  # - zstd_vendor
-  # - std_msgs
+  - rcl-logging-spdlog
+  - rviz_default_plugins
+  - rosidl_generator_py
+  - rviz2
+  - ros_base
+  - desktop
+  - behaviortree_cpp_v3
+  - navigation2
+  - webots_ros2
+  - moveit
+  - ros_workspace
+  - zstd_vendor
+  - std_msgs
+  - run_move_group
 
-  # - webots_ros2
-  # - robot_controllers
-  # - control_toolbox
-  # - robot_localization
-  # - ros1_bridge
-  # - rcl
-  # - ros_base
-  # - ros_workspace
-  # - moveit_core
-  # - nav2-core
-  # - rviz2
-  # - navigation2
+  - control_toolbox
+  - robot_localization
+  - ros1_bridge
+  - rcl
+  - ros_base
+  - ros_workspace
+  - moveit_core
+  - nav2-core
 
   # Don't work yet
   # - run_moveit_cpp
-  # - run_move_group
+  # - wiimote
+  # - rc-dynamics-api
+  # - ros1_rosbag_storage_vendor
+  # - rosbag2-bag-v2-plugins
 
   # this needs libdwarf and libiberty
   # I think we need to build libdwarf first ...

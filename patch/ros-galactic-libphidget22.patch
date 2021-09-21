@@ -1,25 +1,3 @@
-diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 462ee7f..9b82725 100644
---- a/CMakeLists.txt
-+++ b/CMakeLists.txt
-@@ -11,14 +11,15 @@ ExternalProject_Add(EP_${PROJECT_NAME}
-     URL_MD5 f8c85f8348ddc0fb46146c0d9d8f884e
- 
-     PATCH_COMMAND patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/patch/libphidgets22-1.6.20200417-fix-warnings.patch
-+    COMMAND patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/patch/libusb.patch
-     SOURCE_DIR ${PROJECT_BINARY_DIR}/${PROJECT_NAME}-src
-     CONFIGURE_COMMAND
-       <SOURCE_DIR>/configure
-       CFLAGS=${extra_c_flags}
-       --prefix=${CMAKE_CURRENT_BINARY_DIR}/libphidget22_install
-       --disable-ldconfig
--    BUILD_COMMAND $(MAKE)
--    INSTALL_COMMAND $(MAKE) install
-+    BUILD_COMMAND make
-+    INSTALL_COMMAND make install
- )
- 
- # The external project will install to the build folder, but we'll install that on make install.
 diff --git a/patch/libusb.patch b/patch/libusb.patch
 new file mode 100644
 index 00000000..93c9d526
@@ -227,3 +205,25 @@ index 00000000..93c9d526
 +   as_fn_error $? "Missing libusb!" "$LINENO" 5
 + fi
 + 
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index addd69f..f249422 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -11,14 +11,15 @@ ExternalProject_Add(EP_${PROJECT_NAME}
+     URL_MD5 5cd2049b8f7ee0c72f88ff1f7fe3c70b
+ 
+     PATCH_COMMAND patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/patch/libphidgets22-1.6.20210312-fix-warnings.patch
++    COMMAND patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/patch/libusb.patch
+     SOURCE_DIR ${PROJECT_BINARY_DIR}/${PROJECT_NAME}-src
+     CONFIGURE_COMMAND
+       <SOURCE_DIR>/configure
+       CFLAGS=${extra_c_flags}
+       --prefix=${CMAKE_CURRENT_BINARY_DIR}/libphidget22_install
+       --disable-ldconfig
+-    BUILD_COMMAND $(MAKE)
+-    INSTALL_COMMAND $(MAKE) install
++    BUILD_COMMAND make
++    INSTALL_COMMAND make install
+ )
+ 
+ # The external project will install to the build folder, but we'll install that on make install.
