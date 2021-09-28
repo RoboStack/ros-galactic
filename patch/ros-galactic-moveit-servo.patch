@@ -11,20 +11,4 @@ index 097069a153..c2c6212a5d 100644
  
    // True -> allow drift in this dimension. In the command frame. [x, y, z, roll, pitch, yaw]
    std::array<bool, 6> drift_dimensions_ = { { false, false, false, false, false, false } };
-diff --git a/perception/CMakeLists.txt b/perception/CMakeLists.txt
-index 27ce4ca893..f2fef34935 100644
---- a/perception/CMakeLists.txt
-+++ b/perception/CMakeLists.txt
-@@ -28,7 +28,11 @@ if(WITH_OPENGL)
-     set(SYSTEM_GL_LIBRARIES ${GLEW_LIBRARIES} GLEW::GLEW FreeGLUT::freeglut)
-   else()
-     find_package(GLUT REQUIRED)
--    set(SYSTEM_GL_LIBRARIES ${GLEW_LIBRARIES} GLUT::GLUT)
-+    if(WIN32)
-+      set(SYSTEM_GL_LIBRARIES GLEW::glew GLUT::GLUT)
-+    else()
-+      set(SYSTEM_GL_LIBRARIES ${GLEW_LIBRARIES} GLUT::GLUT)
-+    endif()
-   endif()
-   set(perception_GL_INCLUDE_DIRS "mesh_filter/include" "depth_image_octomap_updater/include")
-   set(SYSTEM_GL_INCLUDE_DIRS ${GLEW_INCLUDE_DIR} ${GLUT_INCLUDE_DIR})
+

@@ -13,7 +13,7 @@ skip_all_deps: false
 
 # If full rebuild, the build number of the existing package has
 # to match the selected build number for skipping
-full_rebuild: false
+full_rebuild: true
 
 packages_skip_by_deps:
   - iceoryx_utils
@@ -35,25 +35,20 @@ packages_select_by_deps:
   - demo-nodes-py
   - examples-rclpy-minimal-action-client
   - examples-rclpy-minimal-client
-
-  # - moveit
-
-  # - srdfdom
-  # - behaviortree_cpp_v3
-  # - octomap
-  # - ament_cmake_python
+  - moveit
+  - srdfdom
+  - behaviortree_cpp_v3
+  - octomap
+  - ament_cmake_python
+  - cv-bridge
+  - desktop
+  - ros_workspace
+  - rviz2
+  - ros_workspace
+  - ros_core
+  - ament_cmake
 
   # not yet
   # - navigation2
-
-  # done
-  # - cv-bridge
-  # - desktop
-  # - ros_workspace
-  # - rviz2
-  # - ros_workspace
-  # - ros_core
-  # - ament_cmake
-
 
 patch_dir: patch
