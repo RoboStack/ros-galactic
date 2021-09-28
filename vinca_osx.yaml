@@ -7,6 +7,8 @@ conda_index:
 
 build_number: 0
 
+mutex_package: ros2-distro-mutex 0.1 galactic
+
 skip_all_deps: false
 
 # build_in_own_azure_stage:

@@ -7,6 +7,8 @@ conda_index:
 
 build_number: 1
 
+mutex_package: ros2-distro-mutex 0.1 galactic
+
 skip_all_deps: false
 
 # If full rebuild, the build number of the existing package has
