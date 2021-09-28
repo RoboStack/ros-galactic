@@ -37,6 +37,7 @@ requirements:
     - poco 1.10
     - gazebo 11
     - ogre 1.12
+    - libpqxx 6
 
 about:
   home: https://github.com/robostack/ros-galactic
