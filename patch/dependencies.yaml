@@ -85,3 +85,5 @@ popf:
   add_host: ["perl"]
 rtabmap:
   add_host: ["REQUIRE_OPENGL", "ceres-solver", "libdc1394", "numpy", "pkg-config", "libusb"]
+backward_ros:
+  add_host: ["binutils", "elfutils"]
