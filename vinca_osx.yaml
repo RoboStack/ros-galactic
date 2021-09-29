@@ -9,7 +9,7 @@ build_number: 2
 
 mutex_package: ros2-distro-mutex 0.1 galactic
 
-skip_all_deps: true
+skip_all_deps: false
 
 # If full rebuild, the build number of the existing package has
 # to match the selected build number for skipping
@@ -28,70 +28,64 @@ packages_remove_from_deps:
   - rttest
 
 skip_existing:
-  # - https://conda.anaconda.org/robostack-experimental/
+  - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
-  - rosidl-generator-cpp
-  - rosidl-generator-dds-idl
-  - rosidl-typesupport-c
-  - rosidl-typesupport-cpp
-  - rosidl-typesupport-introspection-c
-  - rosidl-typesupport-introspection-cpp
-  # - ament-uncrustify
-  # - ament-copyright
-  # - ament_package
-  # - ros_workspace
-  # - builtin-interfaces
-  # - shape-msgs
-  # - std-msgs
-  # - rosgraph-msgs
-  # - visualization-msgs
-  # - lifecycle-msgs
-  # - turtlesim
-  # - actionlib-msgs
-  # - statistics-msgs
-  # - unique-identifier-msgs
-  # - rosbag2-interfaces
-  # - pcl-msgs
-  # - diagnostic-msgs
-  # - nav-msgs
-  # - tf2-msgs
-  # - std-srvs
-  # - stereo-msgs
-  # - action-tutorials-interfaces
-  # - pendulum-msgs
-  # - logging-demo
-  # - sensor-msgs
-  # - action-msgs
-  # - control-msgs
-  # - composition-interfaces
-  # - ros2cli-test-interfaces
-  # - rcl-interfaces
-  # - example-interfaces
-  # - test-msgs
-  # - rmw-dds-common
-  # - trajectory-msgs
-  # - ros-core
-  # - libstatistics-collector
-  # - geometry-msgs
-  # - map-msgs
-  # - ros-core
-  # - ros-core
-  # - ros_workspace
-  # - rosidl-generator-py
-  # - ompl
-  # - behaviortree_cpp_v3
-  # - control_msgs
-  # - eigen_stl_containers
-  # - bondcpp
-  # - bond
-  # - ros_workspace
-  # - zstd_vendor
-  # - rqt_bag_plugins
-  # - desktop
-  # - ros_workspace
-  # - rviz2
-  # - ros_core
-  # - ros_workspace
+  - ament-uncrustify
+  - ament-copyright
+  - ament_package
+  - ros_workspace
+  - builtin-interfaces
+  - shape-msgs
+  - std-msgs
+  - rosgraph-msgs
+  - visualization-msgs
+  - lifecycle-msgs
+  - turtlesim
+  - actionlib-msgs
+  - statistics-msgs
+  - unique-identifier-msgs
+  - rosbag2-interfaces
+  - pcl-msgs
+  - diagnostic-msgs
+  - nav-msgs
+  - tf2-msgs
+  - std-srvs
+  - stereo-msgs
+  - action-tutorials-interfaces
+  - pendulum-msgs
+  - logging-demo
+  - sensor-msgs
+  - action-msgs
+  - control-msgs
+  - composition-interfaces
+  - ros2cli-test-interfaces
+  - rcl-interfaces
+  - example-interfaces
+  - test-msgs
+  - rmw-dds-common
+  - trajectory-msgs
+  - ros-core
+  - libstatistics-collector
+  - geometry-msgs
+  - map-msgs
+  - ros-core
+  - ros-core
+  - ros_workspace
+  - rosidl-generator-py
+  - ompl
+  - behaviortree_cpp_v3
+  - control_msgs
+  - eigen_stl_containers
+  - bondcpp
+  - bond
+  - ros_workspace
+  - zstd_vendor
+  - rqt_bag_plugins
+  - desktop
+  - ros_workspace
+  - rviz2
+  - ros_core
+  - ros_workspace
 
 patch_dir: patch
