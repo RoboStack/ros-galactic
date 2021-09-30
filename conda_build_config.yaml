@@ -24,6 +24,8 @@ ogre:
   - 1.12.*
 pcl:
   - 1.11.1
+proj:
+  - 8.1.0
 spdlog:
   - 1.9.0
 # tbb pinned on Windows due to https://stackoverflow.com/questions/64510477/error-c2061-syntax-error-identifier-concurrent-vectortemplate-type-paramet
