@@ -48,7 +48,7 @@ packages_select_by_deps:
   - plansys2-bt-actions
   - plansys2-terminal
   - nav2-system-tests
-  - rtabmap
+  # - rtabmap
   - lanelet2
   - plansys2-bringup
   - octovis
