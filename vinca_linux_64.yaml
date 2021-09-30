@@ -334,7 +334,6 @@ packages_select_by_deps:
   - ros_workspace
   - zstd_vendor
   - std_msgs
-  - run_move_group
 
   - control_toolbox
   - robot_localization
