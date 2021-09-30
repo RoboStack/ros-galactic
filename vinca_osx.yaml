@@ -18,7 +18,7 @@ full_rebuild: true
 # build_in_own_azure_stage:
   # - ros-galactic-rviz-rendering
 
-packages_skip_by_deps:
+# packages_skip_by_deps:
   # - rttest
 
 packages_remove_from_deps:
@@ -77,7 +77,6 @@ packages_select_by_deps:
   - behaviortree_cpp_v3
   - control_msgs
   - eigen_stl_containers
-  # - bondcpp
   - bond
   - ros_workspace
   - zstd_vendor
