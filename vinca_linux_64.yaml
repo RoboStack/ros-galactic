@@ -34,9 +34,9 @@ packages_select_by_deps:
   # - rtabmap
 
   # build locally but not on CI; for now uploaded from local
-  - popf
-  - ros-ign-bridge
-  - ros-ign-image
+  # - popf
+  # - ros-ign-bridge
+  # - ros-ign-image
 
   # working
   - moveit_core
