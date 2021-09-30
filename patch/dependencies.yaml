@@ -84,6 +84,6 @@ ros1_rosbag_storage_vendor:
 popf:
   add_host: ["perl"]
 rtabmap:
-  add_host: ["REQUIRE_OPENGL", "ceres-solver", "libdc1394", "numpy", "pkg-config", "libusb"]
+  add_host: ["REQUIRE_OPENGL", "ceres-solver", "libdc1394", "numpy", "pkg-config", "libusb", "vtk"]
 backward_ros:
   add_host: ["binutils", "elfutils"]
