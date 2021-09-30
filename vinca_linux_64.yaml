@@ -262,7 +262,7 @@ packages_select_by_deps:
   - rqt-robot-dashboard
   - rqt-robot-monitor
   - rqt-robot-steering
-  - run-move-group
+  # - run-move-group
   # - run-moveit-cpp
   - sdformat-test-files
   - self-test
