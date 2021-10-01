@@ -87,3 +87,5 @@ rtabmap:
   add_host: ["REQUIRE_OPENGL", "ceres-solver", "libdc1394", "numpy", "pkg-config", "libusb", "vtk"]
 backward_ros:
   add_host: ["binutils", "elfutils"]
+plansys2_executor:
+  add_host: ["boost", "boost-cpp"]
