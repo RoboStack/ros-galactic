@@ -185,10 +185,10 @@ packages_select_by_deps:
   - mavros
   - mavros-msgs
   - mouse-teleop
-  # - moveit-resources
-  # - moveit-ros-perception
-  # - moveit-runtime
-  # - moveit-servo
+  - moveit-resources
+  - moveit-ros-perception
+  - moveit-runtime
+  - moveit-servo
   - nao-button-sim
   - nao-command-msgs
   - nao-sensor-msgs
@@ -259,11 +259,11 @@ packages_select_by_deps:
   - rosidl-generator-dds-idl
   - rplidar-ros
   - rqt
-  # - rqt-moveit
+  - rqt-moveit
   - rqt-robot-dashboard
   - rqt-robot-monitor
   - rqt-robot-steering
-  # - run-move-group
+  - run-move-group
   # - run-moveit-cpp
   - sdformat-test-files
   - self-test
@@ -331,7 +331,7 @@ packages_select_by_deps:
   - behaviortree_cpp_v3
   - navigation2
   - webots_ros2
-  # - moveit
+  - moveit
   - ros_workspace
   - zstd_vendor
   - std_msgs
@@ -342,7 +342,7 @@ packages_select_by_deps:
   - rcl
   - ros_base
   - ros_workspace
-  # - moveit_core
+  - moveit_core
   - nav2-core
 
   # Don't work yet
