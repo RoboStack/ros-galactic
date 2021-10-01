@@ -33,6 +33,9 @@ packages_select_by_deps:
   # Used to work, now needs fixes
   # - rtabmap
 
+  # needs a rebuild of ros-noetic first
+  # - ros1-rosbag-storage-vendor
+
   # build locally but not on CI; for now uploaded from local
   # - popf
   # - ros-ign-bridge
@@ -248,8 +251,6 @@ packages_select_by_deps:
   - rmf-workcell-msgs
   - rmw-gurumdds-cpp
   - rmw-gurumdds-shared-cpp
-  - ros1-bridge
-  - ros1-rosbag-storage-vendor
   - ros2nodl
   - ros2-ouster
   - ros2trace
@@ -348,7 +349,6 @@ packages_select_by_deps:
   # - run_moveit_cpp
   # - wiimote
   # - rc-dynamics-api
-  # - ros1_rosbag_storage_vendor
   # - rosbag2-bag-v2-plugins
 
   # this needs libdwarf and libiberty
