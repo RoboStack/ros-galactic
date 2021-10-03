@@ -33,6 +33,14 @@ ca-certificates:
   robostack: [ca-certificates]
 cmake:
   robostack: [cmake]
+coinor-libcbc-dev:
+  robostack: [coin-or-cbc]
+coinor-libcgl-dev:
+  robostack: [coin-or-cgl]
+coinor-libclp-dev:
+  robostack: [coin-or-clp]
+coinor-libcoinutils-dev:
+  robostack: [coin-or-utils]
 coinor-libipopt-dev:
   robostack: [ipopt]
 collada-dom:
@@ -71,9 +79,9 @@ gawk:
 gazebo:
   robostack: [gazebo]
 gazebo11:
-  robostack: [gazebo 11.*]
+  robostack: [gazebo]
 gazebo9:
-  robostack: [gazebo 9.*]
+  robostack: [gazebo]
 geographiclib:
   robostack: [geographiclib-cpp]
 geographiclib-tools:
@@ -175,6 +183,8 @@ libboost-system:
   robostack: [boost-cpp]
 libboost-system-dev:
   robostack: [boost-cpp]
+libboost-thread:
+  robostack: [boost-cpp]
 libboost-thread-dev:
   robostack: [boost-cpp]
 libcairo2-dev:
@@ -213,9 +223,9 @@ libfreetype6-dev:
 libftdi-dev:
   robostack: [libftdi, libusb]
 libgazebo11-dev:
-  robostack: [gazebo 11.*]
+  robostack: [gazebo]
 libgazebo9-dev:
-  robostack: [gazebo 9.*]
+  robostack: [gazebo]
 libgdal-dev:
   robostack: [libgdal]
 libgeos++-dev:
@@ -238,6 +248,8 @@ libgpgme-dev:
     linux: [gpgme]
     osx: [gpgme]
     win64: []
+libgps:
+  robostack: [gpsd]
 libgsl:
   robostack: [gsl]
 libgstreamer-plugins-base1.0-dev:
@@ -287,7 +299,7 @@ libomp-dev:
 libopenblas-dev:
   robostack: [libblas]
 libopencv-dev:
-  robostack: [py-opencv 4.5.2, libopencv 4.5.2, REQUIRE_OPENGL]
+  robostack: [py-opencv, libopencv, REQUIRE_OPENGL]
 libopenni-dev:
   robostack: []
 liborocos-kdl:
@@ -305,9 +317,13 @@ libpng-dev:
 libpoco-dev:
   robostack: [poco]
 libpqxx:
-  robostack: [libpqxx 6.*]
+  robostack: [libpqxx]
 libpqxx-dev:
-  robostack: [libpqxx 6.*]
+  robostack: [libpqxx]
+libqglviewer2-qt5:
+  robostack: [libqglviewer]
+libqglviewer-dev-qt5:
+  robostack: [libqglviewer]
 libqhull:
   robostack: [qhull]
 libqt5-core:
@@ -430,6 +446,8 @@ msgpack:
   robostack: [msgpack-python]
 muparser:
   robostack: [muparser]
+netpbm:
+  robostack: [netpbm]
 nlopt:
   robostack: [nlopt]
 ocl-icd-opencl-dev:
@@ -518,7 +536,7 @@ python-nose:
 python-numpy:
   robostack: [numpy]
 python-opencv:
-  robostack: [py-opencv 4.5.2, libopencv 4.5.2]
+  robostack: [py-opencv, libopencv]
 python-opengl:
   robostack: [pyopengl, REQUIRE_OPENGL]
 python-paramiko:
@@ -657,7 +675,7 @@ python3-nose:
 python3-numpy:
   robostack: [numpy]
 python3-opencv:
-  robostack: [py-opencv 4.5.2, libopencv 4.5.2]
+  robostack: [py-opencv, libopencv]
 python3-opengl:
   robostack: [pyopengl, REQUIRE_OPENGL]
 python3-packaging:
@@ -694,6 +712,8 @@ python3-pyproj:
   robostack: [pyproj]
 python3-pytest:
   robostack: [pytest]
+python3-pytest-cov:
+  robostack: [pytest-cov]
 python3-pytest-mock:
   robostack: [pytest-mock]
 python3-qt5-bindings:
@@ -794,13 +814,17 @@ sbcl:
 screen:
   robostack: [screen]
 sdformat:
-  robostack: [sdformat11]
+  robostack: [libsdformat11]
 sdl:
   robostack: [sdl]
 sdl-image:
   robostack: [sdl_image]
 sdl2:
   robostack: [sdl2]
+socat:
+  robostack: [socat]
+spacenavd:
+  robostack: [libspnav]
 spdlog:
   robostack: [spdlog]
 sshpass:

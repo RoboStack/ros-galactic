@@ -5,15 +5,22 @@ conda_index:
   - robostack.yaml
   - packages-ignore.yaml
 
-build_number: 0
+build_number: 2
+
+mutex_package: ros2-distro-mutex 0.1 galactic
 
 skip_all_deps: false
+
+# If full rebuild, the build number of the existing package has
+# to match the selected build number for skipping
+full_rebuild: true
 
 packages_skip_by_deps:
   # - rviz
   # - diagnostic_updater
 
-packages_remove_from_deps: []
+packages_remove_from_deps:
+  - cartographer
   # - stage-ros
   # - python_qt_binding
   # - joint_state_publisher_gui
@@ -23,7 +30,75 @@ skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
-  # - plotjuggler
+  # Used to work, now needs fixes
+  # - rtabmap
+
+  # needs a rebuild of ros-noetic first
+  # - ros1-rosbag-storage-vendor
+
+  # build locally but not on CI; for now uploaded from local
+  # - popf
+  # - ros-ign-bridge
+  # - ros-ign-image
+
+  # working
+  - ruckig
+  - rosbridge-msgs
+  - rosbridge-library
+  - ros2launch-security
+  - picknik-ament-copyright
+  - nodl-to-policy
+  - geometry-tutorials
+  - sdformat-urdf
+  - cartographer-ros
+  - plansys2-bt-actions
+  - plansys2-terminal
+  - nav2-system-tests
+  - lanelet2
+  - plansys2-bringup
+  - octovis
+  - gps-umd
+  - usb-cam
+  - tvm-vendor
+  - ros2-socketcan
+  - mrpt2
+  - ublox-dgnss
+  - fmi-adapter-examples
+  - spacenav
+  - ros-ign
+  - menge-vendor
+  - openvslam
+  - ackermann-msgs
+  - four-wheel-steering-msgs
+  - ign-rviz
+  - ign-rviz-common
+  - ign-rviz-plugins
+  - image-pipeline
+  - image-view
+  - libphidget22
+  - nao-lola
+  - phidgets-accelerometer
+  - phidgets-analog-inputs
+  - phidgets-api
+  - phidgets-digital-inputs
+  - phidgets-digital-outputs
+  - phidgets-drivers
+  - phidgets-gyroscope
+  - phidgets-high-speed-encoder
+  - phidgets-ik
+  - phidgets-magnetometer
+  - phidgets-motors
+  - phidgets-spatial
+  - phidgets-temperature
+  - robot-localization
+  - ros-ign-bridge
+  - ros-ign-gazebo
+  - ros-ign-image
+  - ros-ign-interfaces
+  - soccer-marker-generation
+  - vision-msgs
+  - plotjuggler-ros
+  - plotjuggler
   - acado-vendor
   - ament-clang-format
   - ament-clang-tidy
@@ -176,16 +251,12 @@ packages_select_by_deps:
   - rmf-workcell-msgs
   - rmw-gurumdds-cpp
   - rmw-gurumdds-shared-cpp
-  - ros1-bridge
-  - ros1-rosbag-storage-vendor
   - ros2nodl
   - ros2-ouster
   - ros2trace
   - ros2trace-analysis
   - rosbag2-performance-benchmarking
   - rosidl-generator-dds-idl
-  # - ros-ign-bridge
-  # - ros-ign-image
   - rplidar-ros
   - rqt
   - rqt-moveit
@@ -193,7 +264,7 @@ packages_select_by_deps:
   - rqt-robot-monitor
   - rqt-robot-steering
   - run-move-group
-  - run-moveit-cpp
+  # - run-moveit-cpp
   - sdformat-test-files
   - self-test
   - sensor-msgs-py
@@ -251,38 +322,34 @@ packages_select_by_deps:
   - webots-ros2-ur-e-description
   - wiimote-msgs
 
-  # - ublox
-  # - rcl-logging-spdlog
-  # - rviz_default_plugins
-  # - rosidl_generator_py
-  # - rviz2
-  # - ros_base
-  # - desktop
-  # - behaviortree_cpp_v3
-  # - navigation2
-  # - webots_ros2
-  # - moveit
-  # - ros_workspace
-  # - zstd_vendor
-  # - std_msgs
+  - rcl-logging-spdlog
+  - rviz_default_plugins
+  - rosidl_generator_py
+  - rviz2
+  - ros_base
+  - desktop
+  - behaviortree_cpp_v3
+  - navigation2
+  - webots_ros2
+  - moveit
+  - ros_workspace
+  - zstd_vendor
+  - std_msgs
 
-  # These work! :)
-  # - webots_ros2
-  # - robot_controllers
-  # - control_toolbox
-  # - robot_localization
-  # - ros1_bridge
-  # - rcl
-  # - ros_base
-  # - ros_workspace
-  # - moveit_core
-  # - nav2-core
-  # - rviz2
-  # - navigation2
+  - control_toolbox
+  - robot_localization
+  - ros1_bridge
+  - rcl
+  - ros_base
+  - ros_workspace
+  - moveit_core
+  - nav2-core
 
   # Don't work yet
   # - run_moveit_cpp
-  # - run_move_group
+  # - wiimote
+  # - rc-dynamics-api
+  # - rosbag2-bag-v2-plugins
 
   # this needs libdwarf and libiberty
   # I think we need to build libdwarf first ...

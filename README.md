@@ -5,7 +5,7 @@ Note:  ROS galactic is experimental. [ROS noetic](https://github.com/RoboStack/r
 [![Conda](https://img.shields.io/conda/dn/robostack-experimental/ros-galactic-desktop?style=flat-square)](https://anaconda.org/robostack/)
 [![Gitter](https://img.shields.io/gitter/room/RoboStack/Lobby?style=flat-square)](https://gitter.im/RoboStack/Lobby)
 [![GitHub Repo stars](https://img.shields.io/github/stars/robostack/ros-galactic?style=flat-square)](https://github.com/RoboStack/ros-galactic/)
-[![QUT Centre for Robotics](https://img.shields.io/badge/collection-QUT%20Robotics-%23043d71?style=flat-square)](https://qcr.ai)
+[![QUT Centre for Robotics](https://img.shields.io/badge/collection-QUT%20Robotics-%23043d71?style=flat-square)](https://qcr.github.io/)
 
 [![Platforms](https://img.shields.io/badge/platforms-linux%20%7C%20win%20%7C%20macos-green.svg?style=flat-square)](https://github.com/RoboStack/ros-galactic)
 [![Azure DevOps builds (branch)](https://img.shields.io/azure-devops/build/robostack/f91d909b-3931-44f7-9823-19fcd42e7d04/30/buildbranch_linux?label=build%20linux&style=flat-square)](https://dev.azure.com/robostack/ros_pipelines/_build?definitionId=30&_a=summary)
@@ -25,7 +25,7 @@ Welcome to RoboStack, which tightly couples ROS with Conda, a cross-platform, la
 
 ## Attribution
 If you use RoboStack in your academic work, please refer to the following paper:
-```
+```bibtex
 @article{fischer2021robostack,
   title={RoboStack: Using the Robot Operating System alongside the Conda and Jupyter Data Science Ecosystems},
   author={Fischer, Tobias and Vollprecht, Wolf and Traversaro, Silvio and Yen, Sean and Herrero, Carlos and Milford, Michael},
@@ -42,7 +42,7 @@ To get started with conda (or mamba) as package managers, you need to have a bas
 
 ```bash
 # if you don't have mamba yet, install it first:
-conda install mamba
+conda install mamba -c conda-forge
 
 # now create a new environment
 mamba create -n ros_galactic python=3.8

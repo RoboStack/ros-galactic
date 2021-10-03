@@ -79,3 +79,15 @@ index 4af35d6..8db124a 100644
  
  rosidl_target_interfaces(${_target_name_lib}
    ${rosidl_generate_interfaces_TARGET} rosidl_typesupport_c)
+diff --git a/rosidl_generator_py/rosidl_generator_py-extras.cmake.in b/rosidl_generator_py/rosidl_generator_py-extras.cmake.in
+index 80bed29..ba70acc 100644
+--- a/rosidl_generator_py/rosidl_generator_py-extras.cmake.in
++++ b/rosidl_generator_py/rosidl_generator_py-extras.cmake.in
+@@ -2,6 +2,6 @@
+ include("${CMAKE_CURRENT_LIST_DIR}/register_py.cmake")
+ rosidl_generator_py_extras(
+   "${rosidl_generator_py_DIR}/../../../lib/rosidl_generator_py/rosidl_generator_py"
+-  "${rosidl_generator_py_DIR}/../../../@PYTHON_INSTALL_DIR@/rosidl_generator_py/__init__.py;${rosidl_generator_py_DIR}/../../../@PYTHON_INSTALL_DIR@/rosidl_generator_py/generate_py_impl.py"
++  "@PYTHON_INSTALL_DIR@/rosidl_generator_py/__init__.py;@PYTHON_INSTALL_DIR@/rosidl_generator_py/generate_py_impl.py"
+   "${rosidl_generator_py_DIR}/../resource"
+ )

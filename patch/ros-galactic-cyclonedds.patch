@@ -1,0 +1,198 @@
+diff --git a/src/idl/src/parser.y b/src/idl/src/parser.y
+index 72cc3e00f..bd4979abb 100644
+--- a/src/idl/src/parser.y
++++ b/src/idl/src/parser.y
+@@ -35,21 +35,22 @@ _Pragma("GCC diagnostic ignored \"-Wanalyzer-free-of-non-heap\"")
+ #endif
+ #endif
+ 
+-static void yyerror(idl_location_t *, idl_pstate_t *, const char *);
++static void yyerror(idl_location_t *, idl_pstate_t *, idl_retcode_t *, const char *);
+ 
+ /* convenience macros to complement YYABORT */
+ #define NO_MEMORY() \
+   do { \
+     yylen = 0; \
+-    goto yyexhaustedlab; \
++    *result = IDL_RETCODE_NO_MEMORY; \
++    YYABORT; \
+   } while(0)
+ 
+-#define SEMANTIC_ERROR(state, loc, ...) \
++#define SEMANTIC_ERROR(loc, ...) \
+   do { \
+-    idl_error(state, loc, __VA_ARGS__); \
++    idl_error(pstate, loc, __VA_ARGS__); \
+     yylen = 0; /* pop right-hand side tokens */ \
+-    yyresult = IDL_RETCODE_SEMANTIC_ERROR; \
+-    goto yyreturn; \
++    *result = IDL_RETCODE_SEMANTIC_ERROR; \
++    YYABORT; \
+   } while(0)
+ 
+ #define YYLLOC_DEFAULT(Cur, Rhs, N) \
+@@ -75,19 +76,12 @@ static void yyerror(idl_location_t *, idl_pstate_t *, const char *);
+     switch ((_ret_ = (action))) { \
+       case IDL_RETCODE_OK: \
+         break; \
+-      case IDL_RETCODE_NO_MEMORY: \
+-        yylen = 0; /* pop right-hand side tokens */ \
+-        (void)(except);\
+-        goto yyexhaustedlab; \
+-      case IDL_RETCODE_SYNTAX_ERROR: \
+-        yylen = 0; /* pop right-hand side tokens */ \
+-        (void)(except); \
+-        goto yyabortlab; \
+       default: \
+         yylen = 0; \
+-        yyresult = _ret_; \
+         (void)(except); \
+-        goto yyreturn; \
++        *result = (_ret_); \
++        YYABORT; \
++        break; \
+     } \
+   } while(0)
+ 
+@@ -163,6 +157,7 @@ void idl_yypstate_delete_stack(idl_yypstate *yyps);
+ %locations
+ 
+ %param { idl_pstate_t *pstate }
++%parse-param { idl_retcode_t *result }
+ 
+ %token-table
+ 
+@@ -366,7 +361,7 @@ const_type:
+         TRY(idl_resolve(pstate, 0u, $1, &declaration));
+         node = idl_unalias(declaration->node, 0u);
+         if (!(idl_mask(node) & (IDL_BASE_TYPE|IDL_STRING|IDL_ENUM)))
+-          SEMANTIC_ERROR(pstate, &@1, fmt, $1->identifier);
++          SEMANTIC_ERROR(&@1, fmt, $1->identifier);
+         $$ = idl_reference_node((idl_node_t *)declaration->node);
+         idl_delete_scoped_name($1);
+       }
+@@ -470,7 +465,7 @@ primary_expr:
+             "Scoped name '%s' does not resolve to an enumerator or a constant";
+           TRY(idl_resolve(pstate, 0u, $1, &declaration));
+           if (!(idl_mask(declaration->node) & (IDL_CONST|IDL_ENUMERATOR)))
+-            SEMANTIC_ERROR(pstate, &@1, fmt, $1->identifier);
++            SEMANTIC_ERROR(&@1, fmt, $1->identifier);
+           $$ = idl_reference_node((idl_node_t *)declaration->node);
+         }
+         idl_delete_scoped_name($1);
+@@ -605,7 +600,7 @@ simple_type_spec:
+           "Scoped name '%s' does not resolve to a type";
+         TRY(idl_resolve(pstate, 0u, $1, &declaration));
+         if (!declaration || !idl_is_type_spec(declaration->node))
+-          SEMANTIC_ERROR(pstate, &@1, fmt, $1->identifier);
++          SEMANTIC_ERROR(&@1, fmt, $1->identifier);
+         $$ = idl_reference_node((idl_node_t *)declaration->node);
+         idl_delete_scoped_name($1);
+       }
+@@ -718,7 +713,7 @@ struct_inherit_spec:
+         TRY(idl_resolve(pstate, 0u, $2, &declaration));
+         node = idl_unalias(declaration->node, 0u);
+         if (!idl_is_struct(node))
+-          SEMANTIC_ERROR(pstate, &@2, fmt, $2->identifier);
++          SEMANTIC_ERROR(&@2, fmt, $2->identifier);
+         TRY(idl_create_inherit_spec(pstate, &@2, idl_reference_node(node), &$$));
+         idl_delete_scoped_name($2);
+       }
+@@ -895,7 +890,7 @@ identifier:
+         else if (pstate->parser.state == IDL_PARSE_ANNOTATION)
+           n = 0;
+         else if (!(n = ($1[0] == '_')) && idl_iskeyword(pstate, $1, nocase))
+-          SEMANTIC_ERROR(pstate, &@1, "Identifier '%s' collides with a keyword", $1);
++          SEMANTIC_ERROR(&@1, "Identifier '%s' collides with a keyword", $1);
+ 
+         if (pstate->parser.state != IDL_PARSE_UNKNOWN_ANNOTATION_APPL_PARAMS)
+           TRY(idl_create_name(pstate, &@1, idl_strdup($1+n), &$$));
+@@ -1040,7 +1035,7 @@ annotation_appl_keyword_param:
+           if (declaration && (idl_mask(declaration->node) & IDL_DECLARATOR))
+             node = (idl_annotation_member_t *)((const idl_node_t *)declaration->node)->parent;
+           if (!node || !(idl_mask(node) & IDL_ANNOTATION_MEMBER))
+-            SEMANTIC_ERROR(pstate, &@1, fmt, $1->identifier);
++            SEMANTIC_ERROR(&@1, fmt, $1->identifier);
+           node = idl_reference_node((idl_node_t *)node);
+         }
+         $<annotation_member>$ = node;
+@@ -1081,7 +1076,7 @@ void idl_yypstate_delete_stack(idl_yypstate *yyps)
+       while (yyssp != yyss)
+         {
+           yydestruct ("Cleanup: popping",
+-                      yystos[*yyssp], yyvsp, yylsp, NULL);
++                      yystos[*yyssp], yyvsp, yylsp, NULL, NULL);
+           YYPOPSTACK (1);
+         }
+     }
+@@ -1102,7 +1097,14 @@ int idl_iskeyword(idl_pstate_t *pstate, const char *str, int nc)
+         && cmp(yytname[i] + 1, str, n) == 0
+         && yytname[i][n + 1] == '"'
+         && yytname[i][n + 2] == '\0') {
++#if YYBISON >= 30800
++      // "yytname" is long deprecated and "yytokname" has been removed in bison 3.8.
++      // This hack seems to be enough to buy us some time to rewrite the keyword
++      // recognition to not rely on anything deprecated
++      toknum = (int) (255 + i);
++#else
+       toknum = yytoknum[i];
++#endif
+     }
+   }
+ 
+@@ -1131,7 +1133,8 @@ int idl_iskeyword(idl_pstate_t *pstate, const char *str, int nc)
+ }
+ 
+ static void
+-yyerror(idl_location_t *loc, idl_pstate_t *pstate, const char *str)
++yyerror(idl_location_t *loc, idl_pstate_t *pstate, idl_retcode_t *result, const char *str)
+ {
+   idl_error(pstate, loc, str);
++  *result = IDL_RETCODE_SYNTAX_ERROR;
+ }
+diff --git a/src/idl/src/processor.c b/src/idl/src/processor.c
+index bf84a8d14..a0a9191c9 100644
+--- a/src/idl/src/processor.c
++++ b/src/idl/src/processor.c
+@@ -294,7 +294,6 @@ idl_warning(
+ 
+ static idl_retcode_t parse_grammar(idl_pstate_t *pstate, idl_token_t *tok)
+ {
+-  idl_retcode_t ret;
+   IDL_YYSTYPE yylval;
+ 
+   switch (tok->code) {
+@@ -316,23 +315,21 @@ static idl_retcode_t parse_grammar(idl_pstate_t *pstate, idl_token_t *tok)
+       break;
+   }
+ 
+-  switch ((ret = idl_yypush_parse(
+-    pstate->parser.yypstate, tok->code, &yylval, &tok->location, pstate)))
++  idl_retcode_t result = IDL_RETCODE_BAD_PARAMETER;
++  switch (idl_yypush_parse(pstate->parser.yypstate, tok->code, &yylval, &tok->location, pstate, &result))
+   {
+-    case 0: /* success */
+-      break;
+-    case 1: /* parse error */
+-      return IDL_RETCODE_SYNTAX_ERROR;
+-    case 2: /* out of memory */
++    case 0:
++      return IDL_RETCODE_OK;
++    case 1:
++      return result;
++    case 2:
+       return IDL_RETCODE_NO_MEMORY;
+-    case 4: /* push more */
++    case YYPUSH_MORE:
+       return IDL_RETCODE_PUSH_MORE;
+     default:
+-      assert(ret < 0);
+-      return ret;
++      assert (0);
+   }
+-
+-  return IDL_RETCODE_OK;
++  return IDL_RETCODE_BAD_PARAMETER;
+ }
+ 
+ idl_retcode_t idl_parse(idl_pstate_t *pstate)
