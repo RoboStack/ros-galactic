@@ -7,7 +7,7 @@ index ec9779444..4909367f9 100644
     * @return BT::Tree Current behavior tree
     */
 -  BT::Tree getTree() const
-+  BT::Tree& getTree() const
++  BT::Tree& getTree()
    {
      return tree_;
    }
