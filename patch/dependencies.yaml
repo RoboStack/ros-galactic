@@ -88,3 +88,5 @@ rtabmap:
   add_host: ["REQUIRE_OPENGL", "ceres-solver", "libdc1394", "numpy", "pkg-config", "libusb", "vtk"]
 backward_ros:
   add_host: ["binutils", "elfutils"]
+nav2_smac_planner:
+  add_build: [{"sel(osx)": "llvm-openmp"}]
