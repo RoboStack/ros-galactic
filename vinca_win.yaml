@@ -9,7 +9,7 @@ build_number: 1
 
 mutex_package: ros2-distro-mutex 0.1 galactic
 
-skip_all_deps: false
+skip_all_deps: true
 
 # If full rebuild, the build number of the existing package has
 # to match the selected build number for skipping
@@ -30,25 +30,26 @@ packages_remove_from_deps:
   - warehouse_ros_mongo
 
 skip_existing:
-  - https://conda.anaconda.org/robostack-experimental/
+  # - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
-  - mimick_vendor
-  - demo-nodes-py
-  - examples-rclpy-minimal-action-client
-  - examples-rclpy-minimal-client
-  - moveit
-  - srdfdom
-  - behaviortree_cpp_v3
-  - octomap
-  - ament_cmake_python
-  - cv-bridge
-  - ros_workspace
-  - ros_core
-  - ament_cmake
-  - rviz2  # needs to be built separately as otherwise build timeouts occur
+  # - mimick_vendor
+  # - demo-nodes-py
+  # - examples-rclpy-minimal-action-client
+  # - examples-rclpy-minimal-client
+  # - moveit
+  # - srdfdom
+  # - behaviortree_cpp_v3
+  # - octomap
+  # - ament_cmake_python
+  # - cv-bridge
+  # - ros_workspace
+  # - ros_core
+  # - ament_cmake
+  # - rviz2  # needs to be built separately as otherwise build timeouts occur
   # - desktop  # see above
   - bondcpp
+  - rclcpp_lifecycle
 
   # not yet
   # - navigation2
