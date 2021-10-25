@@ -5,9 +5,15 @@ conda_index:
   - robostack.yaml
   - packages-ignore.yaml
 
-build_number: 0
+build_number: 1
+
+mutex_package: ros2-distro-mutex 0.1 galactic
 
 skip_all_deps: false
+
+# If full rebuild, the build number of the existing package has
+# to match the selected build number for skipping
+full_rebuild: true
 
 packages_skip_by_deps:
   - iceoryx_utils
@@ -21,30 +27,29 @@ packages_remove_from_deps:
   - tlsf
   - tlsf_cpp
   - pendulum_control
+  - warehouse_ros_mongo
 
 skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
-  # - behaviortree_cpp_v3
-  # - moveit
-  # - srdfdom
-  # - behaviortree_cpp_v3
-  # - octomap
-  # - ament_cmake_python
+  - mimick_vendor
+  - demo-nodes-py
+  - examples-rclpy-minimal-action-client
+  - examples-rclpy-minimal-client
+  - moveit
+  - srdfdom
+  - behaviortree_cpp_v3
+  - octomap
+  - ament_cmake_python
+  - cv-bridge
+  - ros_workspace
+  - ros_core
+  - ament_cmake
+  - rviz2  # needs to be built separately as otherwise build timeouts occur
+  # - desktop  # see above
+  - bondcpp
 
   # not yet
   # - navigation2
-  - bondcpp
-
-  # done
-  # - cv-bridge
-  # - desktop
-  # - ros_workspace
-  # - rviz2
-  # - ros_workspace
-  # - ros_core
-  # - ament_cmake
-
-
 patch_dir: patch

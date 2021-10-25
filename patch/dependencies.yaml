@@ -1,4 +1,11 @@
+cartographer_ros:
+  add_host: ["cartographer 1.*"]
+ackermann_msgs:
+  add_host: ["numpy"]
+  add_run: ["numpy"]
 iceoryx_utils:
+  add_host: ["pkg-config"]
+cartographer:
   add_host: ["pkg-config"]
 yaml_cpp_vendor:
   add_host: ["yaml-cpp 0.6.*"]
@@ -34,8 +41,52 @@ rviz_rendering:
   add_host: ["glew"]
 behaviortree_cpp_v3:
   add_host: ["boost-cpp", "cppzmq"]
+  add_run: ["boost-cpp"]
 nav2_util:
   add_host: ["boost-cpp"]
+plotjuggler:
+  add_host: ["libxcb", "elfutils", "ros-galactic-ros-workspace"]
 # rviz_ogre_vendor:
 #   add_host: ["ogre"]
 #   add_run: ["ogre"]
+embree_vendor:
+  add_host: ["REQUIRE_OPENGL", "libpng", "libjpeg-turbo", "openimageio", "tbb", "tbb-devel", "embree"]
+ign_rviz_common:
+  add_host: ["REQUIRE_OPENGL"]
+ign_rviz:
+  add_host: ["REQUIRE_OPENGL"]
+ign_rviz_plugins:
+  add_host: ["REQUIRE_OPENGL"]
+image_view:
+  add_host: ["REQUIRE_OPENGL"]
+nao_lola:
+  add_host: ["boost"]
+ros_ign_gazebo:
+  add_host: ["ros-galactic-std-msgs", "ros-galactic-rclcpp"]
+ros_ign_gazebo_demos:
+  add_host: ["REQUIRE_OPENGL"]
+rosbag2_bag_v2_plugins:
+  add_host: ["ros-noetic-roscpp"]
+tvm_vendor:
+  add_host: ["libblas", "openblas", "libcblas"]
+libphidget22:
+  add_host: ["libusb"]
+libg2o:
+  add_host: ["qt", "libglu", "freeglut"]
+fmilibrary_vendor:
+  add_host: ["fmilib"]
+mrpt2:
+  add_host:  ["assimp", "octomap", "tinyxml2", "boost-cpp", "jsoncpp", "gtest", "boost", "libdc1394", "xorg-libxcomposite", "libftdi", "ros-galactic-octomap", "pkg-config"]
+  add_run:   ["assimp", "octomap", "tinyxml2", "boost-cpp", "jsoncpp", "gtest", "boost", "libdc1394", "xorg-libxcomposite", "libftdi", "ros-galactic-octomap"]
+  add_build: [{"sel(linux)": "{{ cdt('libxcomposite-devel') }}"}]
+ros1_rosbag_storage_vendor:
+  add_host: ["ros-noetic-roscpp", "ros-noetic-roslz4", "ros-noetic-rostest"]
+  add_run: ["ros-noetic-roscpp", "ros-noetic-roslz4"]
+popf:
+  add_host: ["perl"]
+rtabmap:
+  add_host: ["REQUIRE_OPENGL", "ceres-solver", "libdc1394", "numpy", "pkg-config", "libusb", "vtk"]
+backward_ros:
+  add_host: ["binutils", "elfutils"]
+nav2_smac_planner:
+  add_build: [{"sel(osx)": "llvm-openmp"}]
