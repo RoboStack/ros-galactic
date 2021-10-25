@@ -46,7 +46,7 @@ packages_select_by_deps:
   - ros_workspace
   - ros_core
   - ament_cmake
-  # - rviz2  # needs to be built separately as otherwise build timeouts occur
+  - rviz2  # needs to be built separately as otherwise build timeouts occur
   # - desktop  # see above
 
   # not yet
