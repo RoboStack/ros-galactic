@@ -45,10 +45,10 @@ packages_select_by_deps:
   - cv-bridge
   - desktop
   - ros_workspace
-  - rviz2
   - ros_workspace
   - ros_core
   - ament_cmake
+  # - rviz2  # needs to be built separately as otherwise build timeouts occur
 
   # not yet
   # - navigation2
