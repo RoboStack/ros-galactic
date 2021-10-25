@@ -21,6 +21,7 @@ packages_skip_by_deps:
 
 packages_remove_from_deps:
   - cartographer
+  - warehouse_ros_mongo
   # - stage-ros
   # - python_qt_binding
   # - joint_state_publisher_gui
