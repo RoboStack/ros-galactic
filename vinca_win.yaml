@@ -27,6 +27,7 @@ packages_remove_from_deps:
   - tlsf
   - tlsf_cpp
   - pendulum_control
+  - warehouse_ros_mongo
 
 skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
