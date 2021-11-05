@@ -121,19 +121,18 @@ jobs:
     - name: Generate azure pipelines for Linux ARM64
       run: |
         vinca-azure --platform linux-aarch64 --trigger-branch buildbranch_linux_aarch64 -d ./recipes --additional-recipes
-    # Temporarily remove so that I can bootstrap osx-arm64
-    # - name: Commit files
-    #   run: |
-    #     if [[ -f "linux_aarch64.yml" ]]; then
-    #         git config --local user.email "action@github.com"
-    #         git config --local user.name "GitHub Action"
-    #         git add .
-    #         git commit -m "Add build files `date '+%Y-%m-%d-%H%M'`" -a
-    #         remote_repo="https://${GITHUB_ACTOR}:${INPUT_GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-    #         git push "${remote_repo}" HEAD:buildbranch_linux_aarch64 --follow-tags --force
-    #     fi
-    #   env:
-    #     INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Commit files
+      run: |
+        if [[ -f "linux_aarch64.yml" ]]; then
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git add .
+            git commit -m "Add build files `date '+%Y-%m-%d-%H%M'`" -a
+            remote_repo="https://${GITHUB_ACTOR}:${INPUT_GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+            git push "${remote_repo}" HEAD:buildbranch_linux_aarch64 --follow-tags --force
+        fi
+      env:
+        INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 on:
   push:
