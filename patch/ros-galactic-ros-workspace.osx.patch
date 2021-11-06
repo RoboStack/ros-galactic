@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 99c9e2d..94a2606 100644
+index 99c9e2d..6a8d09c 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -14,7 +14,18 @@ else()
@@ -10,7 +10,7 @@ index 99c9e2d..94a2606 100644
 +
 +if ("$ENV{CONDA_BUILD_CROSS_COMPILATION}" EQUAL "1")
 +  execute_process(
-+    COMMAND python3 -c "import sys; print(sys.prefix)"
++    COMMAND python3 -c "import site; print(site.getsitepackages()[0])"
 +    OUTPUT_VARIABLE _PYTHON_SYSPREFIX
 +    OUTPUT_STRIP_TRAILING_WHITESPACE
 +  )
