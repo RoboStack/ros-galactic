@@ -1,0 +1,18 @@
+diff --git a/nav2_map_server/src/map_io.cpp b/nav2_map_server/src/map_io.cpp
+index d926c5b07e..b26b09be38 100644
+--- a/nav2_map_server/src/map_io.cpp
++++ b/nav2_map_server/src/map_io.cpp
+@@ -60,6 +60,13 @@ char * dirname(char * path)
+     return path;
+   }
+ 
++  /* Replace all "\" with "/" */
++  char * c = path;
++  while (*c != '\0') {
++    if (*c == '\\') {*c = '/';}
++    ++c;
++  }
++
+   /* Find last '/'.  */
+   last_slash = path != NULL ? strrchr(path, '/') : NULL;
+ 
