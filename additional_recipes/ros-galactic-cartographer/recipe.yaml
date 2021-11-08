@@ -7,7 +7,7 @@ build:
 
 requirements:
   run:
-    - sel(not (osx and arm64)): cartographer 1.*
+    - cartographer 1.*
 
 
 about:
