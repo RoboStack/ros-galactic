@@ -33,6 +33,7 @@ skip_existing:
   # - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
+  - tf2
   # - mimick_vendor
   # - demo-nodes-py
   # - examples-rclpy-minimal-action-client
@@ -48,7 +49,7 @@ packages_select_by_deps:
   # - ament_cmake
   # - rviz2  # needs to be built separately as otherwise build timeouts occur
   # - desktop  # see above
-  - bondcpp
+  # - bondcpp
   # - rclcpp_lifecycle
   # - bond
   # - smclib
