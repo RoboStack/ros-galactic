@@ -47,13 +47,21 @@ packages_select_by_deps:
   # - ros_core
   # - ament_cmake
   # - rviz2  # needs to be built separately as otherwise build timeouts occur
-
-
   # - desktop  # see above
   # - bondcpp
   # - rclcpp_lifecycle
   # - bond
   # - smclib
-  - navigation2
+  # - navigation2
+  - dwb-msgs
+  - nav-2d-msgs
+  - nav-2d-utils
+  - nav2-common
+  - nav2-msgs
+  - nav2-voxel-grid
+  - nav2-util
+  - nav2-amcl
+  - nav2-behavior-tree
+  - nav2-lifecycle-manager
 
 patch_dir: patch
