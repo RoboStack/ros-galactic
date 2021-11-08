@@ -49,9 +49,9 @@ packages_select_by_deps:
   # - rviz2  # needs to be built separately as otherwise build timeouts occur
   # - desktop  # see above
   - bondcpp
-  - rclcpp_lifecycle
-  - bond
-  - smclib
+  # - rclcpp_lifecycle
+  # - bond
+  # - smclib
 
   # not yet
   # - navigation2
