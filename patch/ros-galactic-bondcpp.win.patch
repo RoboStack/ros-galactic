@@ -2,6 +2,16 @@ diff --git a/bondcpp/CMakeLists.txt b/bondcpp/CMakeLists.txt
 index f84c947..a202bed 100644
 --- a/bondcpp/CMakeLists.txt
 +++ b/bondcpp/CMakeLists.txt
+@@ -1,6 +1,8 @@
+ cmake_minimum_required(VERSION 3.5)
+ project(bondcpp)
+ 
++set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
++
+ if(NOT CMAKE_CXX_STANDARD)
+   set(CMAKE_CXX_STANDARD 14)
+ endif()
+
 @@ -8,6 +8,7 @@ endif()
  if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
    add_compile_options(-Wall -Wextra -Wpedantic)
