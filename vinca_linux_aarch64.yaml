@@ -40,4 +40,3 @@ packages_select_by_deps:
   # - navigation2
 
 patch_dir: patch
-
