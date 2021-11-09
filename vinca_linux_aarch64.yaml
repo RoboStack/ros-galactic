@@ -37,6 +37,6 @@ packages_select_by_deps:
   - desktop
   - nav2-core
   - moveit
-  # - navigation2
+  - navigation2
 
 patch_dir: patch
