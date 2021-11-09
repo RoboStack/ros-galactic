@@ -52,7 +52,8 @@ packages_select_by_deps:
   # - rclcpp_lifecycle
   # - bond
   # - smclib
-  # - navigation2
+  - navigation2
+  
   - dwb-msgs
   - nav-2d-msgs
   - nav-2d-utils
