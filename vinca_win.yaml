@@ -68,11 +68,5 @@ packages_select_by_deps:
   - dwb_core
   - dwb_critics
   - dwb_plugins
-  - nav2_smac_planner
-  - nav2_regulated_pure_pursuit_controller
-  - nav2_recoveries
-  - nav2_planner
-  - nav2_navfn_planner
-  - nav2_core
 
 patch_dir: patch
