@@ -52,16 +52,6 @@ packages_select_by_deps:
   # - rclcpp_lifecycle
   # - bond
   # - smclib
-  # - navigation2
-  - dwb-msgs
-  - nav-2d-msgs
-  - nav-2d-utils
-  - nav2-common
-  - nav2-msgs
-  - nav2-voxel-grid
-  - nav2-util
-  - nav2-amcl
-  - nav2-behavior-tree
-  - nav2-lifecycle-manager
+  - navigation2
 
 patch_dir: patch
