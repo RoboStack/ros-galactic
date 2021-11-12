@@ -24,3 +24,15 @@ index a3b46942b..b0930e1aa 100644
  
  include_directories(
    include
+diff --git a/nav2_waypoint_follower/include/nav2_waypoint_follower/plugins/photo_at_waypoint.hpp b/nav2_waypoint_follower/include/nav2_waypoint_follower/plugins/photo_at_waypoint.hpp
+index fc4aee5c5e..2c03145c7e 100644
+--- a/nav2_waypoint_follower/include/nav2_waypoint_follower/plugins/photo_at_waypoint.hpp
++++ b/nav2_waypoint_follower/include/nav2_waypoint_follower/plugins/photo_at_waypoint.hpp
+@@ -20,6 +20,7 @@
+  * to ignore deprecated declarations
+  */
+ #define _LIBCPP_NO_EXPERIMENTAL_DEPRECATION_WARNING_FILESYSTEM
++#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING 
+ 
+ 
+ #include <experimental/filesystem>
