@@ -9,7 +9,7 @@ build_number: 1
 
 mutex_package: ros2-distro-mutex 0.1 galactic
 
-skip_all_deps: true
+skip_all_deps: false
 
 # If full rebuild, the build number of the existing package has
 # to match the selected build number for skipping
@@ -30,10 +30,10 @@ packages_remove_from_deps:
   - warehouse_ros_mongo
 
 skip_existing:
-  # - https://conda.anaconda.org/robostack-experimental/
+  - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
-  - behaviortree_cpp_v3
+  # - behaviortree_cpp_v3
   # - mimick_vendor
   # - demo-nodes-py
   # - examples-rclpy-minimal-action-client
@@ -54,5 +54,17 @@ packages_select_by_deps:
   # - bond
   # - smclib
   # - navigation2
+  - nav2-map-server
+  - nav2-rviz-plugins
+  - nav2-costmap-2d
+  - costmap-queue
+  - nav2-core
+  - dwb-core
+  - nav2-bt-navigator
+  - nav2-controller
+  - nav2-navfn-planner
+  - nav2-planner
+  - nav2-recoveries
+  - nav2-regulated-pure-pursuit-controller
 
 patch_dir: patch

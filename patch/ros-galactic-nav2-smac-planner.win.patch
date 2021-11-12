@@ -2,6 +2,16 @@ diff --git a/nav2_smac_planner/CMakeLists.txt b/nav2_smac_planner/CMakeLists.txt
 index 05b84e4f8b..6da37d4c20 100644
 --- a/nav2_smac_planner/CMakeLists.txt
 +++ b/nav2_smac_planner/CMakeLists.txt
+@@ -1,6 +1,8 @@
+ cmake_minimum_required(VERSION 3.5)
+ project(nav2_smac_planner)
+ 
++add_definitions(-DNOMINMAX)
++
+ set(CMAKE_BUILD_TYPE Release) #Debug, Release
+ 
+ find_package(ament_cmake REQUIRED)
+
 @@ -30,7 +30,11 @@ endif()
  
  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
