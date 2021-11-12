@@ -53,3 +53,16 @@ index fc4aee5c5e..4198919fe2 100644
  #include "cv_bridge/cv_bridge.h"
  #include "image_transport/image_transport.hpp"
  
+diff --git a/nav2_waypoint_follower/plugins/photo_at_waypoint.cpp b/nav2_waypoint_follower/plugins/photo_at_waypoint.cpp
+index 7d1f4a9b1b..902ea5ff5f 100644
+--- a/nav2_waypoint_follower/plugins/photo_at_waypoint.cpp
++++ b/nav2_waypoint_follower/plugins/photo_at_waypoint.cpp
+@@ -118,7 +118,7 @@ bool PhotoAtWaypoint::processAtWaypoint(
+     std::lock_guard<std::mutex> guard(global_mutex_);
+     cv::Mat curr_frame_mat;
+     deepCopyMsg2Mat(curr_frame_msg_, curr_frame_mat);
+-    cv::imwrite(full_path_image_path.c_str(), curr_frame_mat);
++    cv::imwrite(full_path_image_path.string().c_str(), curr_frame_mat);
+     RCLCPP_INFO(
+       logger_,
+       "Photo has been taken sucessfully at waypoint %i", curr_waypoint_index);
