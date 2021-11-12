@@ -33,6 +33,21 @@ skip_existing:
 packages_select_by_deps:
   # Used to work, now needs fixes
   # - rtabmap
+  # - webots-ros2
+  # - webots-ros2-abb
+  # - webots-ros2-core
+  # - webots-ros2-demos
+  # - webots-ros2-epuck
+  # - webots-ros2-examples
+  # - webots-ros2-importer
+  # - webots-ros2-msgs
+  # - webots-ros2-tesla
+  # - webots-ros2-tiago
+  # - webots-ros2-turtlebot
+  # - webots-ros2-tutorials
+  # - webots-ros2-universal-robot
+  # - webots-ros2-ur-e-description
+  # - webots_ros2
 
   # needs a rebuild of ros-noetic first
   # - ros1-rosbag-storage-vendor
@@ -307,20 +322,6 @@ packages_select_by_deps:
   - urg-node-msgs
   - v4l2-camera
   - vision-opencv
-  - webots-ros2
-  - webots-ros2-abb
-  - webots-ros2-core
-  - webots-ros2-demos
-  - webots-ros2-epuck
-  - webots-ros2-examples
-  - webots-ros2-importer
-  - webots-ros2-msgs
-  - webots-ros2-tesla
-  - webots-ros2-tiago
-  - webots-ros2-turtlebot
-  - webots-ros2-tutorials
-  - webots-ros2-universal-robot
-  - webots-ros2-ur-e-description
   - wiimote-msgs
 
   - rcl-logging-spdlog
@@ -331,7 +332,6 @@ packages_select_by_deps:
   - desktop
   - behaviortree_cpp_v3
   - navigation2
-  - webots_ros2
   - moveit
   - ros_workspace
   - zstd_vendor
