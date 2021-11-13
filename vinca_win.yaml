@@ -53,18 +53,6 @@ packages_select_by_deps:
   # - rclcpp_lifecycle
   # - bond
   # - smclib
-  # - navigation2
-  - nav2-map-server
-  - nav2-rviz-plugins
-  - nav2-costmap-2d
-  - costmap-queue
-  - nav2-core
-  - dwb-core
-  - nav2-bt-navigator
-  - nav2-controller
-  - nav2-navfn-planner
-  - nav2-planner
-  - nav2-recoveries
-  - nav2-regulated-pure-pursuit-controller
+  - navigation2
 
 patch_dir: patch
