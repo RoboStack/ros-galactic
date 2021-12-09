@@ -1,0 +1,47 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 54dae7b..1fe119a 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -14,8 +14,17 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+   add_compile_options(-Wall -Wextra -Wconversion -Wno-sign-conversion -Wpedantic -Wnon-virtual-dtor -Woverloaded-virtual)
+ endif()
+ 
++option(FORCE_BUILD_VENDOR_PKG
++  "Build libyaml from source, even if system-installed package is available"
++  OFF)
++
+ find_package(ament_cmake REQUIRED)
+ 
++if(NOT FORCE_BUILD_VENDOR_PKG)
++  find_package(PkgConfig)
++  pkg_check_modules(yaml yaml-0.1)
++endif()
++
+ macro(build_libyaml)
+   set(extra_cmake_args)
+ 
+@@ -84,8 +92,21 @@ macro(build_libyaml)
+   set(yaml_LIBRARIES yaml)
+ endmacro()
+ 
+-build_libyaml()
+-set(extra_test_dependencies libyaml-0.2.5)
++# Skip building yaml if the expected version is already present in the system
++if(yaml_FOUND)
++  if("${yaml_VERSION}" VERSION_EQUAL 0.2.5)
++    set(_SKIP_YAML_BUILD 1)
++  else()
++    message(FATAL
++      "A wrong version of libyaml is already present in the system: ${yaml_VERSION}."
++      "It will be ignored and the 0.2.5 version will be built.")
++  endif()
++endif()
++
++if(NOT _SKIP_YAML_BUILD)
++  build_libyaml()
++  set(extra_test_dependencies libyaml-0.2.5)
++endif()
+ 
+ ament_export_libraries(yaml)
+ ament_export_dependencies(yaml)
+
