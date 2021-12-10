@@ -329,31 +329,37 @@ libqhull:
 libqt5-core:
   robostack:
     linux: [qt 5.12]
+    osx-arm64: [qt-main]
     osx: [qt 5.12]
     win64: [qt 5]
 libqt5-gui:
   robostack:
     linux: [qt 5.12, REQUIRE_OPENGL]
+    osx-arm64: [qt-main, REQUIRE_OPENGL]
     osx: [qt 5.12, REQUIRE_OPENGL]
     win64: [qt 5]
 libqt5-opengl:
   robostack:
     linux: [qt 5.12, REQUIRE_OPENGL]
+    osx-arm64: [qt-main, REQUIRE_OPENGL]
     osx: [qt 5.12, REQUIRE_OPENGL]
     win64: [qt 5]
 libqt5-opengl-dev:
   robostack:
     linux: [qt 5.12, REQUIRE_OPENGL]
+    osx-arm64: [qt-main, REQUIRE_OPENGL]
     osx: [qt 5.12, REQUIRE_OPENGL]
     win64: [qt 5]
 libqt5-widgets:
   robostack:
     linux: [qt 5.12, REQUIRE_OPENGL]
+    osx-arm64: [qt-main, REQUIRE_OPENGL]
     osx: [qt 5.12, REQUIRE_OPENGL]
     win64: [qt 5]
 libqt5x11extras5-dev:
   robostack:
     linux: [qt 5.12, REQUIRE_OPENGL]
+    osx-arm64: [qt-main, REQUIRE_OPENGL]
     osx: [qt 5.12, REQUIRE_OPENGL]
     win64: [qt 5]
 libreadline:
@@ -788,16 +794,19 @@ python3-zmq:
 qt5-image-formats-plugins:
   robostack:
     linux: [qt 5.12]
+    osx-arm64: [qt-main]
     osx: [qt 5.12]
     win64: [qt 5]
 qt5-qmake:
   robostack:
     linux: [qt 5.12]
+    osx-arm64: [qt-main]
     osx: [qt 5.12]
     win64: [qt 5]
 qtbase5-dev:
   robostack:
     linux: [qt 5.12, REQUIRE_OPENGL]
+    osx-arm64: [qt-main]
     osx: [qt 5.12, REQUIRE_OPENGL]
     win64: [qt 5]
 roboticstoolbox-python:
