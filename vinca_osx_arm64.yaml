@@ -34,12 +34,12 @@ packages_select_by_deps:
   - ros_workspace
   - ros_environment
   - ros_base
+  - desktop
 
   # - navigation2
   # - ament-uncrustify
   # - ament-copyright
   # - ament_package
-  # - ros_workspace
   # - builtin-interfaces
   # - shape-msgs
   # - std-msgs
@@ -74,21 +74,15 @@ packages_select_by_deps:
   # - libstatistics-collector
   # - geometry-msgs
   # - map-msgs
-  # - ros-core
-  # - ros-core
-  # - ros_workspace
   # - rosidl-generator-py
   # - ompl
   # - behaviortree_cpp_v3
   # - control_msgs
   # - eigen_stl_containers
   # - bond
-  # - ros_workspace
   # - zstd_vendor
   # - rqt_bag_plugins
   # - desktop
   # - rviz2
-  # - ros_core
-  # - ros_workspace
 
 patch_dir: patch
