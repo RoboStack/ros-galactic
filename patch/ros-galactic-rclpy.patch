@@ -1,8 +1,65 @@
-diff --git a/rclpy/CMakeLists.txt b/rclpy/CMakeLists.txt
-index 351009c7..6f6ead39 100644
---- a/rclpy/CMakeLists.txt
-+++ b/rclpy/CMakeLists.txt
-@@ -126,10 +126,17 @@ add_library(rclpy_common SHARED
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 9d0379d..a107914 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -14,6 +14,8 @@ if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_C_COMPILER_ID MATCHES "Clang")
+   add_compile_options(-Wall -Wextra)
+ endif()
+ 
++set(CMAKE_XCODE_ATTRIBUTE_OTHER_CODE_SIGN_FLAGS "-o linker-signed")
++
+ find_package(ament_cmake REQUIRED)
+ find_package(ament_cmake_python REQUIRED)
+ find_package(rcl REQUIRED)
+@@ -25,27 +27,10 @@ find_package(rcutils REQUIRED)
+ find_package(rmw REQUIRED)
+ find_package(rmw_implementation_cmake REQUIRED)
+ 
+-# Find python before pybind11
+-find_package(python_cmake_module REQUIRED)
+-find_package(PythonExtra REQUIRED)
+-
+-set(_PYTHON_EXECUTABLE "${PYTHON_EXECUTABLE}")
+-if(WIN32 AND CMAKE_BUILD_TYPE STREQUAL "Debug")
+-  # Set the python debug interpreter.
+-  # pybind11 will setup the build for debug now.
+-  set(PYTHON_EXECUTABLE "${PYTHON_EXECUTABLE_DEBUG}")
+-endif()
++find_package(Python COMPONENTS Interpreter Development)
+ 
+-find_package(pybind11_vendor REQUIRED)
+ find_package(pybind11 REQUIRED)
+ 
+-if(WIN32 AND CMAKE_BUILD_TYPE STREQUAL "Debug")
+-  # pybind11 logic for setting up a debug build when both a debug and release
+-  # python interpreter are present in the system seems to be pretty much broken.
+-  # This works around the issue.
+-  set(PYTHON_LIBRARIES "${PYTHON_DEBUG_LIBRARIES}")
+-endif()
+-
+ function(clean_windows_flags target)
+   # Hack to avoid pybind11 issue.
+   #
+@@ -109,11 +94,13 @@ endif()
+ 
+ # Set the build location and install location for a CPython extension
+ function(configure_build_install_location _library_name)
+-  # Install into test_rclpy folder in build space for unit tests to import
+-  set_target_properties(${_library_name} PROPERTIES
+-    # Use generator expression to avoid prepending a build type specific directory on Windows
+-    LIBRARY_OUTPUT_DIRECTORY $<1:${CMAKE_CURRENT_BINARY_DIR}/test_rclpy>
+-    RUNTIME_OUTPUT_DIRECTORY $<1:${CMAKE_CURRENT_BINARY_DIR}/test_rclpy>)
++  if(NOT $ENV{CONDA_BUILD_CROSS_COMPILATION} STREQUAL "1")
++    # Install into test_rclpy folder in build space for unit tests to import
++    set_target_properties(${_library_name} PROPERTIES
++      # Use generator expression to avoid prepending a build type specific directory on Windows
++      LIBRARY_OUTPUT_DIRECTORY $<1:${CMAKE_CURRENT_BINARY_DIR}/test_rclpy>
++      RUNTIME_OUTPUT_DIRECTORY $<1:${CMAKE_CURRENT_BINARY_DIR}/test_rclpy>)
++  endif()
+ 
+   # Install library for actual use
+   install(TARGETS ${_library_name}
+@@ -128,10 +115,17 @@ add_library(rclpy_common SHARED
  )
  target_link_libraries(rclpy_common PUBLIC
    pybind11::pybind11
@@ -21,3 +78,18 @@ index 351009c7..6f6ead39 100644
  target_include_directories(rclpy_common PUBLIC
    src/rclpy_common/include
  )
+@@ -188,6 +182,7 @@ target_link_libraries(_rclpy_pybind11 PRIVATE
+   rcpputils::rcpputils
+   rcutils::rcutils
+ )
++
+ configure_build_install_location(_rclpy_pybind11)
+ clean_windows_flags(_rclpy_pybind11)
+ 
+@@ -300,6 +295,5 @@ if(BUILD_TESTING)
+     endforeach()
+   endif()
+ endif()
+-set(PYTHON_EXECUTABLE "${_PYTHON_EXECUTABLE}")
+ 
+ ament_package()

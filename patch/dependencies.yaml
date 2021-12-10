@@ -8,7 +8,7 @@ iceoryx_utils:
 cartographer:
   add_host: ["pkg-config"]
 libyaml_vendor:
-  add_host: ["yaml-cpp", "yaml", "pkg-config"]
+  add_host: ["yaml-cpp", "yaml"]
   add_run: ["yaml-cpp", "yaml"]
 yaml_cpp_vendor:
   add_host: ["yaml-cpp 0.6.*"]
