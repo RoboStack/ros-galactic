@@ -96,3 +96,15 @@ nav2_smac_planner:
 pybind11_vendor:
   add_host: ["pybind11"]
   add_run: ["pybind11"]
+action_tutorials_interfaces:
+  add_host: ["numpy"]
+  add_run: ["numpy"]
+map_msgs:
+  add_host: ["numpy"]
+  add_run: ["numpy"]
+example_interfaces:
+  add_host: ["numpy"]
+  add_run: ["numpy"]
+pendulum_msgs:
+  add_host: ["numpy"]
+  add_run: ["numpy"]
