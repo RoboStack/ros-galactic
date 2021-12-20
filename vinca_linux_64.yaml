@@ -31,6 +31,8 @@ skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
+  - sbg_driver
+
   # Used to work, now needs fixes
   # - rtabmap
   # - webots-ros2
