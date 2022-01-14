@@ -565,6 +565,7 @@ python-qt5-bindings:
   robostack:
     linux: [pyqt 5]
     osx: [pyqt 5]
+    osx-arm64: [pyqt 5, pyqt-builder]
     win64: [pyqt 5]
 python-rosdep:
   robostack: [rosdep]
@@ -726,16 +727,19 @@ python3-qt5-bindings:
   robostack:
     linux: [pyqt 5.12]
     osx: [pyqt 5.12]
+    osx-arm64: [pyqt 5, pyqt-builder]
     win64: [pyqt 5]
 python3-qt5-bindings-gl:
   robostack:
     linux: [pyqt 5.12]
     osx: [pyqt 5.12]
+    osx-arm64: [pyqt 5, pyqt-builder]
     win64: [pyqt 5]
 python3-qt5-bindings-webkit:
   robostack:
     linux: [pyqt 5.12]
     osx: [pyqt 5.12]
+    osx-arm64: [pyqt 5, pyqt-builder]
     win64: [pyqt 5]
 python3-requests:
   robostack: [requests]
