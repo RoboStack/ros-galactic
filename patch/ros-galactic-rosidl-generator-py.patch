@@ -79,6 +79,23 @@ index 4af35d6..8db124a 100644
  
  rosidl_target_interfaces(${_target_name_lib}
    ${rosidl_generate_interfaces_TARGET} rosidl_typesupport_c)
+@@ -255,9 +261,15 @@ foreach(_typesupport_impl ${_typesupport_impls})
+   target_link_libraries(
+     ${_target_name}
+     ${_target_name_lib}
+-    ${PythonExtra_LIBRARIES}
+     ${rosidl_generate_interfaces_TARGET}__${_typesupport_impl}
+   )
++  
++  if(NOT APPLE)
++    target_link_libraries(${_target_name} ${PythonExtra_LIBRARIES})
++  else()
++    set_target_properties(${_target_name} PROPERTIES
++                          LINK_FLAGS "-undefined dynamic_lookup")
++  endif()
+ 
+   target_include_directories(${_target_name}
+     PUBLIC
 diff --git a/rosidl_generator_py/rosidl_generator_py-extras.cmake.in b/rosidl_generator_py/rosidl_generator_py-extras.cmake.in
 index 80bed29..ba70acc 100644
 --- a/rosidl_generator_py/rosidl_generator_py-extras.cmake.in
