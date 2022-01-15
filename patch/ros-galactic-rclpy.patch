@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 9d0379d..a107914 100644
+index 9d0379d..37a7a18 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -14,6 +14,8 @@ if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_C_COMPILER_ID MATCHES "Clang")
@@ -78,15 +78,50 @@ index 9d0379d..a107914 100644
  target_include_directories(rclpy_common PUBLIC
    src/rclpy_common/include
  )
-@@ -188,6 +182,7 @@ target_link_libraries(_rclpy_pybind11 PRIVATE
+@@ -147,7 +141,7 @@ install(TARGETS rclpy_common
+ )
+ 
+ # Split from main extension and converted to pybind11
+-pybind11_add_module(_rclpy_pybind11 SHARED
++add_library(_rclpy_pybind11 MODULE
+   src/rclpy/_rclpy_action.cpp
+   src/rclpy/_rclpy_handle.cpp
+   src/rclpy/_rclpy_logging.cpp
+@@ -177,6 +171,8 @@ pybind11_add_module(_rclpy_pybind11 SHARED
+   src/rclpy/utils.cpp
+   src/rclpy/wait_set.cpp
+ )
++set_target_properties(_rclpy_pybind11 PROPERTIES PREFIX "")
++
+ target_include_directories(_rclpy_pybind11 PRIVATE
+   src/rclpy/
+ )
+@@ -187,18 +183,23 @@ target_link_libraries(_rclpy_pybind11 PRIVATE
+   rclpy_common
    rcpputils::rcpputils
    rcutils::rcutils
++  pybind11::module
  )
 +
  configure_build_install_location(_rclpy_pybind11)
  clean_windows_flags(_rclpy_pybind11)
  
-@@ -300,6 +295,5 @@ if(BUILD_TESTING)
+ # Signal handling library
+-pybind11_add_module(_rclpy_signal_handler SHARED
++add_library(_rclpy_signal_handler MODULE
+   src/rclpy/_rclpy_signal_handler.c
+ )
++set_target_properties(_rclpy_signal_handler PROPERTIES PREFIX "")
++
+ target_link_libraries(_rclpy_signal_handler PRIVATE
+   rclpy_common
+   rcl::rcl
+   rcutils::rcutils
++  pybind11::module
+ )
+ configure_build_install_location(_rclpy_signal_handler)
+ clean_windows_flags(_rclpy_signal_handler)
+@@ -300,6 +301,5 @@ if(BUILD_TESTING)
      endforeach()
    endif()
  endif()
