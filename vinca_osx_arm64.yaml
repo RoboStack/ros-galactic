@@ -34,6 +34,9 @@ packages_select_by_deps:
   - ros_workspace
   - ros_environment
   - ros_base
+  - ament-copyright
+  - uncrustify-vendor
+  - ament-cmake-gmock
   # - desktop
   # - rviz2
 
