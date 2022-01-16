@@ -31,11 +31,11 @@ skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
+  # - mimick-vendor  # needs to be built locally (natively) at the moment!
   - ros_workspace
   - ros_environment
   - ros_base
-  # - mimick-vendor  # needs to be built locally (natively) at the moment!
-  # - desktop
+  - desktop
   # - rviz2
 
   # - navigation2
