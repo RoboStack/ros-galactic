@@ -196,3 +196,475 @@ index bf84a8d14..a0a9191c9 100644
  }
  
  idl_retcode_t idl_parse(idl_pstate_t *pstate)
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 414e8915c..8d04f699e 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -27,6 +27,12 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+     "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
+ endif()
+ 
++if(CMAKE_CROSSCOMPILING)
++  set(not_crosscompiling OFF)
++else()
++  set(not_crosscompiling ON)
++endif()
++
+ # By default don't treat warnings as errors, else anyone building it with a different compiler that
+ # just happens to generate a warning, as well as anyone adding or modifying something and making a
+ # small mistake would run into errors.  CI builds can be configured differently.
+@@ -34,7 +40,9 @@ option(WERROR "Treat compiler warnings as errors" OFF)
+ 
+ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/Modules")
+ 
+-option(BUILD_IDLC "Build IDL preprocessor" ON)
++option(BUILD_IDLC "Build IDL preprocessor" ${not_crosscompiling})
++option(BUILD_DDSCONF "Build DDSCONF buildtool" ${not_crosscompiling})
++
+ 
+ set(CMAKE_C_STANDARD 99)
+ if(CMAKE_SYSTEM_NAME STREQUAL "VxWorks")
+@@ -234,15 +242,11 @@ set(MEMORYCHECK_COMMAND_OPTIONS "--track-origins=yes --leak-check=full --trace-c
+ # since not everybody has CUnit, and because it is not strictly required to
+ # build the product itself, switch to off by default.
+ option(BUILD_TESTING "Build the testing tree." OFF)
++
+ # Disable building examples by default because it is not strictly required.
+ option(BUILD_EXAMPLES "Build examples." OFF)
+ 
+ option(BUILD_DOCS "Build documentation." OFF)
+-if(CMAKE_CROSSCOMPILING)
+-  set(not_crosscompiling OFF)
+-else()
+-  set(not_crosscompiling ON)
+-endif()
+ option(BUILD_SCHEMA "Build generated schema for configuration options." ${not_crosscompiling})
+ 
+ # Build all executables and libraries into the top-level /bin and /lib folders.
+@@ -299,7 +303,7 @@ install(
+   COMPONENT dev)
+ 
+ add_subdirectory(src)
+-if(BUILD_IDLC AND BUILD_EXAMPLES)
++if(BUILD_EXAMPLES)
+   add_subdirectory(examples)
+ endif()
+ 
+diff --git a/src/tools/idlc/Generate.cmake b/cmake/Modules/Generate.cmake
+similarity index 85%
+rename from src/tools/idlc/Generate.cmake
+rename to cmake/Modules/Generate.cmake
+index 9b3076999..c5c0d678d 100644
+--- a/src/tools/idlc/Generate.cmake
++++ b/cmake/Modules/Generate.cmake
+@@ -9,12 +9,27 @@
+ #
+ # SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause
+ #
++
++
+ function(IDLC_GENERATE)
+   set(one_value_keywords TARGET)
+   set(multi_value_keywords FILES FEATURES)
+   cmake_parse_arguments(
+     IDLC "" "${one_value_keywords}" "${multi_value_keywords}" "" ${ARGN})
+ 
++  if (CMAKE_CROSSCOMPILING)
++    find_program(_idlc_executable idlc NO_CMAKE_FIND_ROOT_PATH REQUIRED)
++
++    if (_idlc_executable)
++      set(_idlc_depends "")
++    else()
++      message(FATAL_ERROR "Cannot find idlc executable")
++    endif()
++  else()
++    set(_idlc_executable CycloneDDS::idlc)
++    set(_idlc_depends CycloneDDS::idlc)
++  endif()
++
+   if(NOT IDLC_TARGET AND NOT IDLC_FILES)
+     # assume deprecated invocation: TARGET FILE [FILE..]
+     list(GET IDLC_UNPARSED_ARGUMENTS 0 IDLC_TARGET)
+@@ -57,9 +72,9 @@ function(IDLC_GENERATE)
+     list(APPEND _headers "${_header}")
+     add_custom_command(
+       OUTPUT   "${_source}" "${_header}"
+-      COMMAND  CycloneDDS::idlc
++      COMMAND  ${_idlc_executable}
+       ARGS     ${_file} ${IDLC_ARGS}
+-      DEPENDS  ${_files} CycloneDDS::idlc)
++      DEPENDS  ${_files} ${_idlc_depends})
+   endforeach()
+ 
+   add_custom_target("${_target}_generate" DEPENDS "${_sources}" "${_headers}")
+diff --git a/docs/CMakeLists.txt b/docs/CMakeLists.txt
+index 624b31b9c..dc12e08a2 100644
+--- a/docs/CMakeLists.txt
++++ b/docs/CMakeLists.txt
+@@ -19,11 +19,11 @@ set(options_md "${CMAKE_CURRENT_BINARY_DIR}/manual/options.md")
+ if(BUILD_SCHEMA OR BUILD_DOCS)
+   add_custom_command(
+     OUTPUT "${cyclonedds_rnc}" "${cyclonedds_xsd}" "${options_md}"
+-    COMMAND ddsconf ARGS -f rnc -o "${cyclonedds_rnc}"
+-    COMMAND ddsconf ARGS -f xsd -o "${cyclonedds_xsd}"
++    COMMAND ddsconf-native ARGS -f rnc -o "${cyclonedds_rnc}"
++    COMMAND ddsconf-native ARGS -f xsd -o "${cyclonedds_xsd}"
+     COMMAND ${CMAKE_COMMAND} -E make_directory manual
+-    COMMAND ddsconf ARGS -f md -o "${options_md}"
+-    DEPENDS ddsconf)
++    COMMAND ddsconf-native ARGS -f md -o "${options_md}"
++    DEPENDS ddsconf-native)
+   add_custom_target(
+     schema ALL DEPENDS "${cyclonedds_rnc}" "${cyclonedds_xsd}" "${options_md}")
+ endif()
+diff --git a/examples/CMakeLists.txt b/examples/CMakeLists.txt
+index d592001ad..2e50f3ebb 100644
+--- a/examples/CMakeLists.txt
++++ b/examples/CMakeLists.txt
+@@ -11,6 +11,8 @@
+ #
+ set(CMAKE_INSTALL_EXAMPLESDIR "${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}/examples")
+ 
++include("${CMAKE_SOURCE_DIR}/cmake/Modules/Generate.cmake")
++
+ install(
+   FILES
+     helloworld/HelloWorldData.idl
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index c193c578b..e8ba113ea 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -115,7 +115,7 @@ configure_file(features.h.in "${CMAKE_CURRENT_BINARY_DIR}/core/include/dds/featu
+ 
+ add_subdirectory(tools)
+ add_subdirectory(ddsrt)
+-if(NOT CMAKE_CROSSCOMPILING AND BUILD_IDLC)
++if(BUILD_IDLC)
+   add_subdirectory(idl)
+ endif()
+ add_subdirectory(security)
+diff --git a/src/core/ddsi/CMakeLists.txt b/src/core/ddsi/CMakeLists.txt
+index f9fa37dc0..bc1f57a6b 100644
+--- a/src/core/ddsi/CMakeLists.txt
++++ b/src/core/ddsi/CMakeLists.txt
+@@ -11,10 +11,11 @@
+ #
+ set(defconfig_src "${CMAKE_CURRENT_BINARY_DIR}/defconfig.c")
+ 
++
+ add_custom_command(
+   OUTPUT ${defconfig_src}
+-  COMMAND ddsconf -f defconfig -o ${defconfig_src}
+-  DEPENDS ddsconf)
++  COMMAND ddsconf-native -f defconfig -o ${defconfig_src}
++  DEPENDS ddsconf-native)
+ 
+ set(srcs_ddsi
+   ddsi_eth.c
+diff --git a/src/core/xtests/cdrtest/CMakeLists.txt b/src/core/xtests/cdrtest/CMakeLists.txt
+index 40678a531..0aeb1ad73 100644
+--- a/src/core/xtests/cdrtest/CMakeLists.txt
++++ b/src/core/xtests/cdrtest/CMakeLists.txt
+@@ -11,7 +11,7 @@
+ #
+ cmake_minimum_required(VERSION 3.5)
+ 
+-find_package(CycloneDDS COMPONENTS idlc)
++find_package(CycloneDDS REQUIRED)
+ 
+ add_compile_options("-I${PROJECT_SOURCE_DIR}/src/ddsrt/include")
+ add_compile_options("-I${PROJECT_SOURCE_DIR}/src/core/ddsc/include")
+diff --git a/src/tools/CMakeLists.txt b/src/tools/CMakeLists.txt
+index 72fdcfeee..32591fe9e 100644
+--- a/src/tools/CMakeLists.txt
++++ b/src/tools/CMakeLists.txt
+@@ -12,8 +12,6 @@
+ set(CMAKE_INSTALL_TOOLSDIR "${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}/tools")
+ add_subdirectory(pubsub)
+ add_subdirectory(ddsconf)
+-if(BUILD_IDLC)
+-  add_subdirectory(idlpp)
+-  add_subdirectory(idlc)
+-  add_subdirectory(ddsperf)
+-endif()
++add_subdirectory(idlpp)
++add_subdirectory(idlc)
++add_subdirectory(ddsperf)
+diff --git a/src/tools/ddsconf/CMakeLists.txt b/src/tools/ddsconf/CMakeLists.txt
+index b11783a1a..d3ba4275a 100644
+--- a/src/tools/ddsconf/CMakeLists.txt
++++ b/src/tools/ddsconf/CMakeLists.txt
+@@ -9,14 +9,8 @@
+ #
+ # SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause
+ #
+-if(CMAKE_CROSSCOMPILING)
+-  find_program(DDSCONF_EXECUTABLE ddsconf REQUIRED)
+-  if(NOT DDSCONF_EXECUTABLE)
+-    message(FATAL_ERROR "ddsconf not found!")
+-  endif()
+-  add_executable(ddsconf IMPORTED GLOBAL)
+-  set_property(TARGET ddsconf PROPERTY IMPORTED_LOCATION ${DDSCONF_EXECUTABLE})
+-else()
++
++if (BUILD_DDSCONF)
+   include(GenerateDummyExportHeader)
+ 
+   add_executable(ddsconf
+@@ -37,4 +31,42 @@ else()
+     "${CMAKE_CURRENT_BINARY_DIR}/include"
+     $<BUILD_INTERFACE:$<TARGET_PROPERTY:ddsc,INCLUDE_DIRECTORIES>>
+     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
++
++  add_executable(${PROJECT_NAME}::ddsconf ALIAS ddsconf)
++
++  install(
++    TARGETS ddsconf
++    EXPORT "${CMAKE_PROJECT_NAME}"
++    DESTINATION "${CMAKE_INSTALL_BINDIR}"
++    COMPONENT dev)
++
++  if (CMAKE_CROSSCOMPILING)
++    find_program(_executable ddsconf REQUIRED NO_CMAKE_FIND_ROOT_PATH)
++
++    # REQUIRED is not working until cmake 3.18 so it might still not exist
++    if (NOT _executable)
++      message(FATAL_ERROR "Could not find a native ddsconf executable, please make sure it is available on PATH")
++    endif()
++
++    add_executable(ddsconf-native IMPORTED GLOBAL)
++    set_property(TARGET ddsconf-native PROPERTY IMPORTED_LOCATION "${_executable}")
++    message(STATUS "Using imported native ddsconf ${_executable}")
++  else()
++    add_executable(ddsconf-native ALIAS ddsconf)
++  endif()
++else()
++  # Note, no if crosscompiling statement here, ddsconf is _required_
++  # so if you don't BUILD_DDSCONF it has to be found
++  find_program(_executable ddsconf REQUIRED NO_CMAKE_FIND_ROOT_PATH)
++
++  # REQUIRED is not working until cmake 3.18 so it might still not exist
++  if (NOT _executable)
++    message(FATAL_ERROR "Could not find a native ddsconf executable, please make sure it is available on PATH")
++  endif()
++
++  add_executable(ddsconf-native IMPORTED GLOBAL)
++  set_property(TARGET ddsconf-native PROPERTY IMPORTED_LOCATION "${_executable}")
++  message(STATUS "Using imported native ddsconf ${_executable}")
+ endif()
++
++
+diff --git a/src/tools/ddsperf/CMakeLists.txt b/src/tools/ddsperf/CMakeLists.txt
+index ddf87b233..aba9221e3 100644
+--- a/src/tools/ddsperf/CMakeLists.txt
++++ b/src/tools/ddsperf/CMakeLists.txt
+@@ -10,6 +10,8 @@
+ # SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause
+ #
+ 
++include(Generate)
++
+ idlc_generate(TARGET ddsperf_types FILES ddsperf_types.idl)
+ add_executable(ddsperf ddsperf.c cputime.c cputime.h netload.c netload.h)
+ target_link_libraries(ddsperf ddsperf_types ddsc)
+@@ -29,4 +31,4 @@ if (MSVC)
+     COMPONENT dev
+     OPTIONAL
+   )
+-endif()
++endif()
+\ No newline at end of file
+diff --git a/src/tools/idlc/CMakeLists.txt b/src/tools/idlc/CMakeLists.txt
+index 86cc5b88a..cf2714547 100644
+--- a/src/tools/idlc/CMakeLists.txt
++++ b/src/tools/idlc/CMakeLists.txt
+@@ -9,87 +9,88 @@
+ #
+ # SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause
+ #
+-if(CMAKE_CROSSCOMPILING)
+-  find_program(IDLC_EXECUTABLE idlc REQUIRED)
+-  add_executable(CycloneDDS::idlc IMPORTED GLOBAL)
+-  set_property(TARGET CycloneDDS::idlc PROPERTY IMPORTED_LOCATION ${IDLC_EXECUTABLE})
+-else()
+-  include(CheckIncludeFile)
+ 
+-  check_include_file(getopt.h HAVE_GETOPT_H)
++if (NOT BUILD_IDLC)
++  return()
++endif()
+ 
+-  configure_file(src/config.h.in config.h)
++include(CheckIncludeFile)
+ 
+-  set(headers
+-    src/descriptor.h
+-    src/generator.h
+-    src/options.h
+-    src/plugin.h
+-    include/idlc/generator.h
+-    ${CMAKE_CURRENT_BINARY_DIR}/config.h)
+-  set(sources
+-    src/idlc.c
+-    src/plugin.c
+-    src/options.c
+-    src/generator.c
+-    src/descriptor.c
+-    src/types.c)
+-  add_executable(idlc ${sources} ${headers})
++check_include_file(getopt.h HAVE_GETOPT_H)
+ 
+-  if(MSVC)
+-    # ignore warnings C6255 and 6263 about _alloca
+-    target_compile_options(idlc PRIVATE /wd6255 /wd6263)
+-  endif()
+-  target_link_libraries(idlc PRIVATE idl idlpp ${CMAKE_DL_LIBS})
+-  target_include_directories(
+-    idlc PRIVATE
+-      include
+-      ${CMAKE_CURRENT_BINARY_DIR}
+-      $<BUILD_INTERFACE:$<TARGET_PROPERTY:ddsc,INTERFACE_INCLUDE_DIRECTORIES>>)
++configure_file(src/config.h.in config.h)
+ 
+-  if(WIN32 OR NOT HAVE_GETOPT_H)
+-    # use getopt.h from ddsrt
+-    file(READ "${CMAKE_SOURCE_DIR}/src/ddsrt/include/getopt.h.in" getopt_h)
+-    # remove occurrences of DDS_EXPORT
+-    string(REGEX REPLACE "\n[ \t]*DDS_EXPORT[ \t]+" "\n" getopt_h "${getopt_h}")
+-    # remove dds/* includes
+-    string(REGEX REPLACE "\n[ \t]*#[ \t]*include[ \t]+[<\"]dds/[^\n]*" "" getopt_h "${getopt_h}")
+-    # generate getopt.h
+-    file(GENERATE OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/getopt.h" CONTENT "${getopt_h}")
+-    target_include_directories(idlc PRIVATE "${CMAKE_CURRENT_BINARY_DIR}")
+-    # add getopt.c
+-    configure_file(
+-      "${CMAKE_SOURCE_DIR}/src/ddsrt/src/getopt.c"
+-      "${CMAKE_CURRENT_BINARY_DIR}/getopt.c"
+-      COPYONLY)
+-    target_sources(idlc PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/getopt.c)
+-  endif()
++set(headers
++  src/descriptor.h
++  src/generator.h
++  src/options.h
++  src/plugin.h
++  include/idlc/generator.h
++  ${CMAKE_CURRENT_BINARY_DIR}/config.h)
++set(sources
++  src/idlc.c
++  src/plugin.c
++  src/options.c
++  src/generator.c
++  src/descriptor.c
++  src/types.c)
++add_executable(idlc ${sources} ${headers})
+ 
+-  add_executable(${PROJECT_NAME}::idlc ALIAS idlc)
++if(MSVC)
++  # ignore warnings C6255 and 6263 about _alloca
++  target_compile_options(idlc PRIVATE /wd6255 /wd6263)
++endif()
++target_link_libraries(idlc PRIVATE idl idlpp ${CMAKE_DL_LIBS})
++target_include_directories(
++  idlc PRIVATE
++    include
++    ${CMAKE_CURRENT_BINARY_DIR}
++    $<BUILD_INTERFACE:$<TARGET_PROPERTY:ddsc,INTERFACE_INCLUDE_DIRECTORIES>>)
+ 
+-  install(
+-    DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include/idlc"
+-    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
+-    COMPONENT dev
+-    FILES_MATCHING PATTERN "*.h")
++if(WIN32 OR NOT HAVE_GETOPT_H)
++  # use getopt.h from ddsrt
++  file(READ "${CMAKE_SOURCE_DIR}/src/ddsrt/include/getopt.h.in" getopt_h)
++  # remove occurrences of DDS_EXPORT
++  string(REGEX REPLACE "\n[ \t]*DDS_EXPORT[ \t]+" "\n" getopt_h "${getopt_h}")
++  # remove dds/* includes
++  string(REGEX REPLACE "\n[ \t]*#[ \t]*include[ \t]+[<\"]dds/[^\n]*" "" getopt_h "${getopt_h}")
++  # generate getopt.h
++  file(GENERATE OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/getopt.h" CONTENT "${getopt_h}")
++  target_include_directories(idlc PRIVATE "${CMAKE_CURRENT_BINARY_DIR}")
++  # add getopt.c
++  configure_file(
++    "${CMAKE_SOURCE_DIR}/src/ddsrt/src/getopt.c"
++    "${CMAKE_CURRENT_BINARY_DIR}/getopt.c"
++    COPYONLY)
++  target_sources(idlc PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/getopt.c)
++endif()
+ 
+-  install(
+-    TARGETS idlc
+-    EXPORT "${CMAKE_PROJECT_NAME}"
+-    DESTINATION "${CMAKE_INSTALL_BINDIR}"
+-    COMPONENT dev)
+-  if (MSVC)
+-    install(FILES $<TARGET_PDB_FILE:idlc>
+-      DESTINATION "${CMAKE_INSTALL_BINDIR}"
+-      COMPONENT dev
+-      OPTIONAL
+-    )
+-  endif()
++add_executable(${PROJECT_NAME}::idlc ALIAS idlc)
++
++install(
++  DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include/idlc"
++  DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
++  COMPONENT dev
++  FILES_MATCHING PATTERN "*.h")
+ 
+-  install(
+-    FILES Generate.cmake
+-    DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}/idlc"
+-    COMPONENT dev)
++install(
++  TARGETS idlc
++  EXPORT "${CMAKE_PROJECT_NAME}"
++  DESTINATION "${CMAKE_INSTALL_BINDIR}"
++  COMPONENT dev)
++
++if (MSVC)
++  install(FILES $<TARGET_PDB_FILE:idlc>
++    DESTINATION "${CMAKE_INSTALL_BINDIR}"
++    COMPONENT dev
++    OPTIONAL
++  )
+ endif()
+ 
+-include(Generate.cmake)
++install(
++  FILES "${CMAKE_SOURCE_DIR}/cmake/Modules/Generate.cmake"
++  DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}/idlc"
++  COMPONENT dev)
++
++include("${CMAKE_SOURCE_DIR}/cmake/Modules/Generate.cmake")
++
+diff --git a/src/tools/idlpp/CMakeLists.txt b/src/tools/idlpp/CMakeLists.txt
+index cca2b9ca9..368e262fb 100644
+--- a/src/tools/idlpp/CMakeLists.txt
++++ b/src/tools/idlpp/CMakeLists.txt
+@@ -9,8 +9,8 @@
+ #
+ # SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause
+ #
+-if(CMAKE_CROSSCOMPILING)
+-  # Do not build preprocessor if cross compiling
++
++if (NOT BUILD_IDLC)
+   return()
+ endif()
+ 
+diff --git a/src/tools/idlpp/src/configed.H.in b/src/tools/idlpp/src/configed.H.in
+index 16b084f02..b01284f1c 100644
+--- a/src/tools/idlpp/src/configed.H.in
++++ b/src/tools/idlpp/src/configed.H.in
+@@ -38,7 +38,7 @@
+    compiled to language-specific sources, not machine code. */
+ 
+ /* Define the cpu-specific-macro. */
+-#define CPU                 ""
++#define CPU                 "undefined"
+ 
+ /* Define the target system. */
+ #define SYSTEM              @idlpp_system@
