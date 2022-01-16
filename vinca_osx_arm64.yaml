@@ -5,7 +5,7 @@ conda_index:
   - robostack.yaml
   - packages-ignore.yaml
 
-build_number: 0
+build_number: 1
 
 mutex_package: ros2-distro-mutex 0.1 galactic
 
@@ -34,55 +34,26 @@ packages_select_by_deps:
   - ros_workspace
   - ros_environment
   - ros_base
-  - desktop
+  # - desktop
+  # - rviz2
 
   # - navigation2
-  # - ament-uncrustify
-  # - ament-copyright
-  # - ament_package
-  # - builtin-interfaces
-  # - shape-msgs
-  # - std-msgs
-  # - rosgraph-msgs
-  # - visualization-msgs
-  # - lifecycle-msgs
   # - turtlesim
-  # - actionlib-msgs
-  # - statistics-msgs
-  # - unique-identifier-msgs
   # - rosbag2-interfaces
-  # - pcl-msgs
-  # - diagnostic-msgs
-  # - nav-msgs
-  # - tf2-msgs
-  # - std-srvs
-  # - stereo-msgs
   # - action-tutorials-interfaces
-  # - pendulum-msgs
-  # - logging-demo
-  # - sensor-msgs
-  # - action-msgs
-  # - control-msgs
   # - composition-interfaces
   # - ros2cli-test-interfaces
   # - rcl-interfaces
   # - example-interfaces
-  # - test-msgs
   # - rmw-dds-common
   # - trajectory-msgs
   # - ros-core
   # - libstatistics-collector
-  # - geometry-msgs
-  # - map-msgs
-  # - rosidl-generator-py
   # - ompl
   # - behaviortree_cpp_v3
   # - control_msgs
   # - eigen_stl_containers
   # - bond
-  # - zstd_vendor
   # - rqt_bag_plugins
-  # - desktop
-  # - rviz2
 
 patch_dir: patch
