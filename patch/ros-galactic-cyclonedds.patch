@@ -655,16 +655,3 @@ index cca2b9ca9..368e262fb 100644
    return()
  endif()
  
-diff --git a/src/tools/idlpp/src/configed.H.in b/src/tools/idlpp/src/configed.H.in
-index 16b084f02..b01284f1c 100644
---- a/src/tools/idlpp/src/configed.H.in
-+++ b/src/tools/idlpp/src/configed.H.in
-@@ -38,7 +38,7 @@
-    compiled to language-specific sources, not machine code. */
- 
- /* Define the cpu-specific-macro. */
--#define CPU                 ""
-+#define CPU                 "undefined"
- 
- /* Define the target system. */
- #define SYSTEM              @idlpp_system@
