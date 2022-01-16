@@ -34,6 +34,7 @@ packages_select_by_deps:
   - ros_workspace
   - ros_environment
   - ros_base
+  # - mimick-vendor  # needs to be built locally (natively) at the moment!
   # - desktop
   # - rviz2
 
