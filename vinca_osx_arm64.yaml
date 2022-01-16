@@ -45,11 +45,9 @@ packages_select_by_deps:
   # - action-tutorials-interfaces
   # - composition-interfaces
   # - ros2cli-test-interfaces
-  # - rcl-interfaces
   # - example-interfaces
   # - rmw-dds-common
   # - trajectory-msgs
-  # - ros-core
   # - libstatistics-collector
   # - ompl
   # - behaviortree_cpp_v3
