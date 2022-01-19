@@ -37,7 +37,7 @@ packages_select_by_deps:
   - ros_base
   - desktop
   - nav2-core
-  - moveit
-  # - navigation2
+  # - moveit
+  - navigation2
 
 patch_dir: patch
