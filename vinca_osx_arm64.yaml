@@ -32,27 +32,12 @@ skip_existing:
 
 packages_select_by_deps:
   # - qt-gui-cpp  # needs to be built locally (natively) at the moment!
-  - desktop
-  - navigation2
   - ros_workspace
   - ros_environment
-  # - ros_base
-  # - rviz2
-
-  # - turtlesim
-  # - rosbag2-interfaces
-  # - action-tutorials-interfaces
-  # - composition-interfaces
-  # - ros2cli-test-interfaces
-  # - example-interfaces
-  # - rmw-dds-common
-  # - trajectory-msgs
-  # - libstatistics-collector
-  # - ompl
-  # - behaviortree_cpp_v3
-  # - control_msgs
-  # - eigen_stl_containers
-  # - bond
-  # - rqt_bag_plugins
+  - ros_base
+  - desktop
+  - nav2-core
+  - moveit
+  # - navigation2
 
 patch_dir: patch
