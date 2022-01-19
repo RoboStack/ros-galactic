@@ -1,19 +1,8 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index e4cf591..79c5aa2 100644
+index e4cf591..3b1519d 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -19,6 +19,10 @@ macro(build_mimick)
-     endif()
-   endif()
- 
-+  if(APPLE AND $ENV{CONDA_BUILD_CROSS_COMPILATION})
-+    list(APPEND cmake_configure_args -DCROSSCOMPILE_ARCH=arm64)
-+  endif()
-+
-   if(DEFINED CMAKE_BUILD_TYPE)
-     if(WIN32)
-       build_command(_build_command CONFIGURATION ${CMAKE_BUILD_TYPE})
-@@ -58,11 +62,12 @@ macro(build_mimick)
+@@ -58,11 +58,12 @@ macro(build_mimick)
    endif()
  
    include(ExternalProject)
@@ -29,20 +18,20 @@ index e4cf591..79c5aa2 100644
      TIMEOUT 6000
 diff --git a/crosscompile.patch b/crosscompile.patch
 new file mode 100644
-index 0000000..612bbf0
+index 0000000..8d6fc61
 --- /dev/null
 +++ b/crosscompile.patch
 @@ -0,0 +1,15 @@
 +diff --git a/CMakeLists.txt b/CMakeLists.txt
-+index a0ff848..44856d1 100644
++index a0ff848..34c95ff 100644
 +--- a/CMakeLists.txt
 ++++ b/CMakeLists.txt
 +@@ -32,6 +32,10 @@ else ()
 +   set (_ARCH "${CMAKE_SYSTEM_PROCESSOR}")
 + endif ()
 + 
-++if(${CROSSCOMPILE_ARCH})
-++  set (_ARCH "${CROSSCOMPILE_ARCH}")
+++if(APPLE AND $ENV{CONDA_BUILD_CROSS_COMPILATION})
+++  set (_ARCH "arm64")
 ++endif()
 ++
 + set (MMK_MANGLING "none")
