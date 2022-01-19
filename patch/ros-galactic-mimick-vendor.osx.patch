@@ -30,7 +30,7 @@ index 0000000..8d6fc61
 +   set (_ARCH "${CMAKE_SYSTEM_PROCESSOR}")
 + endif ()
 + 
-++if(APPLE AND $ENV{CONDA_BUILD_CROSS_COMPILATION})
+++if(APPLE AND "$ENV{CONDA_BUILD_CROSS_COMPILATION}" EQUAL "1")
 ++  set (_ARCH "arm64")
 ++endif()
 ++
