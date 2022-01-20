@@ -40,7 +40,6 @@ packages_select_by_deps:
   # - desktop  # see above
   # - moveit
   # - navigation2
-
   - demo-nodes-py
 
 patch_dir: patch
