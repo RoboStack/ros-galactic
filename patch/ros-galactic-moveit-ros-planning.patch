@@ -1,0 +1,12 @@
+diff --git a/kinematics_plugin_loader/src/kinematics_plugin_loader.cpp b/kinematics_plugin_loader/src/kinematics_plugin_loader.cpp
+index 7f10364519..c0eff1053f 100644
+--- a/kinematics_plugin_loader/src/kinematics_plugin_loader.cpp
++++ b/kinematics_plugin_loader/src/kinematics_plugin_loader.cpp
+@@ -38,6 +38,7 @@
+ #include <moveit/rdf_loader/rdf_loader.h>
+ #include <pluginlib/class_loader.hpp>
+ #include <boost/thread/mutex.hpp>
++#include <boost/bind/placeholders.hpp>
+ #include <sstream>
+ #include <vector>
+ #include <map>
