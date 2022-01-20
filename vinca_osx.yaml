@@ -9,7 +9,7 @@ build_number: 3
 
 mutex_package: ros2-distro-mutex 0.1 galactic
 
-skip_all_deps: true
+skip_all_deps: false
 
 # If full rebuild, the build number of the existing package has
 # to match the selected build number for skipping
@@ -28,17 +28,14 @@ packages_remove_from_deps:
   - rttest
 
 skip_existing:
-  # - https://conda.anaconda.org/robostack-experimental/
+  - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
-  # - ros_workspace
-  # - ros_environment
-  # - ros_base
-  # - desktop
-  # - nav2-core
+  - ros_workspace
+  - ros_environment
+  - ros_base
+  - desktop
   # - moveit
-  # - navigation2
-  - rmw-implementation
-  - backward-ros
-
+  - navigation2
+  
 patch_dir: patch
