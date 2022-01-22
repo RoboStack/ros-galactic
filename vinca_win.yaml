@@ -41,5 +41,4 @@ packages_select_by_deps:
   # - moveit
   # - navigation2
   - demo-nodes-py
-
 patch_dir: patch
