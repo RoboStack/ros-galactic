@@ -42,5 +42,4 @@ packages_select_by_deps:
   # - navigation2
   - demo-nodes-py
 
-
 patch_dir: patch
