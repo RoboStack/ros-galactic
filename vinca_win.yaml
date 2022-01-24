@@ -5,11 +5,11 @@ conda_index:
   - robostack.yaml
   - packages-ignore.yaml
 
-build_number: 1
+build_number: 2
 
 mutex_package: ros2-distro-mutex 0.1 galactic
 
-skip_all_deps: true
+skip_all_deps: false
 
 # If full rebuild, the build number of the existing package has
 # to match the selected build number for skipping
@@ -30,16 +30,15 @@ packages_remove_from_deps:
   - warehouse_ros_mongo
 
 skip_existing:
-  # - https://conda.anaconda.org/robostack-experimental/
+  - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
-  # - ros_workspace
-  # - ros_environment
-  # - ros_base
+  - ros_workspace
+  - ros_environment
+  - ros_base
   # - rviz2  # needs to be built separately as otherwise build timeouts occur
   # - desktop  # see above
   # - moveit
   # - navigation2
-  - demo-nodes-py
 
 patch_dir: patch
