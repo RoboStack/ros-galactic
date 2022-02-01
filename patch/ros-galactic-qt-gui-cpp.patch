@@ -7,9 +7,9 @@ index dc27bd8..733c24d 100644
  
    if(APPLE)
 -    set(LIBQT_GUI_CPP_SIP_SUFFIX .so)
-+    # Terrible hack for now
-+    if(${CMAKE_SYSTEM_PROCESSOR} MATCHES "arm64")
-+      set(LIBQT_GUI_CPP_SIP_SUFFIX .cpython-38-darwin.so)
++    # Okay-ish hack for now
++    if(${SIP_VERSION} VERSION_GREATER_EQUAL "5.0.0")
++      set(LIBQT_GUI_CPP_SIP_SUFFIX ".cpython-{PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR}-darwin.so")
 +    else()
 +      set(LIBQT_GUI_CPP_SIP_SUFFIX .so)
 +    endif()
