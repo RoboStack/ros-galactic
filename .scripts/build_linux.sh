@@ -28,7 +28,7 @@ conda config --add channels conda-forge
 conda config --add channels robostack
 conda config --add channels robostack-experimental
 conda config --remove channels defaults
-conda config --set channel_priority strict
+# conda config --set channel_priority strict
 
 conda update conda -c conda-forge
 conda install --yes --quiet pip conda-build anaconda-client mamba boa

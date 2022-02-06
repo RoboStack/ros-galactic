@@ -20,13 +20,16 @@ avahi-daemon:
 benchmark:
   robostack: [benchmark]
 binutils:
-  robostack: [binutils]
+  robostack:
+    linux: [binutils]
+    osx: [binutils]
+    win64: []
 bison:
   robostack: [bison]
 boost:
   robostack: [boost]
 bullet:
-  robostack: [bullet-cpp, pybullet]
+  robostack: [bullet]
 bzip2:
   robostack: [bzip2]
 ca-certificates:
@@ -120,7 +123,7 @@ gtk3:
 ignition-common4:
   robostack: [libignition-common4]
 ignition-gazebo3:
-  robostack: [libignition-gazebo4]
+  robostack: [libignition-gazebo5]
 ignition-gazebo5:
   robostack: [libignition-gazebo5]
 ignition-gui5:
@@ -880,5 +883,4 @@ zbar:
   robostack: [zbar]
 zlib:
   robostack: [zlib]
-
 
