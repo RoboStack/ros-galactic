@@ -53,8 +53,6 @@ conda activate ros_galactic
 conda config --env --add channels conda-forge
 # and the robostack channel
 conda config --env --add channels robostack-experimental
-# it's very much advised to use strict channel priority
-conda config --env --set channel_priority strict
 
 mamba install ros-galactic-desktop
 
