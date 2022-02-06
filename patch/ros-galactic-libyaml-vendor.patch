@@ -1,8 +1,23 @@
+From fbda60f7842899ea6817129d4a290235b2b58ed5 Mon Sep 17 00:00:00 2001
+From: Alberto Soragna <alberto.soragna@gmail.com>
+Date: Wed, 15 Sep 2021 11:03:07 +0200
+Subject: [PATCH] check if libyaml is already present before building it
+
+Signed-off-by: Alberto Soragna <alberto.soragna@gmail.com>
+---
+ CMakeLists.txt               | 28 ++++++++++++++++++++++++++--
+ README.md                    |  1 +
+ cmake/Modules/Findyaml.cmake | 25 +++++++++++++++++++++++++
+ libyaml_vendor-extras.cmake  |  2 ++
+ package.xml                  |  3 +++
+ 5 files changed, 57 insertions(+), 2 deletions(-)
+ create mode 100644 cmake/Modules/Findyaml.cmake
+
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 54dae7b..1fe119a 100644
+index 54dae7b..15cf931 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -14,8 +14,16 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+@@ -14,7 +14,16 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
    add_compile_options(-Wall -Wextra -Wconversion -Wno-sign-conversion -Wpedantic -Wnon-virtual-dtor -Woverloaded-virtual)
  endif()
  
@@ -11,15 +26,15 @@ index 54dae7b..1fe119a 100644
 +  OFF)
 +
  find_package(ament_cmake REQUIRED)
- 
-+if(NOT FORCE_BUILD_VENDOR_PKG)
-+  find_package(yaml)
-+endif()
++list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules")
 +
++if(NOT FORCE_BUILD_VENDOR_PKG)
++  find_package(yaml QUIET)
++endif()
+ 
  macro(build_libyaml)
    set(extra_cmake_args)
- 
-@@ -84,8 +92,21 @@ macro(build_libyaml)
+@@ -84,8 +93,21 @@ macro(build_libyaml)
    set(yaml_LIBRARIES yaml)
  endmacro()
  
@@ -30,7 +45,7 @@ index 54dae7b..1fe119a 100644
 +  if("${yaml_VERSION}" VERSION_EQUAL 0.2.5)
 +    set(_SKIP_YAML_BUILD 1)
 +  else()
-+    message(FATAL
++    message(WARNING
 +      "A wrong version of libyaml is already present in the system: ${yaml_VERSION}."
 +      "It will be ignored and the 0.2.5 version will be built.")
 +  endif()
@@ -43,4 +58,75 @@ index 54dae7b..1fe119a 100644
  
  ament_export_libraries(yaml)
  ament_export_dependencies(yaml)
-
+@@ -134,4 +156,6 @@ if(BUILD_TESTING)
+   endif()
+ endif()
+ 
++install(DIRECTORY cmake DESTINATION share/${PROJECT_NAME})
++
+ ament_package(CONFIG_EXTRAS libyaml_vendor-extras.cmake)
+diff --git a/README.md b/README.md
+index f8dc9e8..b084f50 100644
+--- a/README.md
++++ b/README.md
+@@ -6,3 +6,4 @@ CMake wrapper downloading and building libyaml
+ Quality declaration for this package: [libyaml_vendor QD](QUALITY_DECLARATION.md).
+ 
+ Quality declaration of external dependency [libyaml](./libyaml_q_declaration.md).
++
+diff --git a/cmake/Modules/Findyaml.cmake b/cmake/Modules/Findyaml.cmake
+new file mode 100644
+index 0000000..3954f5f
+--- /dev/null
++++ b/cmake/Modules/Findyaml.cmake
+@@ -0,0 +1,25 @@
++# Check if CMake config file is installed
++include(FindPackageHandleStandardArgs)
++find_package(yaml CONFIG QUIET)
++if(yaml_FOUND)
++  find_package_handle_standard_args(yaml FOUND_VAR yaml_FOUND CONFIG_MODE)
++else()
++  # Otherwise, rely on pkg-config
++  find_package(PkgConfig QUIET)
++
++  if(PKG_CONFIG_FOUND)
++    pkg_check_modules(YAML_PKG_CONFIG IMPORTED_TARGET yaml-0.1)
++    find_package_handle_standard_args(yaml DEFAULT_MSG YAML_PKG_CONFIG_FOUND)
++
++    if(NOT TARGET yaml)
++      add_library(yaml INTERFACE IMPORTED)
++      set_property(TARGET yaml PROPERTY INTERFACE_LINK_LIBRARIES PkgConfig::YAML_PKG_CONFIG)
++    endif()
++    if(NOT yaml_LIBRARIES)
++      set(yaml_LIBRARIES yaml)
++    endif()
++    if(NOT yaml_VERSION)
++      set(yaml_VERSION ${YAML_PKG_CONFIG_VERSION})
++    endif()
++  endif()
++endif()
+diff --git a/libyaml_vendor-extras.cmake b/libyaml_vendor-extras.cmake
+index 45e1c9c..d2e52c4 100644
+--- a/libyaml_vendor-extras.cmake
++++ b/libyaml_vendor-extras.cmake
+@@ -14,4 +14,6 @@
+ 
+ # copied from libyaml_vendor/libyaml_vendor-extras.cmake
+ 
++list(INSERT CMAKE_MODULE_PATH 0 "${libyaml_vendor_DIR}/Modules")
++
+ list(APPEND libyaml_vendor_TARGETS yaml)
+diff --git a/package.xml b/package.xml
+index 8dc4a4a..7f5e45c 100644
+--- a/package.xml
++++ b/package.xml
+@@ -18,6 +18,9 @@
+   <author>Mikael Arguedas</author>
+ 
+   <buildtool_depend>ament_cmake</buildtool_depend>
++  <buildtool_depend>pkg-config</buildtool_depend>
++
++  <buildtool_export_depend>pkg-config</buildtool_export_depend>
+ 
+   <test_depend>ament_cmake_gtest</test_depend>
+   <test_depend>ament_lint_auto</test_depend>
