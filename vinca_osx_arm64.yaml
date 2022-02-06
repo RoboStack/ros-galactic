@@ -7,7 +7,7 @@ conda_index:
 
 build_number: 2
 
-mutex_package: ros2-distro-mutex 0.1 galactic
+mutex_package: ros2-distro-mutex 0.2 galactic
 
 skip_all_deps: false
 
