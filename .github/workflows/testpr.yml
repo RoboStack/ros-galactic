@@ -38,7 +38,7 @@ jobs:
       with:
         mamba-version: "*"
         channels: robostack-experimental,conda-forge
-        channel-priority: true
+        channel-priority: false
         auto-activate-base: true
         activate-environment: ""
 
