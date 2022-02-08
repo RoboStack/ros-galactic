@@ -43,7 +43,7 @@ cd ..
 export "CONDA_BLD_PATH=/opt/conda/build_artifacts"
 
 # mkdir -p $CONDA_BLD_PATH
-conda index $CONDA_BLD_PATH
+# conda index $CONDA_BLD_PATH
 
 conda config --set anaconda_upload yes
 conda config --set show_channel_urls true
