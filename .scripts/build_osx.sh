@@ -53,7 +53,6 @@ conda config --set add_pip_as_python_dependency false
 conda config --add channels conda-forge
 conda config --add channels robostack-experimental
 conda config --add channels $CONDA_BLD_PATH
-conda config --remove channels defaults
 # conda config --set channel_priority strict
 
 # echo -e "\n\nMaking the build clobber file and running the build."
