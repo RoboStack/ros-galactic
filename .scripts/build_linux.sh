@@ -22,11 +22,17 @@ CONDARC
 # 	sudo yum install -y install mesa-libGL-devel
 # fi
 
+export "CONDA_BLD_PATH=/opt/conda/build_artifacts"
+
+mkdir -p $CONDA_BLD_PATH
+conda index $CONDA_BLD_PATH
+
 conda config --set remote_max_retries 5
 # conda config --append channels defaults
 conda config --add channels conda-forge
 conda config --add channels robostack
 conda config --add channels robostack-experimental
+conda config --add channels $CONDA_BLD_PATH
 conda config --remove channels defaults
 # conda config --set channel_priority strict
 
@@ -43,8 +49,6 @@ conda config --set anaconda_upload yes
 conda config --set show_channel_urls true
 conda config --set auto_update_conda false
 conda config --set add_pip_as_python_dependency false
-
-export "CONDA_BLD_PATH=/opt/conda/build_artifacts"
 
 conda info
 conda config --show-sources
