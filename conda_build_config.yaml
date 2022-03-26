@@ -3,49 +3,25 @@ c_compiler:
 cxx_compiler:
   - vs2019                     # [win]
 
-# TODO: remove these when run_exports are added to the packages.
-pin_run_as_build:
-  tbb-devel:
-    max_pin: x.x
-
 console_bridge:
   - 1.0
 gazebo:
   - '11'
-libprotobuf:
-  - 3.18
 numpy:
-  # part of a zip_keys: python, python_impl, numpy
-  - 1.18   # [not (osx and arm64)]
-  # - 1.18   # [not (osx and arm64)]
-  # - 1.18   # [not (osx and arm64)]
-  - 1.19   # [osx and arm64]
+  - 1.19
 ogre:
   - 1.12.*
 pcl:
-  - 1.11.1
-proj:
-  - 8.1.0
-spdlog:
-  - 1.9.0
-# tbb pinned on Windows due to https://stackoverflow.com/questions/64510477/error-c2061-syntax-error-identifier-concurrent-vectortemplate-type-paramet
-# tbb pinned on Unix due to https://github.com/conda-forge/gazebo-feedstock/issues/57
-tbb:
-  - 2019.9  # [win]
-  - 2020.2  # [not win]
-tbb_devel:
-  - 2019.9  # [win]
-  - 2020.2  # [not win]
+  - 1.12.0
 libpqxx:
   - 6
-vtk:
-  - 9.0.3
 
 python:
   # part of a zip_keys: python, python_impl, numpy
   # - 3.6.* *_cpython    # [not (osx and arm64)]
   # - 3.7.* *_cpython    # [not (osx and arm64)]
-  - 3.8.* *_cpython
+  # - 3.8.* *_cpython
+  - 3.9.* *_cpython
 python_impl:
   # part of a zip_keys: python, python_impl, numpy
   # - cpython   # [not (osx and arm64)]

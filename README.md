@@ -47,14 +47,8 @@ To get started with conda (or mamba) as package managers, you need to have a bas
 conda install mamba -c conda-forge
 
 # now create a new environment
-mamba create -n ros_galactic python=3.8 -c conda-forge
+mamba create -n ros_galactic ros-galactic-desktop python=3.9 -c robostack-experimental -c conda-forge --no-channel-priority --override-channels
 conda activate ros_galactic
-# this adds the conda-forge channel to the new created environment configuration 
-conda config --env --add channels conda-forge
-# and the robostack channel
-conda config --env --add channels robostack-experimental
-
-mamba install ros-galactic-desktop
 
 # optionally, install some compiler packages if you want to e.g. build packages in a colcon_ws:
 mamba install compilers cmake pkg-config make ninja colcon-common-extensions
