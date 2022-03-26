@@ -37,7 +37,7 @@ conda config --remove channels defaults
 # conda config --set channel_priority strict
 
 conda update conda -c conda-forge
-conda install --yes --quiet pip conda-build anaconda-client mamba boa
+conda install --yes --quiet pip conda-build anaconda-client mamba boa=0.9
 
 # install boa from master
 # baaaad
