@@ -96,6 +96,7 @@ First, make sure that the package is installed; in the example case it would be 
 #### Can I use RoboStack in a non-conda virtual environment?
 RoboStack is based on conda-forge and will not work without conda. However, check out [rospypi](https://github.com/rospypi/simple2) which can run in a pure Python virtualenv. rospypi supports tf2 and other binary packages.
 
+
 ## Contributing
 This project is in early stages and we are looking for contributors to help it grow. Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for ways to contribute.
 
