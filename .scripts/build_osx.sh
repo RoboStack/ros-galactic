@@ -40,10 +40,10 @@ cd ..
 # echo -e "\n\nRunning the build setup script."
 # # source run_conda_forge_build_setup
 
-export "CONDA_BLD_PATH=/opt/conda/build_artifacts"
+export "CONDA_BLD_PATH=$CONDA_PREFIX/conda-bld/"
 
-# mkdir -p $CONDA_BLD_PATH
-# conda index $CONDA_BLD_PATH
+mkdir -p $CONDA_BLD_PATH
+conda index $CONDA_BLD_PATH
 
 conda config --set anaconda_upload yes
 conda config --set show_channel_urls true
