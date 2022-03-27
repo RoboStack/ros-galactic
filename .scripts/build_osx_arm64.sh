@@ -6,28 +6,28 @@ export FEEDSTOCK_ROOT=`pwd`
 
 echo -e "\n\nInstalling a fresh version of Miniforge."
 MINIFORGE_URL="https://github.com/conda-forge/miniforge/releases/latest/download"
-MINIFORGE_FILE="Miniforge3-MacOSX-x86_64.sh"
+MINIFORGE_FILE="Mambaforge-MacOSX-x86_64.sh"
 curl -L -O --silent "${MINIFORGE_URL}/${MINIFORGE_FILE}"
 /bin/bash $MINIFORGE_FILE -b
 
 echo -e "\n\nConfiguring conda."
 
-source ${HOME}/miniforge3/etc/profile.d/conda.sh
+source ${HOME}/mambaforge/etc/profile.d/conda.sh
 conda activate base
 
 conda config --set remote_max_retries 5
 
 echo -e "\n\nInstalling conda-forge-ci-setup=3 and conda-build."
-conda install -n base --quiet --yes conda-forge-ci-setup=3 conda-build pip boa quetz-client \
+mamba install -n base --quiet --yes conda-forge-ci-setup=3 conda-build pip boa=0.9 quetz-client \
 			  -c conda-forge/label/boa_dev -c conda-forge
 
 set -e
 
 # install boa from master
-git clone https://github.com/thesnakepit/boa
-cd boa
-pip install -e .
-cd ..
+# git clone https://github.com/thesnakepit/boa
+# cd boa
+# pip install -e .
+# cd ..
 
 # echo -e "\n\nSetting up the condarc and mangling the compiler."
 # # setup_conda_rc ./ ./recipe ./.ci_support/${CONFIG}.yaml
@@ -40,10 +40,10 @@ cd ..
 # echo -e "\n\nRunning the build setup script."
 # # source run_conda_forge_build_setup
 
-export "CONDA_BLD_PATH=/opt/conda/build_artifacts"
+export "CONDA_BLD_PATH=$CONDA_PREFIX/conda-bld/"
 
-# mkdir -p $CONDA_BLD_PATH
-# conda index $CONDA_BLD_PATH
+mkdir -p $CONDA_BLD_PATH
+conda index $CONDA_BLD_PATH
 
 conda config --set anaconda_upload yes
 conda config --set show_channel_urls true
