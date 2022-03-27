@@ -17,7 +17,7 @@ index 99c9e2d..e581f48 100644
  set(AMENT_PACKAGE_DIR "${CMAKE_INSTALL_PREFIX}/${PYTHON_INSTALL_DIR}/ament_package")
 +if(NOT EXISTS "${AMENT_PACKAGE_DIR}" OR "$ENV{CONDA_BUILD_CROSS_COMPILATION}" EQUAL "1")
 +  execute_process(
-+    COMMAND python3 -c "import site; print(site.getsitepackages()[0])"
++    COMMAND python -c "import site; print(site.getsitepackages()[0])"
 +    OUTPUT_VARIABLE _PYTHON_SYSPREFIX
 +    OUTPUT_STRIP_TRAILING_WHITESPACE
 +  )
