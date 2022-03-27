@@ -40,6 +40,10 @@ MACOSX_DEPLOYMENT_TARGET:      # [osx]
 CONDA_BUILD_SYSROOT:
   - /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk  # [osx and arm64]
 
+# Workaround for https://github.com/RoboStack/ros-galactic/pull/86#issuecomment-1079811424
+setuptools:  # [win]
+  - 61.0.0  # [win]
+
 # fix build metadata, needed for mapviz and moveit-core
 replacements:
   all_replacements:
