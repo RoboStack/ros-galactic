@@ -2,6 +2,23 @@ diff --git a/CMakeLists.txt b/CMakeLists.txt
 index 99c9e2d..e581f48 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
+@@ -15,6 +15,16 @@ else()
+   set(SHELL_EXT "sh")
+ endif()
+ set(AMENT_PACKAGE_DIR "${CMAKE_INSTALL_PREFIX}/${PYTHON_INSTALL_DIR}/ament_package")
++if(NOT EXISTS "${AMENT_PACKAGE_DIR}" OR "$ENV{CONDA_BUILD_CROSS_COMPILATION}" EQUAL "1")
++  execute_process(
++    COMMAND python3 -c "import site; print(site.getsitepackages()[0])"
++    OUTPUT_VARIABLE _PYTHON_SYSPREFIX
++    OUTPUT_STRIP_TRAILING_WHITESPACE
++  )
++  message(WARNING "Could not find '${AMENT_PACKAGE_DIR}', now try '${_PYTHON_SYSPREFIX}/ament_package' instead.")
++  set(AMENT_PACKAGE_DIR "${_PYTHON_SYSPREFIX}/ament_package")
++endif()
++
+ if(NOT EXISTS "${AMENT_PACKAGE_DIR}")
+   # Check for an .egg-link file and use the listed directory if it exists
+   get_filename_component(AMENT_PACKAGE_EGG_LINK "${AMENT_PACKAGE_DIR}" DIRECTORY)
 @@ -39,28 +39,7 @@ set(
    "prepend-non-duplicate;PYTHONPATH;${PYTHON_INSTALL_DIR}")
  

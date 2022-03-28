@@ -31,7 +31,7 @@ conda install -n base conda-build mamba
 
 2. Create a new conda environment and add the conda-forge and robostack channels:
 ```
-conda create -n ros_galactic python=3.8
+conda create -n ros_galactic python=3.9
 conda activate ros_galactic
 conda config --append channels defaults
 conda config --add channels conda-forge

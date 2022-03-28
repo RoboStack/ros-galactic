@@ -13,8 +13,8 @@ libyaml_vendor:
   add_host: ["yaml-cpp", "yaml"]
   add_run: ["yaml-cpp", "yaml"]
 yaml_cpp_vendor:
-  add_host: ["yaml-cpp 0.6.*"]
-  add_run: ["yaml-cpp 0.6.*"]
+  add_host: ["yaml-cpp"]
+  add_run: ["yaml-cpp"]
 zstd_vendor:
   add_host: ["zstd", {sel(not win): zstd-static}]
   add_run: ["zstd"]
