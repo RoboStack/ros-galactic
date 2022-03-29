@@ -43,5 +43,8 @@ packages_select_by_deps:
   - nav2-core
   - moveit
   - navigation2
+  - velodyne
+  - sbg_driver
+  - vision-opencv
 
 patch_dir: patch
