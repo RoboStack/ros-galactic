@@ -16,6 +16,10 @@ pcl:
 libpqxx:
   - 6
 
+# Workaround for https://github.com/RoboStack/ros-galactic/pull/86#issuecomment-1079811424
+setuptools:  # [win]
+  - 61.0.0  # [win]
+
 python:
   # part of a zip_keys: python, python_impl, numpy
   # - 3.6.* *_cpython    # [not (osx and arm64)]
@@ -39,6 +43,7 @@ MACOSX_DEPLOYMENT_TARGET:      # [osx]
   - 10.14                      # [osx and x86_64]
 CONDA_BUILD_SYSROOT:
   - /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk  # [osx and arm64]
+
 
 # fix build metadata, needed for mapviz and moveit-core
 replacements:
