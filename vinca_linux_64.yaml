@@ -45,7 +45,7 @@ packages_select_by_deps:
   - control_toolbox
   - robot_localization
   - ros1_bridge
-  # - velodyne
+  - velodyne
 
   # Used to work, now needs fixes
   # - rtabmap
@@ -74,7 +74,7 @@ packages_select_by_deps:
   # - ros-ign-image
 
   # working
-  # - sbg_driver
+   - sbg_driver
   # - ruckig
   # - rosbridge-msgs
   # - rosbridge-library
@@ -123,7 +123,7 @@ packages_select_by_deps:
   # - phidgets-motors
   # - phidgets-spatial
   # - phidgets-temperature
-  # - robot-localization
+   - robot-localization
   # - ros-ign-bridge
   # - ros-ign-gazebo
   # - ros-ign-image
@@ -139,7 +139,7 @@ packages_select_by_deps:
   # - ament-cmake-clang-format
   # - ament-cmake-clang-tidy
   # - ament-cmake-mypy
-  # - ament-cmake-nose
+   - ament-cmake-nose
   # - ament-cmake-pclint
   # - ament-cmake-pycodestyle
   # - ament-cmake-pyflakes
@@ -338,7 +338,7 @@ packages_select_by_deps:
   # - urg-node
   # - urg-node-msgs
   # - v4l2-camera
-  # - vision-opencv
+   - vision-opencv
   # - wiimote-msgs
 
   # Don't work yet
