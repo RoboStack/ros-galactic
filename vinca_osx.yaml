@@ -34,8 +34,8 @@ packages_select_by_deps:
   - ros_workspace
   - ros_environment
   - ros_base
-  - desktop
-  - moveit
+  # - desktop
+  # - moveit
   - navigation2
   
 patch_dir: patch
