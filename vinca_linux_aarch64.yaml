@@ -46,5 +46,6 @@ packages_select_by_deps:
   - velodyne
   - sbg_driver
   - vision-opencv
+  - ackermann-msgs
 
 patch_dir: patch
