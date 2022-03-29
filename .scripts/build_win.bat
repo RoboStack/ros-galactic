@@ -26,6 +26,9 @@ rmdir /Q/S "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\"
 
 set "FEEDSTOCK_ROOT=%cd%"
 
+mkdir %CONDA_BLD_PATH%
+conda index %CONDA_BLD_PATH%
+
 call conda config --remove channels defaults
 call conda config --add channels conda-forge
 call conda config --add channels robostack-experimental
