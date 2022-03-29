@@ -101,7 +101,7 @@ packages_select_by_deps:
   # - ros-ign
   # - menge-vendor
   # - openvslam
-  # - ackermann-msgs
+  - ackermann-msgs
   # - four-wheel-steering-msgs
   # - ign-rviz
   # - ign-rviz-common
