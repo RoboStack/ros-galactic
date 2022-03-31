@@ -36,9 +36,9 @@ packages_select_by_deps:
   - ros_workspace
   - ros_environment
   - ros_base
-  # - rviz2  # needs to be built separately as otherwise build timeouts occur
+  - rviz2  # needs to be built separately as otherwise build timeouts occur
   # - desktop  # see above
-  - moveit
-  - navigation2
+  # - moveit
+  # - navigation2
 
 patch_dir: patch
