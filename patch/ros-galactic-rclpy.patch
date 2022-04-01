@@ -91,7 +91,7 @@ index 9d0379d..37a7a18 100644
    src/rclpy/utils.cpp
    src/rclpy/wait_set.cpp
  )
-+set_target_properties(_rclpy_pybind11 PROPERTIES PREFIX "")
++set_target_properties(_rclpy_pybind11 PROPERTIES PREFIX "" SUFFIX "${Python_SOABI}")
 +
  target_include_directories(_rclpy_pybind11 PRIVATE
    src/rclpy/
@@ -111,7 +111,7 @@ index 9d0379d..37a7a18 100644
 +add_library(_rclpy_signal_handler MODULE
    src/rclpy/_rclpy_signal_handler.c
  )
-+set_target_properties(_rclpy_signal_handler PROPERTIES PREFIX "")
++set_target_properties(_rclpy_signal_handler PROPERTIES PREFIX "" SUFFIX "${Python_SOABI}")
 +
  target_link_libraries(_rclpy_signal_handler PRIVATE
    rclpy_common
