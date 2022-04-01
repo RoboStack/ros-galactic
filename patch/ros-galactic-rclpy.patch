@@ -91,7 +91,7 @@ index 9d0379d..37a7a18 100644
    src/rclpy/utils.cpp
    src/rclpy/wait_set.cpp
  )
-+set_target_properties(_rclpy_pybind11 PROPERTIES PREFIX "" SUFFIX "${Python_SOABI}")
++set_target_properties(_rclpy_pybind11 PROPERTIES PREFIX "")
 +if(WIN32)
 +  set_target_properties(_rclpy_pybind11 PROPERTIES SUFFIX ".pyd")
 +endif()
