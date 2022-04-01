@@ -78,7 +78,7 @@ index 9d0379d..37a7a18 100644
  target_include_directories(rclpy_common PUBLIC
    src/rclpy_common/include
  )
-@@ -147,7 +141,7 @@ install(TARGETS rclpy_common
+@@ -147,7 +141,9 @@ install(TARGETS rclpy_common
  )
  
  # Split from main extension and converted to pybind11
@@ -92,11 +92,13 @@ index 9d0379d..37a7a18 100644
    src/rclpy/wait_set.cpp
  )
 +set_target_properties(_rclpy_pybind11 PROPERTIES PREFIX "" SUFFIX "${Python_SOABI}")
-+
++if(WIN32)
++  set_target_properties(_rclpy_pybind11 PROPERTIES SUFFIX ".pyd")
++endif()
  target_include_directories(_rclpy_pybind11 PRIVATE
    src/rclpy/
  )
-@@ -187,18 +183,23 @@ target_link_libraries(_rclpy_pybind11 PRIVATE
+@@ -187,18 +183,25 @@ target_link_libraries(_rclpy_pybind11 PRIVATE
    rclpy_common
    rcpputils::rcpputils
    rcutils::rcutils
@@ -111,8 +113,10 @@ index 9d0379d..37a7a18 100644
 +add_library(_rclpy_signal_handler MODULE
    src/rclpy/_rclpy_signal_handler.c
  )
-+set_target_properties(_rclpy_signal_handler PROPERTIES PREFIX "" SUFFIX "${Python_SOABI}")
-+
++set_target_properties(_rclpy_signal_handler PROPERTIES PREFIX "")
++if(WIN32)
++  set_target_properties(_rclpy_signal_handler PROPERTIES SUFFIX ".pyd")
++endif()
  target_link_libraries(_rclpy_signal_handler PRIVATE
    rclpy_common
    rcl::rcl
