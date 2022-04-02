@@ -15,7 +15,7 @@ index ee1b58e8..56858550 100644
  )
  target_link_libraries(${MOVEIT_LIB_NAME}
    moveit_rdf_loader
-+  ${LIBFCL_LIBRARIES}
++  ${LIBFCL_LINK_LIBRARIES}
  )
  
  install(DIRECTORY include/ DESTINATION include)
