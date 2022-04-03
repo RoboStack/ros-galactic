@@ -87,7 +87,7 @@ index 9d0379d..37a7a18 100644
    src/rclpy/_rclpy_action.cpp
    src/rclpy/_rclpy_handle.cpp
    src/rclpy/_rclpy_logging.cpp
-@@ -177,6 +171,8 @@ pybind11_add_module(_rclpy_pybind11 SHARED
+@@ -178,6 +178,10 @@ pybind11_add_module(_rclpy_pybind11 SHARED
    src/rclpy/utils.cpp
    src/rclpy/wait_set.cpp
  )
@@ -98,13 +98,12 @@ index 9d0379d..37a7a18 100644
  target_include_directories(_rclpy_pybind11 PRIVATE
    src/rclpy/
  )
-@@ -187,18 +183,25 @@ target_link_libraries(_rclpy_pybind11 PRIVATE
+@@ -188,18 +192,24 @@ target_link_libraries(_rclpy_pybind11 PRIVATE
    rclpy_common
    rcpputils::rcpputils
    rcutils::rcutils
 +  pybind11::module
  )
-+
  configure_build_install_location(_rclpy_pybind11)
  clean_windows_flags(_rclpy_pybind11)
  
