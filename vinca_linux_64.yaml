@@ -80,7 +80,6 @@ packages_select_by_deps:
   - rosbridge-library
   - joint-state-broadcaster
   - joint-state-publisher
-  - joint-state-publisher-gui
   - joint-trajectory-controller
   - xacro
   # - ros2launch-security
