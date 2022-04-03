@@ -1,0 +1,36 @@
+pool:
+  vmImage: macOS-10.15
+trigger:
+- buildbranch_osx
+pr: none
+stages:
+- stage: stage_0
+  jobs:
+  - job: stage_0_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-ros2-control-test-assets ros-galactic-controller-manager-msgs
+          ros-galactic-realtime-tools ros-galactic-hardware-interface
+      displayName: Build ros-galactic-ros2-control-test-assets ros-galactic-controller-manager-msgs
+        ros-galactic-realtime-tools ros-galactic-hardware-interface
+- stage: stage_1
+  jobs:
+  - job: stage_1_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-controller-interface ros-galactic-controller-manager
+          ros-galactic-joint-trajectory-controller ros-galactic-joint-state-broadcaster
+      displayName: Build ros-galactic-controller-interface ros-galactic-controller-manager
+        ros-galactic-joint-trajectory-controller ros-galactic-joint-state-broadcaster
