@@ -1,0 +1,7 @@
+ros-galactic-ros2-control-test-assets
+ros-galactic-controller-manager-msgs
+ros-galactic-hardware-interface
+ros-galactic-controller-interface
+ros-galactic-controller-manager
+ros-galactic-joint-trajectory-controller
+ros-galactic-joint-state-broadcaster
