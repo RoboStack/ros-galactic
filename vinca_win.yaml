@@ -28,12 +28,13 @@ packages_remove_from_deps:
   - tlsf_cpp
   - pendulum_control
   - warehouse_ros_mongo
+  - pilz-industrial-motion-planner
 
 skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
 
 packages_select_by_deps:
-  - rclpy
+  # - rclpy
   - rosbag2-py
   # - ros_workspace
   # - ros_environment
@@ -42,6 +43,19 @@ packages_select_by_deps:
   # - desktop  # see above
   # - moveit
   # - navigation2
+  # - joint-state-broadcaster
+  # - joint-state-publisher
+  # - joint-trajectory-controller
+  # - xacro
+  # - rosbridge_suite
+  # - rosbridge-msgs
+  # - rosbridge-library
+  # - robot-localization
+  # - velodyne
+  # - sbg_driver
+  # - vision-opencv
+  # - ackermann-msgs
+
 
 patch_dir: patch
 

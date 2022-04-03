@@ -47,5 +47,9 @@ packages_select_by_deps:
   - sbg_driver
   - vision-opencv
   - ackermann-msgs
+  - joint-state-broadcaster
+  - joint-state-publisher
+  - joint-trajectory-controller
+  - xacro
 
 patch_dir: patch
