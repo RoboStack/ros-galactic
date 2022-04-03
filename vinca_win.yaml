@@ -41,10 +41,10 @@ packages_select_by_deps:
   - desktop  # see above
   - moveit
   - navigation2
-  - joint-state-broadcaster
-  - joint-state-publisher
-  - joint-trajectory-controller
-  - xacro
+  # - joint-state-broadcaster
+  # - joint-state-publisher
+  # - joint-trajectory-controller
+  # - xacro
   # - rosbridge_suite
   # - rosbridge-msgs
   # - rosbridge-library
