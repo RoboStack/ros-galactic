@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 9d0379d..37a7a18 100644
+index 9d0379d..53302d6 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -14,6 +14,8 @@ if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_C_COMPILER_ID MATCHES "Clang")
@@ -11,7 +11,7 @@ index 9d0379d..37a7a18 100644
  find_package(ament_cmake REQUIRED)
  find_package(ament_cmake_python REQUIRED)
  find_package(rcl REQUIRED)
-@@ -25,27 +27,10 @@ find_package(rcutils REQUIRED)
+@@ -25,27 +27,9 @@ find_package(rcutils REQUIRED)
  find_package(rmw REQUIRED)
  find_package(rmw_implementation_cmake REQUIRED)
  
@@ -25,9 +25,9 @@ index 9d0379d..37a7a18 100644
 -  # pybind11 will setup the build for debug now.
 -  set(PYTHON_EXECUTABLE "${PYTHON_EXECUTABLE_DEBUG}")
 -endif()
-+find_package(Python COMPONENTS Interpreter Development)
- 
+-
 -find_package(pybind11_vendor REQUIRED)
++find_package(Python COMPONENTS Interpreter Development)
  find_package(pybind11 REQUIRED)
  
 -if(WIN32 AND CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -40,7 +40,7 @@ index 9d0379d..37a7a18 100644
  function(clean_windows_flags target)
    # Hack to avoid pybind11 issue.
    #
-@@ -109,11 +94,13 @@ endif()
+@@ -109,11 +93,13 @@ endif()
  
  # Set the build location and install location for a CPython extension
  function(configure_build_install_location _library_name)
@@ -59,7 +59,7 @@ index 9d0379d..37a7a18 100644
  
    # Install library for actual use
    install(TARGETS ${_library_name}
-@@ -128,10 +115,17 @@ add_library(rclpy_common SHARED
+@@ -128,10 +114,15 @@ add_library(rclpy_common SHARED
  )
  target_link_libraries(rclpy_common PUBLIC
    pybind11::pybind11
@@ -67,18 +67,16 @@ index 9d0379d..37a7a18 100644
    rcl::rcl
    rmw::rmw
  )
-+
 +if(NOT APPLE)
 +  target_link_libraries(rclpy_common PUBLIC ${Python_LIBRARIES})
 +else()
 +  set_target_properties(rclpy_common PROPERTIES
 +                        LINK_FLAGS "-undefined dynamic_lookup")
 +endif()
-+
  target_include_directories(rclpy_common PUBLIC
    src/rclpy_common/include
  )
-@@ -147,7 +141,9 @@ install(TARGETS rclpy_common
+@@ -147,7 +138,7 @@ install(TARGETS rclpy_common
  )
  
  # Split from main extension and converted to pybind11
@@ -87,7 +85,7 @@ index 9d0379d..37a7a18 100644
    src/rclpy/_rclpy_action.cpp
    src/rclpy/_rclpy_handle.cpp
    src/rclpy/_rclpy_logging.cpp
-@@ -178,6 +178,10 @@ pybind11_add_module(_rclpy_pybind11 SHARED
+@@ -177,6 +168,10 @@ pybind11_add_module(_rclpy_pybind11 SHARED
    src/rclpy/utils.cpp
    src/rclpy/wait_set.cpp
  )
@@ -98,7 +96,7 @@ index 9d0379d..37a7a18 100644
  target_include_directories(_rclpy_pybind11 PRIVATE
    src/rclpy/
  )
-@@ -188,18 +192,24 @@ target_link_libraries(_rclpy_pybind11 PRIVATE
+@@ -187,18 +182,24 @@ target_link_libraries(_rclpy_pybind11 PRIVATE
    rclpy_common
    rcpputils::rcpputils
    rcutils::rcutils
