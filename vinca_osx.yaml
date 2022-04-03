@@ -41,13 +41,13 @@ packages_select_by_deps:
   - joint-state-publisher
   - joint-trajectory-controller
   - xacro
-  - rosbridge_suite
-  - rosbridge-msgs
-  - rosbridge-library
-  - robot-localization
-  - velodyne
-  - sbg_driver
-  - vision-opencv
-  - ackermann-msgs
+  # - rosbridge_suite
+  # - rosbridge-msgs
+  # - rosbridge-library
+  # - robot-localization
+  # - velodyne
+  # - sbg_driver
+  # - vision-opencv
+  # - ackermann-msgs
   
 patch_dir: patch
