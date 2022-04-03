@@ -1,0 +1,61 @@
+ros_distro: galactic
+
+# mapping for package keys
+conda_index:
+  - robostack.yaml
+  - packages-ignore.yaml
+
+build_number: 4
+
+mutex_package: ros2-distro-mutex 0.2 galactic
+
+skip_all_deps: false
+
+# If full rebuild, the build number of the existing package has
+# to match the selected build number for skipping
+full_rebuild: false
+
+packages_skip_by_deps:
+  - iceoryx_utils
+  - iceoryx_binding_c
+  - iceoryx_posh
+  - cyclonedds
+  - rttest
+
+packages_remove_from_deps:
+  - rmw_cyclonedds_cpp
+  - tlsf
+  - tlsf_cpp
+  - pendulum_control
+  - warehouse_ros_mongo
+  - pilz-industrial-motion-planner
+
+skip_existing:
+  - https://conda.anaconda.org/robostack-experimental/
+
+packages_select_by_deps:
+  - rclpy
+  - rosbag2-py
+  # - ros_workspace
+  # - ros_environment
+  # - ros_base
+  # - rviz2  # needs to be built separately as otherwise build timeouts occur
+  # - desktop  # see above
+  # - moveit
+  # - navigation2
+  # - joint-state-broadcaster
+  # - joint-state-publisher
+  # - joint-trajectory-controller
+  # - xacro
+  # - rosbridge_suite
+  # - rosbridge-msgs
+  # - rosbridge-library
+  # - robot-localization
+  # - velodyne
+  # - sbg_driver
+  # - vision-opencv
+  # - ackermann-msgs
+
+
+patch_dir: patch
+
