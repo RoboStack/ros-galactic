@@ -69,7 +69,7 @@ index 9d0379d..37a7a18 100644
  )
 +
 +if(NOT APPLE)
-+  target_link_libraries(rclpy_common PUBLIC ${PYTHON_LIBRARIES})
++  target_link_libraries(rclpy_common PUBLIC ${Python_LIBRARIES})
 +else()
 +  set_target_properties(rclpy_common PROPERTIES
 +                        LINK_FLAGS "-undefined dynamic_lookup")

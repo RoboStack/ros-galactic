@@ -26,6 +26,9 @@ rmdir /Q/S "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\"
 
 set "FEEDSTOCK_ROOT=%cd%"
 
+mkdir %CONDA_BLD_PATH%
+call conda index %CONDA_BLD_PATH%
+
 call conda config --remove channels defaults
 call conda config --add channels conda-forge
 call conda config --add channels robostack-experimental
@@ -38,7 +41,7 @@ reg add HKLM\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPathsEnabled /t 
 :: conda remove --force m2-git
 
 :: C:\Miniconda\python.exe -m pip install git+https://github.com/mamba-org/boa.git@main
-conda install boa=0.9
+call conda install boa=0.9
 if errorlevel 1 exit 1
 
 for %%X in (%CURRENT_RECIPES%) do (

@@ -28,6 +28,7 @@ packages_remove_from_deps:
   - tlsf_cpp
   - pendulum_control
   - warehouse_ros_mongo
+  - pilz-industrial-motion-planner
 
 skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
@@ -36,10 +37,9 @@ packages_select_by_deps:
   - ros_workspace
   - ros_environment
   - ros_base
-  # - rviz2  # needs to be built separately as otherwise build timeouts occur
-  # - desktop  # see above
-  # - moveit
-  # - navigation2
+  - rviz2  # needs to be built separately as otherwise build timeouts occur
+  - desktop  # see above
+  - moveit
+  - navigation2
 
 patch_dir: patch
-
