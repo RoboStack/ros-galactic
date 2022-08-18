@@ -1,18 +1,26 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index faac7e1b..8b93592e 100644
+index 7a917af8..591cfbae 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -204,28 +204,36 @@ macro(build_ogre)
-   )
- endmacro()
+@@ -6,13 +6,8 @@ find_package(ament_cmake REQUIRED)
  
--if(BUILDING_FREETYPE_LOCALLY)
--  build_freetype()
+ set(PACKAGE_VERSION "1.0.0")
+ 
+-if(WIN32)
+-  set(BUILDING_FREETYPE_LOCALLY ON)
+-  set(BUILDING_ZLIB_LOCALLY ON)
+-else()
+-  set(BUILDING_FREETYPE_LOCALLY OFF)
+-  set(BUILDING_ZLIB_LOCALLY OFF)
 -endif()
--if(BUILDING_ZLIB_LOCALLY)
--  build_zlib()
--endif()
-+set(RVIZ_OGRE_IS_VENDORBUILD OFF)
++set(BUILDING_FREETYPE_LOCALLY OFF)
++set(BUILDING_ZLIB_LOCALLY OFF)
+ 
+ if(WIN32 AND NOT ${CMAKE_VERBOSE_MAKEFILE})
+   set(should_log ON)  # prevent warnings in Windows CI
+@@ -217,20 +212,32 @@ if(BUILDING_ZLIB_LOCALLY)
+   build_zlib()
+ endif()
  
 -build_ogre()
 +find_package(OGRE)
@@ -52,12 +60,10 @@ index faac7e1b..8b93592e 100644
    endif()
 -  set(ENV_VAR_VALUE "opt/rviz_ogre_vendor/lib")
  endif()
-+
  ament_environment_hooks(env_hook/rviz_ogre_vendor_library_path.dsv.in)
  
- if(BUILD_TESTING)
 diff --git a/rviz_ogre_vendor-extras.cmake.in b/rviz_ogre_vendor-extras.cmake.in
-index 0ab09b60..6365c570 100644
+index 786aff99..935ed247 100644
 --- a/rviz_ogre_vendor-extras.cmake.in
 +++ b/rviz_ogre_vendor-extras.cmake.in
 @@ -1,20 +1,26 @@
