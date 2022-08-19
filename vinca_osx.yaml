@@ -26,6 +26,7 @@ packages_remove_from_deps:
   - tlsf_cpp
   - pendulum_control
   - rttest
+  - rosbridge_test_msgs
 
 skip_existing:
   - https://conda.anaconda.org/robostack-experimental/
