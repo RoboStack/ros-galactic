@@ -1,0 +1,80 @@
+package:
+  name: ros-galactic-rclpy
+  version: 1.9.2
+source:
+  git_url: https://github.com/ros2-gbp/rclpy-release.git
+  git_rev: release/galactic/rclpy/1.9.2-1
+  folder: ros-galactic-rclpy/src/work
+  patches:
+    - patch/ros-galactic-rclpy.patch
+
+build:
+  script:
+    sel(win): bld_ament_cmake.bat
+    sel(unix): build_ament_cmake.sh
+  number: 4
+about:
+  home: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - "{{ compiler('c') }}"
+    - ninja
+    - sel(unix): make
+    - sel(osx): tapi
+    - cmake 3.23
+    - sel(build_platform != target_platform): python
+    - sel(build_platform != target_platform): cross-python_{{ target_platform }}
+    - sel(build_platform != target_platform): cython
+    - sel(build_platform != target_platform): numpy
+    - sel(build_platform != target_platform): pybind11
+  host:
+    - numpy
+    - pytest
+    - python
+    - ros-galactic-ament-cmake
+    - ros-galactic-ament-cmake-gtest
+    - ros-galactic-ament-cmake-pytest
+    - ros-galactic-ament-lint-auto
+    - ros-galactic-ament-lint-common
+    - ros-galactic-pybind11-vendor
+    - ros-galactic-python-cmake-module
+    - ros-galactic-rcl
+    - ros-galactic-rcl-action
+    - ros-galactic-rcl-logging-interface
+    - ros-galactic-rcl-yaml-param-parser
+    - ros-galactic-rcpputils
+    - ros-galactic-rcutils
+    - ros-galactic-rmw-implementation
+    - ros-galactic-rmw-implementation-cmake
+    - ros-galactic-ros-environment
+    - ros-galactic-ros-workspace
+    - ros-galactic-rosidl-generator-py
+    - ros-galactic-test-msgs
+    - ros-galactic-unique-identifier-msgs
+    - ros2-distro-mutex 0.2 galactic
+    - pybind11
+  run:
+    - python
+    - ros-galactic-ament-index-python
+    - ros-galactic-builtin-interfaces
+    - ros-galactic-rcl
+    - ros-galactic-rcl-action
+    - ros-galactic-rcl-interfaces
+    - ros-galactic-rcl-logging-interface
+    - ros-galactic-rcl-yaml-param-parser
+    - ros-galactic-rmw-implementation
+    - ros-galactic-ros-workspace
+    - ros-galactic-rosgraph-msgs
+    - ros-galactic-rpyutils
+    - ros-galactic-unique-identifier-msgs
+    - ros2-distro-mutex 0.2 galactic
+    - sel(osx and x86_64): __osx >={{ MACOSX_DEPLOYMENT_TARGET|default('10.14') }}
