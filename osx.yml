@@ -1,0 +1,168 @@
+pool:
+  vmImage: macOS-10.15
+trigger:
+- buildbranch_osx
+pr: none
+stages:
+- stage: stage_0
+  jobs:
+  - job: stage_0_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-tf2-geometry-msgs ros-galactic-nav2-msgs ros-galactic-tf2-sensor-msgs
+          ros-galactic-nav2-voxel-grid ros-galactic-tf2-kdl
+      displayName: Build ros-galactic-tf2-geometry-msgs ros-galactic-nav2-msgs ros-galactic-tf2-sensor-msgs
+        ros-galactic-nav2-voxel-grid ros-galactic-tf2-kdl
+  - job: stage_0_job_1
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-controller-manager ros-galactic-ros2component
+          ros-galactic-rosapi
+      displayName: Build ros-galactic-controller-manager ros-galactic-ros2component
+        ros-galactic-rosapi
+- stage: stage_1
+  jobs:
+  - job: stage_1_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-nav2-util ros-galactic-rviz-common ros-galactic-joint-trajectory-controller
+          ros-galactic-joint-state-broadcaster ros-galactic-geometry2
+      displayName: Build ros-galactic-nav2-util ros-galactic-rviz-common ros-galactic-joint-trajectory-controller
+        ros-galactic-joint-state-broadcaster ros-galactic-geometry2
+  - job: stage_1_job_1
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-rosbridge-server
+      displayName: Build ros-galactic-rosbridge-server
+- stage: stage_2
+  jobs:
+  - job: stage_2_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-nav2-map-server ros-galactic-nav2-lifecycle-manager
+          ros-galactic-nav-2d-utils ros-galactic-rviz-visual-testing-framework ros-galactic-nav2-behavior-tree
+      displayName: Build ros-galactic-nav2-map-server ros-galactic-nav2-lifecycle-manager
+        ros-galactic-nav-2d-utils ros-galactic-rviz-visual-testing-framework ros-galactic-nav2-behavior-tree
+  - job: stage_2_job_1
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-nav2-amcl ros-galactic-rosbridge-suite
+      displayName: Build ros-galactic-nav2-amcl ros-galactic-rosbridge-suite
+- stage: stage_3
+  jobs:
+  - job: stage_3_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-nav2-costmap-2d ros-galactic-rviz-default-plugins
+      displayName: Build ros-galactic-nav2-costmap-2d ros-galactic-rviz-default-plugins
+- stage: stage_4
+  jobs:
+  - job: stage_4_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-nav2-core ros-galactic-costmap-queue ros-galactic-nav2-rviz-plugins
+      displayName: Build ros-galactic-nav2-core ros-galactic-costmap-queue ros-galactic-nav2-rviz-plugins
+- stage: stage_5
+  jobs:
+  - job: stage_5_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-dwb-core ros-galactic-nav2-regulated-pure-pursuit-controller
+          ros-galactic-nav2-controller ros-galactic-nav2-waypoint-follower ros-galactic-nav2-theta-star-planner
+      displayName: Build ros-galactic-dwb-core ros-galactic-nav2-regulated-pure-pursuit-controller
+        ros-galactic-nav2-controller ros-galactic-nav2-waypoint-follower ros-galactic-nav2-theta-star-planner
+  - job: stage_5_job_1
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-nav2-smac-planner ros-galactic-nav2-recoveries
+          ros-galactic-nav2-planner ros-galactic-nav2-navfn-planner ros-galactic-nav2-bt-navigator
+      displayName: Build ros-galactic-nav2-smac-planner ros-galactic-nav2-recoveries
+        ros-galactic-nav2-planner ros-galactic-nav2-navfn-planner ros-galactic-nav2-bt-navigator
+- stage: stage_6
+  jobs:
+  - job: stage_6_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-dwb-plugins ros-galactic-dwb-critics ros-galactic-nav2-rotation-shim-controller
+          ros-galactic-nav2-dwb-controller
+      displayName: Build ros-galactic-dwb-plugins ros-galactic-dwb-critics ros-galactic-nav2-rotation-shim-controller
+        ros-galactic-nav2-dwb-controller
+- stage: stage_7
+  jobs:
+  - job: stage_7_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-navigation2
+      displayName: Build ros-galactic-navigation2
