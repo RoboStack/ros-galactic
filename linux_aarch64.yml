@@ -1,0 +1,601 @@
+pool:
+  name: Default
+  demands:
+  - Agent.OS -equals linux
+  - Agent.OSArchitecture -equals ARM64
+trigger:
+- buildbranch_linux_aarch64
+pr: none
+stages:
+- stage: stage_0
+  jobs:
+  - job: stage_0_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-ament-lint ros-galactic-ament-uncrustify ros-galactic-ament-cppcheck
+          ros-galactic-ament-lint-auto ros-galactic-orocos-kdl
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-ament-lint ros-galactic-ament-uncrustify ros-galactic-ament-cppcheck
+        ros-galactic-ament-lint-auto ros-galactic-orocos-kdl
+  - job: stage_0_job_1
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-octomap ros-galactic-angles ros-galactic-nav-2d-msgs
+          ros-galactic-rosapi-msgs ros-galactic-rosbridge-msgs
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-octomap ros-galactic-angles ros-galactic-nav-2d-msgs
+        ros-galactic-rosapi-msgs ros-galactic-rosbridge-msgs
+- stage: stage_1
+  jobs:
+  - job: stage_1_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-ament-flake8 ros-galactic-ros2-control-test-assets
+          ros-galactic-dwb-msgs
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-ament-flake8 ros-galactic-ros2-control-test-assets
+        ros-galactic-dwb-msgs
+- stage: stage_2
+  jobs:
+  - job: stage_2_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-ament-pep257 ros-galactic-ament-mypy ros-galactic-ament-copyright
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-ament-pep257 ros-galactic-ament-mypy ros-galactic-ament-copyright
+- stage: stage_3
+  jobs:
+  - job: stage_3_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-ament-lint-cmake ros-galactic-ament-xmllint
+          ros-galactic-ament-cpplint ros-galactic-launch
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-ament-lint-cmake ros-galactic-ament-xmllint
+        ros-galactic-ament-cpplint ros-galactic-launch
+- stage: stage_4
+  jobs:
+  - job: stage_4_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-ament-cmake-lint-cmake ros-galactic-launch-testing
+          ros-galactic-rosidl-cli ros-galactic-launch-xml ros-galactic-launch-yaml
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-ament-cmake-lint-cmake ros-galactic-launch-testing
+        ros-galactic-rosidl-cli ros-galactic-launch-xml ros-galactic-launch-yaml
+- stage: stage_5
+  jobs:
+  - job: stage_5_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-ament-cmake-copyright
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-ament-cmake-copyright
+- stage: stage_6
+  jobs:
+  - job: stage_6_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-ament-cmake-xmllint ros-galactic-ament-cmake-uncrustify
+          ros-galactic-ament-cmake-pep257 ros-galactic-ament-cmake-flake8 ros-galactic-ament-cmake-cpplint
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-ament-cmake-xmllint ros-galactic-ament-cmake-uncrustify
+        ros-galactic-ament-cmake-pep257 ros-galactic-ament-cmake-flake8 ros-galactic-ament-cmake-cpplint
+  - job: stage_6_job_1
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-ament-cmake-cppcheck ros-galactic-launch-testing-ament-cmake
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-ament-cmake-cppcheck ros-galactic-launch-testing-ament-cmake
+- stage: stage_7
+  jobs:
+  - job: stage_7_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-ament-lint-common ros-galactic-rviz-ogre-vendor
+          ros-galactic-rviz-assimp-vendor
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-ament-lint-common ros-galactic-rviz-ogre-vendor
+        ros-galactic-rviz-assimp-vendor
+- stage: stage_8
+  jobs:
+  - job: stage_8_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-performance-test-fixture ros-galactic-rosidl-adapter
+          ros-galactic-rosidl-typesupport-interface ros-galactic-rti-connext-dds-cmake-module
+          ros-galactic-tf2-msgs
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-performance-test-fixture ros-galactic-rosidl-adapter
+        ros-galactic-rosidl-typesupport-interface ros-galactic-rti-connext-dds-cmake-module
+        ros-galactic-tf2-msgs
+  - job: stage_8_job_1
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-rviz-rendering ros-galactic-controller-manager-msgs
+          ros-galactic-tango-icons-vendor ros-galactic-ros2cli-test-interfaces ros-galactic-velodyne-msgs
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-rviz-rendering ros-galactic-controller-manager-msgs
+        ros-galactic-tango-icons-vendor ros-galactic-ros2cli-test-interfaces ros-galactic-velodyne-msgs
+- stage: stage_9
+  jobs:
+  - job: stage_9_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-rcutils ros-galactic-rosidl-parser ros-galactic-rosidl-runtime-cpp
+          ros-galactic-rviz-rendering-tests
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-rcutils ros-galactic-rosidl-parser ros-galactic-rosidl-runtime-cpp
+        ros-galactic-rviz-rendering-tests
+- stage: stage_10
+  jobs:
+  - job: stage_10_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-rosidl-runtime-c ros-galactic-rosidl-cmake ros-galactic-rmw-fastrtps-shared-cpp
+          ros-galactic-rcl-logging-interface ros-galactic-rcl-yaml-param-parser
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-rosidl-runtime-c ros-galactic-rosidl-cmake ros-galactic-rmw-fastrtps-shared-cpp
+        ros-galactic-rcl-logging-interface ros-galactic-rcl-yaml-param-parser
+  - job: stage_10_job_1
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-tf2
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-tf2
+- stage: stage_11
+  jobs:
+  - job: stage_11_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-rosidl-typesupport-introspection-c ros-galactic-rosidl-generator-c
+          ros-galactic-rmw-fastrtps-cpp ros-galactic-rcl-logging-spdlog ros-galactic-tf2-eigen-kdl
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-rosidl-typesupport-introspection-c ros-galactic-rosidl-generator-c
+        ros-galactic-rmw-fastrtps-cpp ros-galactic-rcl-logging-spdlog ros-galactic-tf2-eigen-kdl
+- stage: stage_12
+  jobs:
+  - job: stage_12_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-rosidl-typesupport-introspection-cpp ros-galactic-rosidl-generator-cpp
+          ros-galactic-rcl
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-rosidl-typesupport-introspection-cpp ros-galactic-rosidl-generator-cpp
+        ros-galactic-rcl
+- stage: stage_13
+  jobs:
+  - job: stage_13_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-rosidl-generator-py ros-galactic-rmw-connextdds-common
+          ros-galactic-rmw-fastrtps-dynamic-cpp ros-galactic-rmw-cyclonedds-cpp ros-galactic-rcl-action
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-rosidl-generator-py ros-galactic-rmw-connextdds-common
+        ros-galactic-rmw-fastrtps-dynamic-cpp ros-galactic-rmw-cyclonedds-cpp ros-galactic-rcl-action
+  - job: stage_13_job_1
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-rclcpp ros-galactic-rcl-lifecycle
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-rclcpp ros-galactic-rcl-lifecycle
+- stage: stage_14
+  jobs:
+  - job: stage_14_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-rmw-connextdds ros-galactic-rclpy ros-galactic-rclcpp-components
+          ros-galactic-rclcpp-action ros-galactic-rclcpp-lifecycle
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-rmw-connextdds ros-galactic-rclpy ros-galactic-rclcpp-components
+        ros-galactic-rclcpp-action ros-galactic-rclcpp-lifecycle
+  - job: stage_14_job_1
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-image-transport
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-image-transport
+- stage: stage_15
+  jobs:
+  - job: stage_15_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-tf2-py ros-galactic-launch-ros ros-galactic-tf2-ros
+          ros-galactic-ros2cli ros-galactic-hardware-interface
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-tf2-py ros-galactic-launch-ros ros-galactic-tf2-ros
+        ros-galactic-ros2cli ros-galactic-hardware-interface
+  - job: stage_15_job_1
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-launch-param-builder ros-galactic-ros2lifecycle-test-fixtures
+          ros-galactic-rosbridge-test-msgs ros-galactic-velodyne-laserscan ros-galactic-turtlesim
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-launch-param-builder ros-galactic-ros2lifecycle-test-fixtures
+        ros-galactic-rosbridge-test-msgs ros-galactic-velodyne-laserscan ros-galactic-turtlesim
+- stage: stage_16
+  jobs:
+  - job: stage_16_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-tf2-ros-py ros-galactic-nav2-common ros-galactic-launch-testing-ros
+          ros-galactic-ros2pkg ros-galactic-ros2service
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-tf2-ros-py ros-galactic-nav2-common ros-galactic-launch-testing-ros
+        ros-galactic-ros2pkg ros-galactic-ros2service
+  - job: stage_16_job_1
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-ros2node ros-galactic-tf2-eigen ros-galactic-controller-interface
+          ros-galactic-ros2topic ros-galactic-ros2multicast
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-ros2node ros-galactic-tf2-eigen ros-galactic-controller-interface
+        ros-galactic-ros2topic ros-galactic-ros2multicast
+  - job: stage_16_job_2
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-ros2interface ros-galactic-ros2doctor ros-galactic-ros2action
+          ros-galactic-rosbridge-library ros-galactic-tf2-bullet
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-ros2interface ros-galactic-ros2doctor ros-galactic-ros2action
+        ros-galactic-rosbridge-library ros-galactic-tf2-bullet
+  - job: stage_16_job_3
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-velodyne-pointcloud ros-galactic-velodyne-driver
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-velodyne-pointcloud ros-galactic-velodyne-driver
+- stage: stage_17
+  jobs:
+  - job: stage_17_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-tf2-geometry-msgs ros-galactic-nav2-msgs ros-galactic-tf2-sensor-msgs
+          ros-galactic-nav2-voxel-grid ros-galactic-tf2-kdl
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-tf2-geometry-msgs ros-galactic-nav2-msgs ros-galactic-tf2-sensor-msgs
+        ros-galactic-nav2-voxel-grid ros-galactic-tf2-kdl
+  - job: stage_17_job_1
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-ros2run ros-galactic-ros2param ros-galactic-ros2launch
+          ros-galactic-ros2lifecycle ros-galactic-tf2-tools
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-ros2run ros-galactic-ros2param ros-galactic-ros2launch
+        ros-galactic-ros2lifecycle ros-galactic-tf2-tools
+  - job: stage_17_job_2
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-velodyne
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-velodyne
+- stage: stage_18
+  jobs:
+  - job: stage_18_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-nav2-util ros-galactic-rviz-common ros-galactic-controller-manager
+          ros-galactic-ros2component ros-galactic-rosapi
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-nav2-util ros-galactic-rviz-common ros-galactic-controller-manager
+        ros-galactic-ros2component ros-galactic-rosapi
+  - job: stage_18_job_1
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-geometry2
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-geometry2
+- stage: stage_19
+  jobs:
+  - job: stage_19_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-nav2-map-server ros-galactic-nav2-lifecycle-manager
+          ros-galactic-nav-2d-utils ros-galactic-rviz-visual-testing-framework ros-galactic-nav2-behavior-tree
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-nav2-map-server ros-galactic-nav2-lifecycle-manager
+        ros-galactic-nav-2d-utils ros-galactic-rviz-visual-testing-framework ros-galactic-nav2-behavior-tree
+  - job: stage_19_job_1
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-joint-trajectory-controller ros-galactic-joint-state-broadcaster
+          ros-galactic-nav2-amcl ros-galactic-rosbridge-server
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-joint-trajectory-controller ros-galactic-joint-state-broadcaster
+        ros-galactic-nav2-amcl ros-galactic-rosbridge-server
+- stage: stage_20
+  jobs:
+  - job: stage_20_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-nav2-costmap-2d ros-galactic-rviz-default-plugins
+          ros-galactic-rosbridge-suite
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-nav2-costmap-2d ros-galactic-rviz-default-plugins
+        ros-galactic-rosbridge-suite
+- stage: stage_21
+  jobs:
+  - job: stage_21_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-nav2-core ros-galactic-costmap-queue ros-galactic-nav2-rviz-plugins
+          ros-galactic-rviz2
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-nav2-core ros-galactic-costmap-queue ros-galactic-nav2-rviz-plugins
+        ros-galactic-rviz2
+- stage: stage_22
+  jobs:
+  - job: stage_22_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-dwb-core ros-galactic-nav2-regulated-pure-pursuit-controller
+          ros-galactic-nav2-controller ros-galactic-nav2-waypoint-follower ros-galactic-nav2-theta-star-planner
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-dwb-core ros-galactic-nav2-regulated-pure-pursuit-controller
+        ros-galactic-nav2-controller ros-galactic-nav2-waypoint-follower ros-galactic-nav2-theta-star-planner
+  - job: stage_22_job_1
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-nav2-smac-planner ros-galactic-nav2-recoveries
+          ros-galactic-nav2-planner ros-galactic-nav2-navfn-planner ros-galactic-nav2-bt-navigator
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-nav2-smac-planner ros-galactic-nav2-recoveries
+        ros-galactic-nav2-planner ros-galactic-nav2-navfn-planner ros-galactic-nav2-bt-navigator
+- stage: stage_23
+  jobs:
+  - job: stage_23_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-dwb-plugins ros-galactic-dwb-critics ros-galactic-nav2-rotation-shim-controller
+          ros-galactic-nav2-dwb-controller
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-dwb-plugins ros-galactic-dwb-critics ros-galactic-nav2-rotation-shim-controller
+        ros-galactic-nav2-dwb-controller
+- stage: stage_24
+  jobs:
+  - job: stage_24_job_0
+    steps:
+    - script: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-galactic-navigation2
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-galactic-navigation2
