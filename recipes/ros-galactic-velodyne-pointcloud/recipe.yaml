@@ -1,0 +1,74 @@
+package:
+  name: ros-galactic-velodyne-pointcloud
+  version: 2.3.0
+source:
+  git_url: https://github.com/ros2-gbp/velodyne-release.git
+  git_rev: release/galactic/velodyne_pointcloud/2.3.0-1
+  folder: ros-galactic-velodyne-pointcloud/src/work
+
+build:
+  script:
+    sel(win): bld_ament_cmake.bat
+    sel(unix): build_ament_cmake.sh
+  number: 3
+about:
+  home: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - "{{ compiler('c') }}"
+    - ninja
+    - sel(unix): make
+    - sel(osx): tapi
+    - cmake 3.23
+    - sel(build_platform != target_platform): python
+    - sel(build_platform != target_platform): cross-python_{{ target_platform }}
+    - sel(build_platform != target_platform): cython
+    - sel(build_platform != target_platform): pkg-config
+  host:
+    - pcl
+    - python
+    - ros-galactic-ament-cmake
+    - ros-galactic-ament-cmake-gtest
+    - ros-galactic-ament-lint-auto
+    - ros-galactic-ament-lint-common
+    - ros-galactic-angles
+    - ros-galactic-diagnostic-updater
+    - ros-galactic-geometry-msgs
+    - ros-galactic-message-filters
+    - ros-galactic-rclcpp
+    - ros-galactic-rclcpp-components
+    - ros-galactic-ros-environment
+    - ros-galactic-ros-workspace
+    - ros-galactic-sensor-msgs
+    - ros-galactic-tf2
+    - ros-galactic-tf2-ros
+    - ros-galactic-velodyne-msgs
+    - ros2-distro-mutex 0.2 galactic
+    - yaml-cpp
+    - sel(build_platform == target_platform): pkg-config
+  run:
+    - pcl
+    - python
+    - ros-galactic-angles
+    - ros-galactic-diagnostic-updater
+    - ros-galactic-geometry-msgs
+    - ros-galactic-message-filters
+    - ros-galactic-rclcpp
+    - ros-galactic-rclcpp-components
+    - ros-galactic-ros-workspace
+    - ros-galactic-sensor-msgs
+    - ros-galactic-tf2
+    - ros-galactic-tf2-ros
+    - ros-galactic-velodyne-msgs
+    - ros2-distro-mutex 0.2 galactic
+    - yaml-cpp
+    - sel(osx and x86_64): __osx >={{ MACOSX_DEPLOYMENT_TARGET|default('10.14') }}
