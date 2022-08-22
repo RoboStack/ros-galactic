@@ -1,6 +1,6 @@
 # RoboStack (for ROS galactic)
 
-Note:  ROS galactic is experimental. [ROS noetic](https://github.com/RoboStack/ros-noetic) is recommended for most users at this time.
+Note: ROS galactic is experimental and not actively contributed to by the RoboStack team anymore. [ROS Noetic](https://github.com/RoboStack/ros-noetic) or [ROS2 Humble](https://github.com/RoboStack/ros-humble) are recommended for most users at this time.
 
 [![Conda](https://img.shields.io/conda/dn/robostack-experimental/ros-galactic-desktop?style=flat-square)](https://anaconda.org/robostack/)
 [![Gitter](https://img.shields.io/gitter/room/RoboStack/Lobby?style=flat-square)](https://gitter.im/RoboStack/Lobby)
