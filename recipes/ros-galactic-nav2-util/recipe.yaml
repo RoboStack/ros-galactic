@@ -1,0 +1,86 @@
+package:
+  name: ros-galactic-nav2-util
+  version: 1.0.12
+source:
+  git_url: https://github.com/SteveMacenski/navigation2-release.git
+  git_rev: release/galactic/nav2_util/1.0.12-1
+  folder: ros-galactic-nav2-util/src/work
+
+build:
+  script:
+    sel(win): bld_ament_cmake.bat
+    sel(unix): build_ament_cmake.sh
+  number: 2
+about:
+  home: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - "{{ compiler('c') }}"
+    - ninja
+    - sel(unix): make
+    - sel(osx): tapi
+    - cmake 3.23
+    - sel(build_platform != target_platform): python
+    - sel(build_platform != target_platform): cross-python_{{ target_platform }}
+    - sel(build_platform != target_platform): cython
+  host:
+    - boost-cpp
+    - python
+    - ros-galactic-action-msgs
+    - ros-galactic-ament-cmake
+    - ros-galactic-ament-cmake-gtest
+    - ros-galactic-ament-cmake-pytest
+    - ros-galactic-ament-lint-auto
+    - ros-galactic-ament-lint-common
+    - ros-galactic-bond
+    - ros-galactic-bondcpp
+    - ros-galactic-geometry-msgs
+    - ros-galactic-launch
+    - ros-galactic-launch-testing-ament-cmake
+    - ros-galactic-launch-testing-ros
+    - ros-galactic-lifecycle-msgs
+    - ros-galactic-nav-msgs
+    - ros-galactic-nav2-common
+    - ros-galactic-nav2-msgs
+    - ros-galactic-rclcpp
+    - ros-galactic-rclcpp-action
+    - ros-galactic-rclcpp-lifecycle
+    - ros-galactic-ros-environment
+    - ros-galactic-ros-workspace
+    - ros-galactic-std-srvs
+    - ros-galactic-test-msgs
+    - ros-galactic-tf2
+    - ros-galactic-tf2-geometry-msgs
+    - ros-galactic-tf2-ros
+    - ros2-distro-mutex 0.2 galactic
+  run:
+    - boost-cpp
+    - python
+    - ros-galactic-action-msgs
+    - ros-galactic-bond
+    - ros-galactic-bondcpp
+    - ros-galactic-geometry-msgs
+    - ros-galactic-launch
+    - ros-galactic-launch-testing-ament-cmake
+    - ros-galactic-lifecycle-msgs
+    - ros-galactic-nav-msgs
+    - ros-galactic-nav2-common
+    - ros-galactic-nav2-msgs
+    - ros-galactic-rclcpp
+    - ros-galactic-rclcpp-action
+    - ros-galactic-rclcpp-lifecycle
+    - ros-galactic-ros-workspace
+    - ros-galactic-tf2
+    - ros-galactic-tf2-geometry-msgs
+    - ros-galactic-tf2-ros
+    - ros2-distro-mutex 0.2 galactic
+    - sel(osx and x86_64): __osx >={{ MACOSX_DEPLOYMENT_TARGET|default('10.14') }}
