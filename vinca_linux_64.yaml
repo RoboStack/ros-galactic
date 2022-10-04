@@ -86,7 +86,7 @@ packages_select_by_deps:
   # - picknik-ament-copyright
   # - nodl-to-policy
   # - geometry-tutorials
-  # - sdformat-urdf
+  - sdformat-urdf
   # - cartographer-ros
   # - plansys2-bt-actions
   # - plansys2-terminal
